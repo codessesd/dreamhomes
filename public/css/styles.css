@@ -1,0 +1,91 @@
+/*
+*	CSS Styles
+*	By Rendani Shane Netshikweta
+*	At Obscode Freelace
+*	12/2019
+*  
+*	Logo Colours
+*	Green 	#8ab242 #99cc66
+*	Grey	#323941 #333333
+*/
+
+*{
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	font-family: 'Montserrat', sans-serif;
+	/*font-family: 'Raleway', sans-serif;*/
+	/*font-size: 16px;*/
+}
+.btn{
+	background-color: #99cc66;
+	text-align: center;
+	color: #FFFFFF;
+	/*min-width: 130px;*/
+	display: inline-block;
+	border-radius: 30px;
+	box-shadow: 1px 1px 2px #000;
+}
+.btn:hover{
+	background-color: #AADD77;
+}
+.btn:active{
+	box-shadow: 1px 1px 2px #FFF;	
+}
+.btn a{
+	color: #FFFFFF !important;
+	display: inline-block;
+	text-decoration: none;
+	/*background-color: orange;*/
+	width: 100%;
+	height: 100%;
+	padding: 10px 0px;
+	border-radius: 30px;
+}
+.login{
+	margin-top: 28px;
+	width: 20%;
+}
+.info-bar{
+	background-color: black;
+	width: 100%;
+	height: 30px;
+}
+.header-container{
+	display: grid;
+	padding-top: 20px;
+	grid-template-columns: 40% 60%;
+	width: 70%;
+	margin-left: 15%;
+}
+.header-container div{
+	height: 120px;
+}
+.logo img{
+	width: 100%;
+}
+.menu-container{
+	padding-left: 100px;
+}
+.menu-container ul{
+	margin-top: 38px;
+	width: 80%;
+	float: left;
+}
+.menu-container ul li{
+	width: 20%;
+	float: left;
+	list-style: none;
+}
+.menu-container ul a{
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+.menu-container ul a{
+	text-decoration: none;
+	color: #333;
+}
+.menu-container ul a:active{
+
+}
