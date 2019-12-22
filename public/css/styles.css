@@ -9,21 +9,34 @@
 *	Grey	#323941 #333333
 */
 
+
+/*site wide css***********************************/
 *{
 	margin: 0px;
 	padding: 0px;
 	box-sizing: border-box;
-	font-family: 'Montserrat', sans-serif;
-	/*font-family: 'Raleway', sans-serif;*/
+	/*font-family: 'Montserrat', sans-serif;*/
+	font-family: 'Raleway', sans-serif;
 	/*font-size: 16px;*/
+}
+input{
+	padding: 5px;
+	border-radius: 5px;
+	border: 1px solid #ddd;
+	color: #555;
+	box-shadow: 2px 2px 2px #555;
+}
+button{
+	border: none;
 }
 .btn{
 	background-color: #99cc66;
 	text-align: center;
 	color: #FFFFFF;
-	/*min-width: 130px;*/
 	display: inline-block;
+	min-width: 100px;
 	border-radius: 30px;
+	padding: 10px;
 	box-shadow: 1px 1px 2px #000;
 }
 .btn:hover{
@@ -39,9 +52,16 @@
 	/*background-color: orange;*/
 	width: 100%;
 	height: 100%;
-	padding: 10px 0px;
 	border-radius: 30px;
 }
+.section{
+	width: 70%;
+	margin-left: 15%;
+	padding-top: 100px;
+}
+/*END site wide css
+
+/*header css*************************************/
 .login{
 	margin-top: 28px;
 	width: 20%;
@@ -88,4 +108,47 @@
 }
 .menu-container ul a:active{
 
+}
+
+.banner-line{
+	background-color: #99cc66;
+	height: 30px;
+}
+.banner-pic{
+	position: relative;
+	height: 500px;
+	overflow: hidden;
+}
+.banner-pic img{
+	width: 100%;
+}
+.filter{
+	background-color: #ffffff99;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+/*register page*****************************************/
+.register{
+	display: grid;
+	grid-template-columns: 50% 50%;
+}
+.register form{
+	padding: 40px 200px 0px 0px;
+}
+.register .side-pic img{
+	margin-top: 40px;
+	text-align: center;
+	width: 100%;
+}
+.register form label, .register form input{
+	width: 100%;
+}
+
+.register form input{
+	margin: 10px 0px 20px 0px;
+}
+.register form button{
+	float: right;
 }
