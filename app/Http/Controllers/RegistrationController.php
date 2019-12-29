@@ -61,7 +61,7 @@ class RegistrationController extends Controller
             $to = "rendyshane@gmail.com,".request()->email;
             $subject = "DreamHomes: Verify Email address";
 
-            $message = "Hello ".request()->f_name." \n\nClick on the link below to verify your email address. Alternatively, you can copy the link into your browser.\n\n";
+            $message = "Hello ".request()->f_name." \n\nClick on the link below to verify your email address. Alternatively, you can copy the link into your browser. This link will expire in 24 Hours.\n\n";
             $message.= "https://www.dhs.org.za/verify/".request()->email_token."/".request()->verify_token;
 
             //mail($to,$subject,$message,$headers);//uncomment this on live web
@@ -91,7 +91,10 @@ class RegistrationController extends Controller
       $pendingUser = PendingUser::where("email_token",$email_token)->where("verify_token",$token)->get();
       if ($pendingUser->isNotEmpty())
       {
-        return view('setPassword');
+        return view("setPassword",compact("token","email_token"));
+      }else{
+        $message = "verifyLinkExpired";
+        return view("messages",compact("message"));
       }
     }
 

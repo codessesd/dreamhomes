@@ -102,6 +102,10 @@ button{
 	border-radius: 0.25em;
 	background-color: yellow;
 }
+.message a{
+	color: #FFFFFF;
+}
+
 /*END site wide css
 
 /*header css*************************************/
