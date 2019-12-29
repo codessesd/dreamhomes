@@ -15,5 +15,7 @@ Route::get('/', function () {return view('index');});
 Route::get('about', function () {return view('about');});
 Route::get('contact', function () {return view('contact');});
 Route::get('register', function () {return view('register');});
+Route::POST('register','RegistrationController@register');
+Route::get('verify/{email_token}/{token}','RegistrationController@verify');
 Route::get('app-step1', function () {return view('app_step1');});
 Route::get('login', function () {return view('login');});

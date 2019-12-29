@@ -20,6 +20,12 @@
 	/*font-size: 16px;*/
 	line-height: 27px;
 }
+select{
+	padding: 5px;
+	border-radius: 5px;
+	margin-top: 5px;
+	margin-bottom: 20px;
+}
 input{
 	padding: 5px;
 	border-radius: 5px;
@@ -39,6 +45,7 @@ button{
 }
 .clr{
 	clear: both;
+	width: 100%;
 }
 .btn{
 	background-color: #99cc66;
@@ -69,6 +76,31 @@ button{
 	width: 70%;
 	margin-left: 15%;
 	padding-top: 100px;
+}
+.bg-success{
+	background-color: #99cc66;
+}
+.bg-error{
+	background-color: #DD3333;
+}
+.message{
+	padding: 10px;
+	margin-top: 10px;
+	border-radius: 10px;
+	box-shadow: 2px 2px 4px #000;
+	font-variant-caps: small-caps;
+	color: #FFFFFF;
+}
+.message ul{
+	list-style: none;
+}
+.message span{
+	display: inline-block;
+	margin-right: 3px;
+	width: 0.5em;
+	height: 0.5em;
+	border-radius: 0.25em;
+	background-color: yellow;
 }
 /*END site wide css
 
@@ -181,10 +213,6 @@ button{
 .register form label, .register form input{
 	width: 100%;
 }
-
-.register form input{
-	
-}
 .register form button{
 	float: right;
 }
@@ -200,39 +228,53 @@ form.applicant-details{
 	display: inline-block;
 	padding: 25px;
 	box-shadow: 3px 3px 9px #ccc;
-	/*border-radius: 10px;*/
 }
 .application .applicant-details>div{
 	float: left;
 	padding: 0px 6px;
 }
-div.title{
+form.applicant-details .title{
 	width: 5%;
 }
-div.initials{
+form.applicant-details .initials{
 	width: 10%;
 }
-div.first-name{
+form.applicant-details .first-name{
 	width: 42%;
 }
-div.mid-name{
+form.applicant-details .mid-name{
 	width: 43%;
 }
-div.surname{
+form.applicant-details .surname{
 	width: 50%;
 }
-div.id-passport{
+form.applicant-details .id-passport{
 	width: 50%;
 }
-div.tel-no{
+form.applicant-details .tel-no{
 	width: 33.333%;
 }
-div.cell-no{
+form.applicant-details .cell-no{
 	width: 33.333%;
 }
-div.email{
+form.applicant-details .email{
 	width: 33.333%;	
 }
 .application button{
 	float: right;
+}
+form.applicant-details .marital-status{
+	/*width: 28%;*/
+}
+form.applicant-details .insolve1{
+	/*width: 36%;*/
+}
+form.applicant-details .insolve2{
+	/*width: 36%;*/
+}
+form.applicant-details .address{
+ width: 100%;
+}
+form.applicant-details .address input{
+ width: 33%;
 }

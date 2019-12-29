@@ -14,14 +14,12 @@
         <a href="/"><img src="/images/logo.png" alt="dream homes stokvel"></a>
       </div>
       <div class="menu-container">
-        {{-- <div> --}}
           <ul>
             <li><a href="/">Home</a></li>
             <li><a href="about">About</a></li>
             <li><a href="contact">Contact</a></li>
             <li><a href="register">Register</a></li>
           </ul>
-        {{-- </div> --}}
         <span class="btn login"><a href="login">Login</a></span>
       </div>
     </div>
