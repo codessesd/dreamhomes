@@ -21,3 +21,6 @@ Route::get('setPassword',function () {return view('setPassword');});///////
 Route::POST('setPassword','PasswordController@firstPassword');
 Route::get('app-step1', function () {return view('app_step1');});
 Route::get('login', function () {return view('login');});
+Route::POST('login','SessionsController@userLogin');
+Route::get('logout','SessionsController@logoutUser');
+Route::get('profile',function(){return view('profile');});

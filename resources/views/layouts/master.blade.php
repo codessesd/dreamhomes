@@ -15,12 +15,20 @@
       </div>
       <div class="menu-container">
           <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/register">Register</a></li>
+            <li class="@yield('home')"><a href="/">Home</a></li>
+            <li class="@yield('about')"><a href="/about">About</a></li>
+            <li class="@yield('contact')"><a href="/contact">Contact</a></li>
+            @if (auth()->check())
+              <li class="@yield('profile')"><a href="/profile">Profile</a></li>
+            @else
+              <li class="@yield('register')"><a href="/register">Register</a></li> 
+            @endif
           </ul>
-        <span class="btn login"><a href="/login">Login</a></span>
+        @if(auth()->check())
+          <span class="btn login"><a href="/logout">Logout</a></span>
+        @else
+          <span class="btn login"><a href="/login">Login</a></span>
+        @endif
       </div>
     </div>
 

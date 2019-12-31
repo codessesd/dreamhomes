@@ -1,5 +1,5 @@
 @extends("layouts.master")
-
+@section('register','active')
 @section('banner')
   @include('partials.banner2')
 @endsection

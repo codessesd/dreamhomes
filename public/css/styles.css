@@ -148,13 +148,15 @@ button{
 	display: inline-block;
 	width: 100%;
 	height: 100%;
-}
-.menu-container ul a{
 	text-decoration: none;
 	color: #333;
+	text-align: center;
 }
 .menu-container ul a:active{
 
+}
+.active{
+	border-bottom: 2px solid #99cc66;
 }
 
 .banner-line{
@@ -281,4 +283,17 @@ form.applicant-details .address{
 }
 form.applicant-details .address input{
  width: 33%;
+}
+/*End Application Form*/
+
+/*Profile Page****************************/
+
+.profile-div{
+	display: grid;
+	grid-template-columns: 20% 80%;
+}
+
+.profile-div .menu-link{
+	display: inline-block;
+	width: 100%;
 }

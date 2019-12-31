@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\PendingUser;
 use App\User;
+use App\Member;
 
 class PasswordController extends Controller
 {
@@ -18,15 +19,22 @@ class PasswordController extends Controller
 
     if($pendingUser->isNotEmpty())
     {
+      $pendingUser = $pendingUser[0];
       $rememberToken = hash('sha256',rand(0,999999999));
       $hashedPassword = bcrypt(request()->password);
-      $email = $pendingUser[0]['email'];
-
+      $email = $pendingUser->email;
       $user = User::Create(["email" => $email,"admin_level" => 1,"password" => $hashedPassword,"remember_token" => $rememberToken]);
-      $pendingUser[0]->delete();
+      $member = Member::Create(["id" => $user->id,
+                                "f_name" => $pendingUser->f_name,
+                                "surname" => $pendingUser->surname,
+                                "cell_number" => $pendingUser->contact_no]);
+      $pendingUser->delete();
 
       $message = "passwordSuccess";
       return view('messages',compact('message'));
+    }else{
+      $message = "defaultMessage";
+      return view("messages",compact("message"));
     }
   }
 }
