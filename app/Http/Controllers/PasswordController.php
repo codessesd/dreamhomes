@@ -27,7 +27,8 @@ class PasswordController extends Controller
       $member = Member::Create(["id" => $user->id,
                                 "f_name" => $pendingUser->f_name,
                                 "surname" => $pendingUser->surname,
-                                "cell_number" => $pendingUser->contact_no]);
+                                "cell_number" => $pendingUser->contact_no,
+                                "staus" => "active"]);
       $pendingUser->delete();
 
       $message = "passwordSuccess";

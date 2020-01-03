@@ -11,4 +11,7 @@ class Member extends Model
   public function document(){
     return $this->hasMany(Document::class);
   }
+  public function user(){
+    return $this->belongsTo(User::class);
+  }
 }

@@ -20,7 +20,13 @@ Route::get('verify/{email_token}/{token}','RegistrationController@verify');
 Route::get('setPassword',function () {return view('setPassword');});///////
 Route::POST('setPassword','PasswordController@firstPassword');
 Route::get('app-step1', function () {return view('app_step1');});
-Route::get('login', function () {return view('login');});
+Route::get('login', function () {return view('login');})->middleware('guest');
 Route::POST('login','SessionsController@userLogin');
-Route::get('logout','SessionsController@logoutUser');
-Route::get('profile',function(){return view('profile');});
+Route::get('logout','SessionsController@logoutUser')->middleware('auth');
+Route::get('profile',function(){return view('profile');})->name('profile')->middleware('auth');
+Route::get('download-form',function(){
+  //works on the live website
+    $file= public_path()."/DREAM HOMES STOKVEL NEW MEMBERSHIP APPLICATION FORM.pdf";
+    $headers = array('Content-Type: application/pdf',);
+    return Response::download($file, 'DREAM HOMES STOKVEL NEW MEMBERSHIP APPLICATION FORM.pdf', $headers);
+});

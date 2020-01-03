@@ -30,6 +30,7 @@ class CreateMembersTable extends Migration
             $table->string('liquidation')->nullable();
             $table->string('application_type')->nullable();
             $table->string('completed_at')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
