@@ -24,6 +24,8 @@ Route::get('login', function () {return view('login');})->middleware('guest');
 Route::POST('login','SessionsController@userLogin');
 Route::get('logout','SessionsController@logoutUser')->middleware('auth');
 Route::get('profile',function(){return view('profile');})->name('profile')->middleware('auth');
+Route::POST('storeFile','DocumentsController@storeFile')->middleware('auth');
+
 Route::get('download-form',function(){
   //works on the live website
     $file= public_path()."/DREAM HOMES STOKVEL NEW MEMBERSHIP APPLICATION FORM.pdf";

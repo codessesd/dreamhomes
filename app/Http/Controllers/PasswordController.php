@@ -28,11 +28,11 @@ class PasswordController extends Controller
                                 "f_name" => $pendingUser->f_name,
                                 "surname" => $pendingUser->surname,
                                 "cell_number" => $pendingUser->contact_no,
-                                "staus" => "active"]);
+                                "status" => "incomplete"]);
       $pendingUser->delete();
 
       $message = "passwordSuccess";
-      return view('messages',compact('message'));
+      return redirect('profile');
     }else{
       $message = "defaultMessage";
       return view("messages",compact("message"));
