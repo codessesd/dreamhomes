@@ -50,12 +50,14 @@ button{
 	clear: both;
 	width: 100%;
 }
+button.btn{
+	min-width: 100px;
+}
 .btn{
 	background-color: #99cc66;
 	text-align: center;
 	color: #FFFFFF;
 	display: inline-block;
-	min-width: 100px;
 	border-radius: 30px;
 	padding: 10px;
 	box-shadow: 1px 1px 2px #000;
@@ -117,7 +119,7 @@ button{
 	width: 100px;
 }
 .wdsec1-txt{
-	position: absolute;
+	position: relative;
 	padding-top: 100px;
 	width: 70%;
 	margin-left: 15%;
@@ -127,6 +129,9 @@ button{
 }
 .close:active{
 	opacity: 0.6;
+}
+.txt-justify{
+	text-align: justify;
 }
 /*END site wide css
 
@@ -144,10 +149,10 @@ button{
 	display: grid;
 	padding-top: 20px;
 	grid-template-columns: 40% 60%;
-	width: 70%;
-	margin-left: 15%;
+	width: 80%;
+	margin-left: 10%;
 }
-.header-container div{
+.header-container>div{
 	height: 120px;
 }
 .logo img{
@@ -162,7 +167,7 @@ button{
 	float: left;
 }
 .menu-container ul li{
-	width: 20%;
+	width: 24%;
 	float: left;
 	list-style: none;
 }
@@ -275,9 +280,10 @@ button{
 .bg-image1{
 	position: relative;
 	width: 100%;
-	height:600px;
+	min-height:600px;
 	background-image: url("../images/banner2.jpg");
 	background-size: cover;
+	background-position: center center;
 }
 
 .filter{
@@ -379,7 +385,7 @@ form.applicant-details .address input{
 /*End Application Form*/
 
 /*Profile Page****************************/
-.txt-green, .txt-red{
+.txt-green, .txt-red, .txt-yellow{
 	font-weight: bold;
 }
 .txt-green{
@@ -387,6 +393,9 @@ form.applicant-details .address input{
 }
 .txt-red{
 	color: red;
+}
+.txt-yellow{
+	color: #ffc300;
 }
 .close img{
 	width: 30px;
@@ -405,6 +414,10 @@ form.applicant-details .address input{
 	background-color: #fff7;
 	left: 0;
 	top: 0;
+	z-index: 1;
+}
+.file-input{
+	width: 100%;
 }
 .upload-dialog{
 	display: none;
@@ -415,10 +428,15 @@ form.applicant-details .address input{
 	box-shadow: 3px 3px 12px #000;
 	padding: 10px;
 	border-radius: 10px;
-	max-width: 340px;
+	/*max-width: 340px;*/
 	overflow: hidden;
 	top: 40%;
 	left: 40%;
+	width: 30%;
+	z-index: 2;
+}
+.profile-btns-mobile .btn2, .profile-btns-mobile .btn3{
+	margin-left: 0px;
 }
 .btn2, .btn3{
 	display: inline-block;
@@ -444,7 +462,7 @@ form.applicant-details .address input{
 .btn2:active, .btn3:active{
 	box-shadow: 0px 0px 2px #999;
 }
-.profile-content a{
+.profile-btns a{
 	text-decoration: none;
 	display: inline-block;
 	width: 100%;
@@ -472,11 +490,40 @@ form.applicant-details .address input{
 	border-right: 1px solid #FFFFFF;
 	z-index: 1;
 }
-
-.profile-content{
+.profile-btns-mobile{
+	display: none;
+	position: absolute;
+	right: 5px;
+	margin-top: 40px;
+	background-color: #FFF;
+	box-shadow: 0px 0px 20px #333;
+	padding: 10px;
+	border-radius: 10px;
+}
+.profile-btns{
 	padding: 10px;
 	/*border: 1px solid #C0C0C0;*/
 	min-height: 400px;
+}
+.profile-btns-menu img{
+	height: 20px;
+}
+.profile-btns-menu{
+	display: none;
+	margin-bottom: 10px;
+	width: 30px;
+	height: 30px;
+	box-shadow: 0px 0px 6px #666;
+	border-radius: 5px;
+	text-align: center;
+	padding-top: 5px;
+	background-color: #99cc66;
+}
+.profile-btns-menu:hover{
+	/*background-color: #ccc;*/
+}
+.profile-btns-menu:active{
+	box-shadow: 0px 0px 2px #666;
 }
 .uploadedDocs{
 	/*list-style: none;*/
@@ -484,11 +531,102 @@ form.applicant-details .address input{
 }
 
 /*End profile*/
+/*Contact page***********************************************/
+.contact{
+	display: grid;
+	grid-template-columns: auto auto;
+}
+.contact-icon{
+	text-align: center;
+}
+.contact-group{
+	padding: 10px 10px 10px 10px;
+	/*background-color: #eee4;*/
+	margin-bottom: 20px;
+	box-shadow: 10px 10px 20px #ddd;
+	border-radius: 8px;
+}
+.contact-group p{
+	display: inline-block;
+	float: left;
+}
+.contact-label{
+	width: 100px;
+}
+/*End Contact page*/
 
+/*Mobile menu*******************************************************/
+.mobile-menu{
+	display: none;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	/*background-color: #fff;*/
+}
+.menu-btns-container{
+	position: relative;
+	z-index: 0;
+	display: none;
+	margin-right: 40px;
+}
+.mbl-menu-btn{
+	margin-top: 25px;
+	position: absolute;
+	right: 0px;
+	background-color: #FFF9;
+}
+.btn-close img, .btn-open img{
+	width: 40px;
+}
+.btn-close{
+	display: none;
+	right: -40px;
+}
+.mobile-logo{
+	text-align: center;
+	padding-top: 20px;
+	height: 100px;
+}
+.mobile-logo img{
+	height: 100px;
+}
+.mbl-menu a{
+	text-decoration: none;
+	color: #000;
+}
+.mbl-menu ul{
+	list-style: none;
+}
+.mbl-menu li{
+	font-size: 25px;
+	margin-top: 25px;
+	text-align: center;
+	font-weight: bold;
+	padding: 5px;
+	border-radius: 7px;
+	letter-spacing: 7px;
+	font-variant-caps: small-caps;
+}
+.mbl-menu .login{
+	margin-left: 40%;
+}
+.mbl-menu .active{
+	background-color: #99cc6633;
+}
+.mbl-menu{
+	width: 80%;
+	margin: auto;
+	box-shadow: 17px 17px 60px #555;
+	padding: 20px;
+	border-radius: 20px;
+	margin-top: 30px;
+	background-color: #fff;
+}
 /*Footer******************************/
 
 .footer{
 	/*margin-top: 100px;*/
+	margin-top: 50px;
 	height: 200px;
 	background-color: #333333;
 }
@@ -498,4 +636,142 @@ form.applicant-details .address input{
 	color: #eeeeee;
 	text-align: center;
 	padding-top: 50px;
+}
+@media (max-width: 1280px){
+	.header-container{
+		width: 90%;
+		margin-left: 5%;
+	}
+	.menu-container{
+		padding-left: 50px;
+	}
+	.section{
+		width: 80%;
+		margin-left: 10%;
+	}
+	.inforgraphic{
+		width: 60%;
+		margin-left: 20%;
+	}
+	.upload-dialog, .msg-dialog {
+		width: 40%;
+		left: 30%;
+	}
+}
+
+@media (max-width: 1080px){
+	.section{
+		width: 90%;
+		margin-left: 5%;
+	}
+	.register form{
+		padding: 40px 100px 0px 0px;
+	}
+	.btn2, .btn3 {
+		width: 80%;
+	}
+}
+
+@media (max-width: 856px)
+{
+	.home-section > .about{
+		grid-template-columns: auto;
+	}
+	.register form{
+		padding: 40px 20px 0px 0px;
+	}
+	.register .side-pic img {
+		width: 600px;
+		height: 400px
+	}
+	.register .side-pic{
+		overflow: hidden;
+	}
+	.main-menu{
+		display: none;
+	}
+	.header-container{
+		grid-template-columns: 65% 35%;
+	}
+	.menu-btns-container{
+		display: block;
+	}
+	.upload-dialog, .msg-dialog {
+		width: 60%;
+		left: 20%;
+	}}
+@media (max-width: 768px){
+	.inforgraphic{
+		width: 90%;
+		margin-left: 5%;
+	}
+	.wdsec1-txt{
+		width: 90%;
+		margin-left: 5%;
+	}
+	.btn2, .btn3 {
+		width: 100%;
+	}
+}
+@media (max-width: 660px){
+	.contact{
+		grid-template-columns: auto;
+	}
+	.contact-icon img{
+		height: 100px;
+	}
+	.header-container{
+		grid-template-columns: 75% 25%;
+	}
+	.register{
+		grid-template-columns: auto;
+	}
+	.side-pic{
+		display: none;
+	}
+	.profile-div{
+		grid-template-columns: auto;
+	}
+	.upload-dialog, .msg-dialog {
+		width: 70%;
+		left: 15%;
+	}
+	.profile-btns-menu{
+		display: block;
+	}
+	.profile-btns-desktop{
+		display: none;
+	}
+}
+@media (max-width: 544px){
+	.mbl-menu-btn img{
+		width: 30px;
+	}
+	.upload-dialog, .msg-dialog {
+		left: 5%;
+		width: 90%;
+	}
+}
+
+@media (max-width: 426px){
+	.logo img{
+		margin-top: 10px;
+	}
+	.header-container{
+		grid-template-columns: auto;
+	}
+	.header-container>div{
+		height: 80px;
+	}
+	.menu-btns-container{
+		width: 30%;
+		margin-left: 30%;
+	}
+	.mbl-menu-btn{
+		background-color: #FFF0
+	}
+	.mbl-menu{
+		margin-top: 70px;
+		width: 90%;
+	}
 }

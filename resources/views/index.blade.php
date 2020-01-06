@@ -103,10 +103,10 @@
     <div class="wdsec1-txt">
       <h1 class="center-h">Why <span class="deBold">does it Work?</span></h1>
       <span class="center-img"><img src="/images/howworks.svg"></span>
-      <p>
+      <p class="txt-justify">
         If you take a home a loan of say R500 000 over 20 years at an interest rate of 10%, your monthly repaymets amount to about R4 825.00. 10% is the current prime lending rate and most people will likely get more than 10% interest rate meaning that they will pay more that R4 825.00 per month. But for the sake of this calculation let's use 10%. Calculate this monthly repayment over a period of 20 years and it sums up to around R1 158 000.00. This is more than twice the bond amount given by the bank. This is because the bank charges you interests. At <b>Dream Homes</b> we use a stokvel system and thus there is no need to pay interests. Through each members contributions the stokvel is able to afford land and housing costs cash and thus saving members on interests.
         </p>
+        <div class="clr"></div>
     </div>
-    <div class="clr"></div>
   </div>
 @endsection

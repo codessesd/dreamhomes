@@ -19,7 +19,7 @@
       {{csrf_field()}}
       <label>You are about to upload: <br> <b><span id="uploadType">Document</span></b></label>
       <br><br>
-      <input type="file" name="document" required><br>
+      <input type="file" class="file-input" name="document" required><br>
       <input type="hidden" id="document-type" name="documentType">
       <button type="submit" class="btn">Submit</button>
     </form>
@@ -39,8 +39,15 @@
   {{-- Profile page *******************************************--}}
   <h1 class="center-h"><span class="deBold">Your </span>Profile</h1>
   <div class="profile-div">
+    <div class="profile-btns-mobile">
+      @include('partials.profile_btns')
+    </div>
     <div class="side-menu">
-      <h3>Personal Details</h3>
+      <h3 class="fl-l">Personal Details</h3>
+      <span class="fl-r profile-btns-menu">
+        <img class="profile-btn-open" src="/images/dots.png">
+      </span>
+      <div class="clr"></div>
       <hr>
       
       @php
@@ -76,17 +83,20 @@
       @if ($member->status == "incomplete")
         <p>Status: <span class="txt-green">Registered</span></p>
         <p>Application: <span class="txt-red">Incomplete</span></p>
-      @elseif ((auth()->user()->member()->status == "complete"))
+      @elseif ($member->status == "complete")
         <p>Status: <span class="txt-green">Registered</span></p>
         <p>Application: <span class="txt-green">Complete</span></p>
-      @elseif ((auth()->user()->member()->status == "blocked"))
-        <p>Status: <span class="txt-red">Registered</span></p>
+      @elseif ($member->status == "blocked")
+        <p>Status: <span class="txt-red">Blocked Account</span></p>
+      @elseif(($member->status == "verifyingApplication"))
+        <p>Status: <span class="txt-green">Registered</span></p>
+        <p>Application: <span class="txt-yellow">Verifying Application</span></p>
       @else
         <p>Status: <span class="txt-red">Not Defined</span></p>
       @endif
 
       <br>
-      
+
       @if(count($allDocuments) > 0)
         <p><b>Uploaded Documents:</b></p>
           <ol class="uploadedDocs">
@@ -94,6 +104,11 @@
               <li>{{$document}}</li>
             @endforeach
           </ol>
+      @else
+        <p><b>Uploaded Documents:</b></p>
+        <ol class="uploadedDocs">
+          <li>None</li>
+        </ol>
       @endif
 
       <br>
@@ -112,16 +127,10 @@
       {{-- <span class="menu-link">Documents</span> --}}
       {{-- <span class="menu-link">Banking Details</span> --}}
     </div>
-    <div class="profile-content">
-      <div class="application">
-        <span class="btn3 application-download"><a href="/download-form">Download Application form</a></span>
-        <span class="btn2 application-upload" onclick="openDialog('Application Form','application')">Upload Application</span>
-        <span class="btn2 apply-online">Apply Online (<i>Coming Soon</i>)</span>
-      </div>
-      <div class="documents">
-        <span class="btn2" onclick="openDialog('ID OR Passport','idpassport')">Upload ID/Passport</span>
-        <span class="btn2" onclick="openDialog('Proof Of Payment','proofop')">Upload Proof of payment</span>
-        <span class="btn2" onclick="openDialog('More Supporting Documents','supportingdoc')">Upload More</span>
+
+    <div>
+      <div class="profile-btns-desktop">
+        @include('partials.profile_btns')
       </div>
     </div>
   </div>

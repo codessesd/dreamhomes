@@ -13,11 +13,51 @@
   <div class="website">
     <div class="info-bar"></div>
 
+    <div class="mobile-menu" id="menu-nav">
+      
+      <div class="filter-mob-menu"></div>
+      <div class="mobile-logo">
+        {{-- <img src="/images/logo.jpg" alt="logo dream homes"> --}}
+      </div>
+      <div class="mbl-menu">
+        <ul>
+            <li class="@yield('home')"><a href="/"><img src="/images/m-home.png"><br>Home</a></li>
+            <li class="@yield('about')"><a href="/about"><img src="/images/m-about.png"><br>About</a></li>
+            <li class="@yield('contact')"><a href="/contact"><img src="/images/m-contact.png"><br>Contact</a></li>
+            @if (auth()->check())
+              <li class="@yield('profile')"><a href="/profile">Profile</a></li>
+              <li><a href="/logout">Logout</a></li>
+            @else
+              <li class="@yield('register')"><a href="/register"><img src="/images/m-register.png"><br>Register</a></li> 
+              <li><a href="/login"><img src="/images/m-login.png"><br>Login</a></li>
+            @endif
+          </ul>
+      </div>
+     {{--  <div class="info-div-cont">
+        <div class="info-div width-limit">
+          <span class="soc-icon"><i class="fab fa-facebook-f"></i></span>
+          <span class="soc-icon"><i class="fab fa-instagram"></i></span>
+          <span class="soc-icon"><i class="fab fa-twitter"></i></span>
+          <span class="text"><i class="fas fa-phone"></i> (+27) 79 892 6892</span>
+          <span class="text"><i class="fas fa-envelope-open-text"></i> mapule@konkokuhle.co.za</span>
+        </div>
+      </div> --}}
+    </div>
+
+
     <div class="header-container">
       <div class="logo">
         <a href="/"><img src="/images/logo.png" alt="dream homes stokvel"></a>
       </div>
+
+      {{-- Mobile menu button hidden-lg --}}
+      <div class="menu-btns-container">
+        <div class="btn-open mbl-menu-btn"><img src="/images/menu.png"></div>
+        <div class="btn-close mbl-menu-btn"><img src="/images/cross.png"></div>
+      </div>
       <div class="menu-container main-menu">
+
+      {{-- Main menu hidden-xs --}}
           <ul>
             <li class="@yield('home')"><a href="/">Home</a></li>
             <li class="@yield('about')"><a href="/about">About</a></li>
@@ -61,5 +101,7 @@
 
 {{-- scripts **************************************************** --}}
   <script type="text/javascript" src="/js/script.js"></script>
+  <script type="text/javascript" src="/js/jquery.min.js"></script> 
+  <script type="text/javascript" src="/js/mobile-menu.js"></script>
 </body>
 </html>
