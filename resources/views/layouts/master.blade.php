@@ -21,15 +21,15 @@
       </div>
       <div class="mbl-menu">
         <ul>
-            <li class="@yield('home')"><a href="/"><img src="/images/m-home.png"><br>Home</a></li>
-            <li class="@yield('about')"><a href="/about"><img src="/images/m-about.png"><br>About</a></li>
-            <li class="@yield('contact')"><a href="/contact"><img src="/images/m-contact.png"><br>Contact</a></li>
+            <li class="@yield('home')"><a href="/"><img src="/images/m-home.svg"><br>Home</a></li>
+            <li class="@yield('about')"><a href="/about"><img src="/images/m-about.svg"><br>About</a></li>
+            <li class="@yield('contact')"><a href="/contact"><img src="/images/m-contact.svg"><br>Contact</a></li>
             @if (auth()->check())
-              <li class="@yield('profile')"><a href="/profile">Profile</a></li>
-              <li><a href="/logout">Logout</a></li>
+              <li class="@yield('profile')"><a href="/profile"><img src="/images/m-profile.svg"><br>Profile</a></li>
+              <li><a href="/logout"><img src="/images/m-logout.svg"><br>Logout</a></li>
             @else
-              <li class="@yield('register')"><a href="/register"><img src="/images/m-register.png"><br>Register</a></li> 
-              <li><a href="/login"><img src="/images/m-login.png"><br>Login</a></li>
+              <li class="@yield('register')"><a href="/register"><img src="/images/m-register.svg"><br>Register</a></li> 
+              <li><a href="/login"><img src="/images/m-login.svg"><br>Login</a></li>
             @endif
           </ul>
       </div>

@@ -17,10 +17,14 @@ Route::get('contact', function () {return view('contact');});
 Route::get('register', function () {return view('register');});
 Route::POST('register','RegistrationController@register');
 Route::get('verify/{email_token}/{token}','RegistrationController@verify');
-Route::get('setPassword',function () {return view('setPassword');});///////
+Route::get('setPassword',function () {return view('setPassword');});
 Route::POST('setPassword','PasswordController@firstPassword');
 Route::get('app-step1', function () {return view('app_step1');});
-Route::get('login', function () {return view('login');})->middleware('guest');
+Route::get('login', function () {return view('login');})->name('login')->middleware('guest');
+Route::get('forgotPassword',function(){return view('forgotPass');})->middleware('guest');
+Route::POST('forgotPassword','PasswordController@createResetToken');
+Route::get('resetPassword/{email}/{reset_token}','PasswordController@resetPassword');
+Route::POST('newPassword','PasswordController@newPassword');
 Route::POST('login','SessionsController@userLogin');
 Route::get('logout','SessionsController@logoutUser')->middleware('auth');
 Route::get('profile',function(){return view('profile');})->name('profile')->middleware('auth');

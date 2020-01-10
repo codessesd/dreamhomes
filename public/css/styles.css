@@ -133,6 +133,9 @@ button.btn{
 .txt-justify{
 	text-align: justify;
 }
+.custom-link{
+	color: #555;
+}
 /*END site wide css
 
 /*header css*************************************/
@@ -414,7 +417,7 @@ form.applicant-details .address input{
 	background-color: #fff7;
 	left: 0;
 	top: 0;
-	z-index: 1;
+	z-index: 2;
 }
 .file-input{
 	width: 100%;
@@ -433,7 +436,7 @@ form.applicant-details .address input{
 	top: 40%;
 	left: 40%;
 	width: 30%;
-	z-index: 2;
+	z-index: 3;
 }
 .profile-btns-mobile .btn2, .profile-btns-mobile .btn3{
 	margin-left: 0px;
@@ -561,11 +564,11 @@ form.applicant-details .address input{
 	position: absolute;
 	height: 100%;
 	width: 100%;
-	/*background-color: #fff;*/
+	z-index: 1;
 }
 .menu-btns-container{
 	position: relative;
-	z-index: 0;
+	z-index: 1;
 	display: none;
 	margin-right: 40px;
 }
@@ -606,6 +609,9 @@ form.applicant-details .address input{
 	border-radius: 7px;
 	letter-spacing: 7px;
 	font-variant-caps: small-caps;
+}
+.mbl-menu li img{
+	height: 40px;
 }
 .mbl-menu .login{
 	margin-left: 40%;

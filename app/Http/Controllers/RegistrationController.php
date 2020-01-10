@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\PendingUser;
 use App\User;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\accounts;
 
 class RegistrationController extends Controller
 {
@@ -55,16 +57,23 @@ class RegistrationController extends Controller
         {
           //Create a new user
           PendingUser::Create(request()->all());
-          $msg = "Thank you for registering. A verification email was sent to your email address. Please check your email and click on \"Verify Email Address.\"";
+          $msg = "Thank you for registering. A verification email was sent to your email address. Please check your email and click on the link provided";
           //send email to the user
-          $headers ="From: verification@dhs.org.za";
-            $to = "rendyshane@gmail.com,".request()->email;
-            $subject = "DreamHomes: Verify Email address";
+          //$headers ="From: verification@dhs.org.za";
+          //$to = "rendyshane@gmail.com,".request()->email;
+          //$subject = "DreamHomes: Verify Email address";
 
-            $message = "Hello ".request()->f_name." \n\nClick on the link below to verify your email address. Alternatively, you can copy the link into your browser. This link will expire in 24 Hours.\n\n";
-            $message.= "https://www.dhs.org.za/verify/".request()->email_token."/".request()->verify_token;
+          //$message = "Hello ".request()->f_name." \n\nClick on the link below to verify your email address. Alternatively, you can copy the link into your browser. This link will expire in 24 Hours.\n\n";
+          //$message.= "https://www.dhs.org.za/verify/".request()->email_token."/".request()->verify_token;
+
+          $emailMessage = "Welcome to Dream Homes. Click on the link below to verify your email address. Alternatively, you can copy the link into your browser. This link will expire in 24 Hours.";
+          $name = request('f_name').' '.request('surname');
+          $link = "localhost:8000/verify/".request()->email_token."/".request()->verify_token;//comment out on live website
+          #$link = "https://www.dhs.org.za/verify/".request()->email_token."/".request()->verify_token;//uncomment on live website
 
             //mail($to,$subject,$message,$headers);//uncomment this on live web
+          Mail::to(request('email'))->queue(new accounts($name, $link, $emailMessage));
+
           return redirect()->back()->withErrors(['success',$msg]);
         }else
         {
@@ -91,10 +100,14 @@ class RegistrationController extends Controller
       $pendingUser = PendingUser::where("email_token",$email_token)->where("verify_token",$token)->get();
       if ($pendingUser->isNotEmpty())
       {
-        return view("setPassword",compact("token","email_token"));
+        $formAction = "setPassword";
+        return view("setPassword",compact("token","email_token","formAction"));
       }else{
-        $message = "verifyLinkExpired";
-        return view("messages",compact("message"));
+        $erSMessage = ["bigTitle"=>"Invalid Link",
+                    "bgColor"=>"bg-error",
+                    "smallTitle"=>"Error",
+                    "theMessages"=>['This link is invalid or may have expired. Please check the link or try to register again.']];
+        return view("messages",compact("erSMessage"));
       }
     }
 

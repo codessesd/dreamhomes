@@ -18,7 +18,11 @@ class SessionsController extends Controller
 
     public function logoutUser(){
       auth()->logout();
-      $message = "loggedOut";
-      return view('messages',compact('message'));
+       $erSMessage = ["bigTitle"=>"",
+                    "bgColor"=>"bg-success",
+                    "smallTitle"=>"Logged out!",
+                    "theMessages"=>['See you soon.']];
+
+      return view("messages",compact("erSMessage"));
     }
 }

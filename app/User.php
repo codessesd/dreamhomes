@@ -17,7 +17,6 @@ class User extends Authenticatable
   protected $fillable = [
     'email', 'password','admin_level','remember_token'
   ];
-
   /**
   * The attributes that should be hidden for arrays.
   *
@@ -37,8 +36,6 @@ class User extends Authenticatable
   ];
 
   public function member(){
-    // dd('hello');
     return Member::where('id',auth()->user()->id)->first();
-    //return $this->hasOne(Member::class);
   }
 }

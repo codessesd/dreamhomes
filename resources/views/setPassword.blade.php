@@ -29,7 +29,7 @@
         </div>
       @endif
 
-      <form class="password-form" action="/setPassword" method="POST">
+      <form class="password-form" action="/{{$formAction}}" method="POST">
         {{csrf_field()}}
         <input type="hidden" name="token" value="{{$token}}">
         <input type="hidden" name="email_token" value="{{$email_token}}">
@@ -38,8 +38,8 @@
         <label for="password_confirmation">Confirm Password</label>
         <input type="password" name="password_confirmation" required>
         <button type="submit" class="btn">Submit</button>
-        
       </form>
+
     </div>
     <div class="side-pic">
       <img src="/images/house1.png">
