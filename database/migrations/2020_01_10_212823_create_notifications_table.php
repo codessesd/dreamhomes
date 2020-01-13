@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDocumentsTable extends Migration
+class CreateNotificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateDocumentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('documents', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('member_id');
-            $table->string('type')->nullable();
-            $table->string('extension')->nullable();
-            $table->string('path')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ class CreateDocumentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('documents');
+        Schema::dropIfExists('notifications');
     }
 }

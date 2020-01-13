@@ -51,25 +51,27 @@
       <hr>
       
       @php
+        // get all member documents and store their ID and "readable" type in an array to list them later
         $member = auth()->user()->member();
-        $allDocuments = [];
+        $docIDandType = [];
+        $allDocuments = $member->document->all();
 
-        foreach($member->document->all() as $document){
+        foreach($allDocuments as $document){
           switch ($document->type) {
             case 'application':
-              array_push($allDocuments, 'Application Form');
+              array_push($docIDandType, ['type'=>'Application Form','id'=>$document->id]);
               break;
             case 'idpassport':
-              array_push($allDocuments, 'ID or Passport');
+              array_push($docIDandType, ['type'=>'ID or Passport','id'=>$document->id]);
               break;
             case 'proofop':
-              array_push($allDocuments, 'Proof Of Payment');
+              array_push($docIDandType, ['type'=>'Proof Of Payment','id'=>$document->id]);
               break;
             case 'supportingdoc':
-              array_push($allDocuments, 'Supporting Document');
+              array_push($docIDandType, ['type'=>'Supporting Document','id'=>$document->id]);
               break;
             default:
-              array_push($allDocuments, 'Not Allowed');
+              array_push($docIDandType, ['type'=>'Invalid Format','id'=>$document->id]);
               break;
           }
         }
@@ -97,11 +99,17 @@
 
       <br>
 
-      @if(count($allDocuments) > 0)
+      {{-- List Documents --}}
+      @if(count($docIDandType) > 0)
         <p><b>Uploaded Documents:</b></p>
           <ol class="uploadedDocs">
-            @foreach($allDocuments as $document)
-              <li>{{$document}}</li>
+            @foreach($docIDandType as $document)
+              <li class="li-card">
+                <span class="li-width">{{$document['type']}}</span>
+                <a class="delete" id="delete{{$document['id']}}" onclick="showConfirmDelete({{$document['id']}})">Delete</a>
+                <a class="confirmDelete" href="/files/delete/{{$document['id']}}" hidden id="confirmDelete{{$document['id']}}">Confirm Delete</a> | 
+                <a href="/files/download/{{$document['id']}}">View</a>
+              </li>
             @endforeach
           </ol>
       @else

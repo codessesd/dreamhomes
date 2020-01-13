@@ -47,43 +47,48 @@ class RegistrationController extends Controller
 
       #New users are stored in Pending Users table. They are never removed from this table (for now)
       #Once users confirm their email addressed they are then moved to the users table????
-    
       $userExists = User::where('email',request()->email)->get();
-      if ($userExists->isEmpty()){
-        request()['verify_token'] = (hash('sha256',rand(0,99999999)));
-        request()['email_token'] = md5(request()->email);
+      if ($userExists->isEmpty())
+      {
         $userInPending = PendingUser::where('email',request()->email)->get();
         if($userInPending->isEmpty())
-        {
-          //Create a new user
-          PendingUser::Create(request()->all());
-          $msg = "Thank you for registering. A verification email was sent to your email address. Please check your email and click on the link provided";
-          //send email to the user
-          //$headers ="From: verification@dhs.org.za";
-          //$to = "rendyshane@gmail.com,".request()->email;
-          //$subject = "DreamHomes: Verify Email address";
+        {//user not in pending users table
 
-          //$message = "Hello ".request()->f_name." \n\nClick on the link below to verify your email address. Alternatively, you can copy the link into your browser. This link will expire in 24 Hours.\n\n";
-          //$message.= "https://www.dhs.org.za/verify/".request()->email_token."/".request()->verify_token;
-
+          if(isset(request()->resend)){
+            //If the user clicked the resend button but he is not in pending users then we 
+            $msg = "This email address does not have a verification code. Double check your email address and try again";
+            return redirect()->back()->withErrors(['resend',$msg])->withInput();
+          }else{//otherwise it means the user clicked the submit button
+            request()['verify_token'] = (hash('sha256',rand(0,99999999)));
+            request()['email_token'] = md5(request()->email);
+            PendingUser::Create(request()->all());
+          }
+          //send first verification email to the user
           $emailMessage = "Welcome to Dream Homes. Click on the link below to verify your email address. Alternatively, you can copy the link into your browser. This link will expire in 24 Hours.";
           $name = request('f_name').' '.request('surname');
-          $link = "localhost:8000/verify/".request()->email_token."/".request()->verify_token;//comment out on live website
-          #$link = "https://www.dhs.org.za/verify/".request()->email_token."/".request()->verify_token;//uncomment on live website
-
-            //mail($to,$subject,$message,$headers);//uncomment this on live web
+          #$link = "localhost:8000/verify/".request()->email_token."/".request()->verify_token;//for testing only. comment out on live website
+          $link = "https://www.dhs.org.za/verify/".request()->email_token."/".request()->verify_token;
           Mail::to(request('email'))->queue(new accounts($name, $link, $emailMessage));
-
+          $msg = "Thank you for registering. A verification email was sent to your email address. Please check your email and click on the link provided";
           return redirect()->back()->withErrors(['success',$msg]);
-        }else
-        {
-          //user already in pending users table
-          $msg = "This email already exists. A verification email was sent to your email address. Please check your email and click on \"Verify Email Address.\"";
-          return redirect()->back()->withErrors([$msg])->withInput();
+
+        }else{//if user is already in pending users table
+          if(request('resend') == 'resend'){
+            //and if user has requested to be resent the code
+            $userInPending = $userInPending->first();
+            $emailMessage = "You have requested to be resent the verification link. Click on the link below to verify your email address. Alternatively, you can copy the link into your browser. Note that resent links may expire in less than 24 Hours.";
+            $name = request('f_name').' '.request('surname');
+            //$link = "localhost:8000/verify/".$userInPending->email_token."/".$userInPending->verify_token;//for testing only comment out on live website
+            $link = "https://www.dhs.org.za/verify/".$userInPending->email_token."/".$userInPending->verify_token;
+            Mail::to(request('email'))->queue(new accounts($name, $link, $emailMessage)); 
+            $msg = "A verification email was resent to your email address. Please check your email and click on the link provided";
+            return redirect()->back()->withErrors(['success',$msg]);
+          }
+
+          $msg = "A verification email was already sent to your email address. Please check your email and click on the link provided";
+          return redirect()->back()->withErrors(['resend',$msg])->withInput();
         }
-      }
-      else{
-        //user already registered
+      }else{//the user already registered
         $msg = "This email is already registered. Please login.";
         return redirect()->back()->withErrors([$msg])->withInput();
       }
@@ -104,9 +109,9 @@ class RegistrationController extends Controller
         return view("setPassword",compact("token","email_token","formAction"));
       }else{
         $erSMessage = ["bigTitle"=>"Invalid Link",
-                    "bgColor"=>"bg-error",
-                    "smallTitle"=>"Error",
-                    "theMessages"=>['This link is invalid or may have expired. Please check the link or try to register again.']];
+                       "bgColor"=>"bg-error",
+                       "smallTitle"=>"Error",
+                       "theMessages"=>['This link is invalid or may have expired. Please check the link or try to register again.']];
         return view("messages",compact("erSMessage"));
       }
     }

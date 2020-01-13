@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Member;
 use App\Document;
+use Illuminate\Support\Facades\Storage;
 
 class DocumentsController extends Controller
 {
@@ -16,17 +17,16 @@ class DocumentsController extends Controller
               ]);
 
       $member = Member::find(auth()->user()->id);
-      $uploadedDocs = [];
-      foreach($member->document->all() as $document)
-        array_push($uploadedDocs, $document->type);
 
-      //dd($uploadedDocs);
-      //dd(count($member->document));
       if(count($member->document) <= 15){
         //member only allowed to store maximum 15 files, else do not store
         if(request()->hasFile(request()->file)){
           if(request()->file('document')->isvalid()){
             $fileExtension = request()->document->getClientOriginalExtension();
+            
+              $uploadedDocs = [];
+              foreach($member->document->all() as $document)
+                array_push($uploadedDocs, $document->type);
             
             switch (request()->documentType) {
               case 'application':
@@ -60,24 +60,57 @@ class DocumentsController extends Controller
                 break;
             }
 
-            $document = $member->document()->create();//create an entry in the database
+            $document = $member->document()->create();//create a document entry in the documents table
 
             $fileNameToStore = $member->id."D".$document->id.$documentType.".".$fileExtension;
             $path = "documents";
             $document->type = $documentType;
-            $document->path = $path."/".$fileNameToStore;
+            $document->extension = $fileExtension;
+            $document->path = "/".$path."/".$fileNameToStore;
             $document->save();
             request()->document->storeAs($path,$fileNameToStore);
 
             return redirect('profile')->withErrors(['success','File upload successful']);
-          }else{
-            return redirect('profile')->withErrors(['Something went wrong!']);
-          }//end if file->isValid
-        }else{
-          return redirect('profile')->withErrors(['Something went wrong!']);
-        }//end if hasFile
-      }else{
-        return redirect('profile')->withErrors(['Maximum number of files reached.']);
-      }//end if count() <= 15
+
+          }else{return redirect('profile')->withErrors(['Something went wrong!#FU101']);}//end if file->isValid
+        }else{return redirect('profile')->withErrors(['Something went wrong! #FU102']);}//end if hasFile
+      }else{return redirect('profile')->withErrors(['Maximum number of files reached.']);}//end if count() <= 15
     }
-}
+
+    public function downloadOrDelete($action, $id)
+    {
+      $file = Document::find($id);
+      if($file != null){
+        if(Storage::exists($file->path)){
+          if($file->member_id == auth()->user()->id){
+            //if the file belongs to the asking user
+            switch ($file->type){
+              case 'application':
+                $downloadName = "ApplicationForm.".$file->extension;
+                break;
+              case 'idpassport':
+                $downloadName = "IdOrPassport.".$file->extension;
+                break;
+              case 'proofop':
+                $downloadName = "ProofOfPayment.".$file->extension;
+                break;
+              case 'supportingdoc':
+                $downloadName = "SuportingDocument".$file->id.".".$file->extension;
+                break;
+              default:
+                return redirect()->back()->withErrors("Invalid file type.");
+                break;
+            }
+            if ($action == 'download')
+              return Storage::download($file->path,$downloadName);
+            elseif ($action == 'delete'){
+              $member = Member::find(auth()->user()->id);
+              $file->delete();
+              Storage::delete($file->path,$downloadName);
+              return redirect('profile');
+            }else return redirect('profile')->withErrors('Unsupported action!');
+          }else return redirect('profile')->withErrors('Access denied!');
+        }else return redirect('profile')->withErrors('File not found. #FA101');
+      }else return redirect('profile')->withErrors('File not found. #FA102');
+    }
+} 

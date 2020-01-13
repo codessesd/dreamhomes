@@ -19,7 +19,7 @@
         @endif
           <ul>
           @foreach($errors->all() as $error)
-            @if($error == 'success')
+            @if(($error == 'success')||($error == 'resend'))
              <li hidden>{{$error}}</li>
             @else
              <li><span></span>{{$error}}</li>
@@ -31,6 +31,10 @@
 
       <form class="register-form" action="/register" method="POST">
         {{csrf_field()}}
+        @if(in_array('resend',$errors->all()))
+          <button type="submit" class="btn" name="resend" value="resend">Resend Verification</button>
+          <div class="clr"></div>
+        @endif
         <label for="name">First Name</label>
         <input type="text" required name="f_name" value="{{old('f_name')}}">
         <label for="surname">Surname</label>
@@ -40,7 +44,6 @@
         <label for="email">Email</label>
         <input type="text" required name="email" value="{{old('email')}}">
         <button type="submit" class="btn">Submit</button>
-        
       </form>
     </div>
     <div class="side-pic">

@@ -61,21 +61,15 @@ class PasswordController extends Controller
       $member = Member::find($user->first()->id);
       $resetToken = hash('sha256',rand(0,999999999));
       $userInResets = Resets::where("email",request()->email)->get();
-      //if user has already requested a reset then delete from the resets table
-      if ($userInResets->isNotEmpty())
+      
+      //if user has already requested a resend the old reset link
+      if ($userInResets->isNotEmpty()){
         Resets::where("email",request()->email)->delete();
+      }
 
       Resets::create(['email'=>request()->email,'token'=>$resetToken]);
-
-      $msg = "A password resent link has been requested for this email.";
-      //send email to the user
-      $headers ="From: passwords@dhs.org.za";
-      $to = "e5ee94d08d-dcfcee@inbox.mailtrap.io";//"rendyshane@gmail.com,".request()->email;
-      $subject = "DreamHomes: Password Reset";
-
-
       $name = $member->f_name;
-      $emailMessage = "You have requested a new password for your account. Click on the link below to reset you password";
+      $emailMessage = "You have requested a new password for your account. Click on the link below to reset you password. This link will expire in 60 minutes";
       //$link = "localhost:8000/resetPassword/".request()->email."/".$resetToken;//comment out on live web
       $link = "https://www.dhs.org.za/resetPassword/".request()->email."/".$resetToken;//Uncomment on live website
 
@@ -88,7 +82,7 @@ class PasswordController extends Controller
                    ];
       return view('messages',compact('erSMessage'));
     }else{
-      return redirect()->back()->withErrors(["Opps! Your email address was not found."])->withInput();
+      return redirect()->back()->withErrors(["Opps! This email address is not registered."])->withInput();
     }
 
   }
@@ -107,7 +101,7 @@ class PasswordController extends Controller
       $erSMessage = ["bigTitle"=>"Invalid Link",
                     "bgColor"=>"bg-error",
                     "smallTitle"=>"Error",
-                    "theMessages"=>['This link is invalid or may have expired.','Please check the link or reset your password again.']];
+                    "theMessages"=>['This link is invalid or may have expired.','Please check the link or try to reset your password again.']];
 
       return view("messages",compact("erSMessage"));
     }
