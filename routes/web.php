@@ -14,12 +14,12 @@
 Route::get('/', function () {return view('index');});
 Route::get('about', function () {return view('about');});
 Route::get('contact', function () {return view('contact');});
-Route::get('register', function () {return view('register');});
+Route::get('register', function () {return view('register');})->middleware('guest');
 Route::POST('register','RegistrationController@register');
 Route::get('verify/{email_token}/{token}','RegistrationController@verify');
 Route::get('setPassword',function () {return view('setPassword');});
 Route::POST('setPassword','PasswordController@firstPassword');
-Route::get('app-step1', function () {return view('app_step1');});
+Route::get('app-step1', function () {return view('app_step1');});//->middleware('auth');
 Route::get('login', function () {return view('login');})->name('login')->middleware('guest');
 Route::get('forgotPassword',function(){return view('forgotPass');})->middleware('guest');
 Route::POST('forgotPassword','PasswordController@createResetToken');
@@ -30,6 +30,7 @@ Route::get('logout','SessionsController@logoutUser')->middleware('auth');
 Route::get('profile',function(){return view('profile');})->name('profile')->middleware('auth');
 Route::POST('storeFile','DocumentsController@storeFile')->middleware('auth');
 Route::get('files/{action}/{id}','DocumentsController@downloadOrDelete')->middleware('auth');
+Route::get('admin/{page}','AdminController@pages');
 
 Route::get('download-form',function(){
   //works on the live website

@@ -105,6 +105,10 @@ class DocumentsController extends Controller
               return Storage::download($file->path,$downloadName);
             elseif ($action == 'delete'){
               $member = Member::find(auth()->user()->id);
+              if($file->type == 'application'){
+                $member->status = 'incomplete';
+                $member->save();
+              }
               $file->delete();
               Storage::delete($file->path,$downloadName);
               return redirect('profile');

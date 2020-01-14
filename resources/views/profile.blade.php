@@ -92,7 +92,7 @@
         <p>Status: <span class="txt-red">Blocked Account</span></p>
       @elseif(($member->status == "verifyingApplication"))
         <p>Status: <span class="txt-green">Registered</span></p>
-        <p>Application: <span class="txt-yellow">Verifying Application</span></p>
+        <p>Application: <span class="txt-yellow">Submitted</span></p>
       @else
         <p>Status: <span class="txt-red">Not Defined</span></p>
       @endif
