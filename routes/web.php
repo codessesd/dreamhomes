@@ -38,3 +38,6 @@ Route::get('download-form',function(){
     $headers = array('Content-Type: application/pdf',);
     return Response::download($file, 'DREAM HOMES STOKVEL NEW MEMBERSHIP APPLICATION FORM.pdf', $headers);
 });
+
+//admin routes
+Route::get('members','MemberController@all');
