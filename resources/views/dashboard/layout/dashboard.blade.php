@@ -4,43 +4,47 @@
   <title>Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="/dashboard/dashboard.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="dashboard">
 
   <div class="sidebar">
-    <span class="title">Dashboard</span>
-    <ul class="side-nav dropdown-list">
-      <li><a href="/members">Members</a></li>
-      <li><a href="/completed">Completed</a></li>
-      <li><a href="/Pending">Pending</a></li>
-      <li><a href="/users">Users</a></li>
-      <li><a href="/adduser">Add User</a></li>
+    <span class="dash-title">Dashboard</span>
+    <ul class="side-nav-links">
+      <li><a href="/members"><span class="side-icon">MB</span>Members</a></li>
+      <li><a href="/completed"><span class="side-icon">CO</span>Completed</a></li>
+      <li><a href="/pending"><span class="side-icon">PN</span>Pending</a></li>
+      <li><a href="/pending"><span class="side-icon">BA</span>Batch</a></li>
+      <li><a href="/users"><span class="side-icon">US</span>Users</a></li>
+      <li><a href="/adduser"><span class="side-icon">AD</span>Add User</a></li>
     </ul>
   </div>
 
-  <div class="navigation">
-    <div class="search">
-      
-    </div>
-    <div class="user-menu">
-      <div class="user-dropdown">
-        <ul class="dropdown-list">
-          <li>Change Password</li>
-          <li>Logout</li>
-        </ul>
+  <div class="content-wrap">
+    <div class="top-nav">
+      <div class="search">
       </div>
-      <span class="user">
-        
-      </span>
+      <div class="user-menu">
+        <div class="user-btn dd-btn">
+          <i class="top-nav-icon fas fa-user"></i> 
+          <ul class="dropdown-links user-links">
+            <li>Change Password</li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+        </div>
+        {{-- <span class="user">
+  
+        </span> --}}
+      </div>
     </div>
-  </div>
-
-  <div class="section">
-    @yield('section')
+    <div class="content">
+      @yield('content')
+    </div>
   </div>
 </div>
-
-<script type="text/javascript" href="/dashboard/dashboard.js"></script>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/dashboard/dashboard.js"></script>
+<script src="https://kit.fontawesome.com/a5eb13ec56.js" crossorigin="anonymous"></script>
 </body>
 </html>

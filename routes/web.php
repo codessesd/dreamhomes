@@ -26,11 +26,7 @@ Route::POST('forgotPassword','PasswordController@createResetToken');
 Route::get('resetPassword/{email}/{reset_token}','PasswordController@resetPassword');
 Route::POST('newPassword','PasswordController@newPassword');
 Route::POST('login','SessionsController@userLogin');
-Route::get('logout','SessionsController@logoutUser')->middleware('auth');
-Route::get('profile',function(){return view('profile');})->name('profile')->middleware('auth');
-Route::POST('storeFile','DocumentsController@storeFile')->middleware('auth');
-Route::get('files/{action}/{id}','DocumentsController@downloadOrDelete')->middleware('auth');
-Route::get('admin/{page}','AdminController@pages');
+//Route::get('admin/{page}','AdminController@pages');
 
 Route::get('download-form',function(){
   //works on the live website
@@ -39,5 +35,15 @@ Route::get('download-form',function(){
     return Response::download($file, 'DREAM HOMES STOKVEL NEW MEMBERSHIP APPLICATION FORM.pdf', $headers);
 });
 
+//user routes
+Route::get('logout','SessionsController@logoutUser')->middleware('auth');
+Route::get('profile',function(){return view('profile');})->name('profile')->middleware('auth');
+Route::POST('storeFile','DocumentsController@storeFile')->middleware('auth');
+Route::get('files/{action}/{id}','DocumentsController@downloadOrDelete')->middleware('auth');
+
 //admin routes
-Route::get('members','MemberController@all');
+Route::get('members','MemberController@all')->middleware('admin');
+Route::get('completed','MemberController@completed')->middleware('admin');
+Route::get('pending','MemberController@pending')->middleware('admin');
+Route::get('admin/files/download/{id}')->middleware('admin');
+Route::get('admin/files/delete/{id}')->middleware('admin4');

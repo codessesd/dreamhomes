@@ -14,17 +14,20 @@ class MemberController extends Controller
      */
     public function all()
     {
-      return view('dashboard.members');
+      $members = Member::all();
+      return view('dashboard.members',compact('members'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function completed()
     {
-        //
+      $members = Member::where('status','completed');
+      return view('dashboard.members',compact('members'));
+    }
+
+    public function pending()
+    {
+      $members = Member::where('status','incomplete');
+      return view('dashboard.members',compact('members'));
     }
 
     /**

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function pages($page)
+    /*public function pages($page)
     {
       switch ($page) {
         case 'dash':
@@ -14,8 +14,7 @@ class AdminController extends Controller
           break;
         
         default:
-          //return view('messages',compact(['Pa']))
           break;
       }
-    }
+    }*/
 }

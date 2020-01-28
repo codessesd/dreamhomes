@@ -77,6 +77,47 @@ class DocumentsController extends Controller
       }else{return redirect('profile')->withErrors(['Maximum number of files reached.']);}//end if count() <= 15
     }
 
+    public function adminFileAction($action, $id)
+    {
+      $file = Document::find($id);
+      if($file != null){
+        if(Storage::exists($file->path)){
+          //if(isAdmin()){
+            //if is admin
+            /*switch ($file->type){
+              case 'application':
+                $downloadName = "ApplicationForm.".$file->extension;
+                break;
+              case 'idpassport':
+                $downloadName = "IdOrPassport.".$file->extension;
+                break;
+              case 'proofop':
+                $downloadName = "ProofOfPayment.".$file->extension;
+                break;
+              case 'supportingdoc':
+                $downloadName = "SuportingDocument".$file->id.".".$file->extension;
+                break;
+              default:
+                return redirect()->back()->withErrors("Invalid file type.");
+                break;
+            }*/
+            if ($action == 'download')
+              return Storage::download($file->path);
+            elseif ($action == 'delete'){
+              $member = Member::find($file->member_id);
+              if($file->type == 'application'){
+                $member->status = 'incomplete';
+                $member->save();
+              }
+              $file->delete();
+              Storage::delete($file->path);
+              return redirect()->back();
+            }else return redirect('profile')->withErrors('Unsupported action!');
+          //}else return redirect('profile')->withErrors('Access denied!');
+        }else return redirect('profile')->withErrors('File not found. #FA101');
+      }else return redirect('profile')->withErrors('File not found. #FA102');
+    }
+
     public function downloadOrDelete($action, $id)
     {
       $file = Document::find($id);
@@ -116,5 +157,26 @@ class DocumentsController extends Controller
           }else return redirect('profile')->withErrors('Access denied!');
         }else return redirect('profile')->withErrors('File not found. #FA101');
       }else return redirect('profile')->withErrors('File not found. #FA102');
+    }
+
+    public static function readableName($document)
+    {
+       switch ($document->type){
+        case 'application':
+          return "Application Form";
+          break;
+        case 'idpassport':
+          return "Id Or Passport";
+          break;
+        case 'proofop':
+          return "Proof Of Payment";
+          break;
+        case 'supportingdoc':
+          return "Suporting Document";
+          break;
+        default:
+          return "Invalid file type";
+          break;
+      }
     }
 } 

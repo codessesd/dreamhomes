@@ -7,10 +7,11 @@ use Illuminate\Http\Request;
 class SessionsController extends Controller
 {
     public function userLogin(Request $request){
-      //dd(session());
       if(auth()->attempt(["email"=>request()->email,"password"=>request()->password])){
-        //dd(session());
-        return redirect('/profile');
+        if(auth()->user()->admin_level == 4)
+          return redirect('/members');
+        else
+          return redirect('/profile');
       }else{
         return redirect()->back()->withErrors(["Incorrect password or email"])->withInput();
       }
