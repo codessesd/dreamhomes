@@ -26,6 +26,7 @@ class PasswordController extends Controller
       $rememberToken = hash('sha256',rand(0,999999999));
       $hashedPassword = bcrypt(request()->password);
       $email = $pendingUser->email;
+      
       $user = User::Create(["email" => $email,"admin_level" => 1,"password" => $hashedPassword,"remember_token" => $rememberToken]);
       $member = Member::Create(["id" => $user->id,
                                 "f_name" => $pendingUser->f_name,

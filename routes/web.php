@@ -45,5 +45,6 @@ Route::get('files/{action}/{id}','DocumentsController@downloadOrDelete')->middle
 Route::get('members','MemberController@all')->middleware('admin');
 Route::get('completed','MemberController@completed')->middleware('admin');
 Route::get('pending','MemberController@pending')->middleware('admin');
-Route::get('admin/files/download/{id}')->middleware('admin');
-Route::get('admin/files/delete/{id}')->middleware('admin4');
+Route::get('admin/files/download/{id}','DocumentsController@adminFileDownload')->middleware('admin');
+Route::get('admin/files/delete/{id}','DocumentsController@adminFileDelete')->middleware('admin4');
+Route::POST('updateMember','MemberController@update')->middleware('admin4');

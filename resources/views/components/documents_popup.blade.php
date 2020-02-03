@@ -3,7 +3,8 @@
 @endphp
 {{-- <div class="doc-popup"> --}}
   @foreach($member->document->all() as $document)
-    <span class="doc-li">{{DocumentsController::readableName($document)}}</span>
-    <span class="doc-li">Supporting Document</span>
+    <a href="/admin/files/download/{{$document->id}}">
+      <span class="doc-li text-primary">{{DocumentsController::readableName($document)}}</span>
+    </a>
   @endforeach
 {{-- </div> --}}

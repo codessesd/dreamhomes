@@ -38,11 +38,12 @@
             @php $i = 0;/*members counter*/ @endphp
             @foreach($members as $member)
               <tr>
-                <td>
+                <td class="text-primary">
                   {{++$i}}.
                 </td>
-                <td>
+                <td class="table-f-name">
                   {{$member->f_name}} {{$member->surname}}
+                  @include('components.member_details')
                 </td>
                 <td>
                   {{$member->membership_no}}
@@ -58,20 +59,16 @@
                 </td>
                 <td class="options-td">
                   <div class="options d-flex justify-content-center">
-                    <div class="options-icon" data-toggle="tooltip" data-placement="top" title="Edit Member">
-                      <i class="fas fa-pen"></i>
-                      {{-- <img src="/material/img/pen.svg"> --}}
+                    <div class="options-icon" onclick="toggleMemberDetails({{$member['id']}})" data-toggle="tooltip" data-placement="top" title="View Member">
+                      <i class="fas fa-eye"></i>
                     </div>
+
                     <div class="options-icon" data-toggle="tooltip" data-placement="top" title="Application Incomplete">
                       <i class="fas fa-hourglass-half"></i>
-                      {{-- <img src="/material/img/circle.svg"> --}}
                     </div>
-                    {{-- <div class="options-compl" data-toggle="tooltip" data-placement="top" title="Application Complete">
-                      <img src="/material/img/tick.svg">
-                    </div> --}}
-                    <div class="options-icon" onclick="showDocPopup({{$member['id']}})" data-toggle="tooltip" data-placement="top" title="Documents">
+
+                    <div class="options-icon" onclick="toggleDocPopup({{$member['id']}})" data-toggle="tooltip" data-placement="top" title="Documents">
                       <i class="far fa-file-alt"></i>
-                      {{-- <img src="/material/img/documents.svg"> --}}
                       @if($member->document->isNotEmpty())
                         <div class="doc-popup" id="popup{{$member['id']}}">
                           @include('components.documents_popup')
@@ -82,10 +79,9 @@
                         </div>
                       @endif
                     </div>
+
                   </div>
                 </td>
-              </tr>
-              <tr>
               </tr>
             @endforeach
           </tbody>

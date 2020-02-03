@@ -12,6 +12,15 @@ class MemberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function update(Request $request)
+    {
+      $member = Member::find(request()->id);
+
+      $member->update(request()->all());
+
+      return 'saved!';
+    }
+
     public function all()
     {
       $members = Member::all();
@@ -38,7 +47,7 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      //
     }
 
     /**
@@ -70,10 +79,6 @@ class MemberController extends Controller
      * @param  \App\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Member $member)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.

@@ -4,29 +4,43 @@
 	box-sizing: border-box;
 	font-family: 'Source Sans Pro', sans-serif;
 }
+a{
+	text-decoration: none;
+}
 body{
-	background-color: #f5f5f5;
+	background-color: #fff;
 }
 .clr{
 	clear: both;
+	width: 100%;
+}
+.hr-line{
+	clear: both;
+	width: 100%;
+	height: 1px;
+	background-color: #999;
 }
 .bg-primary{
-	background-color: #99cc66;
+	background-color: #0E6655;
+}
+.bg-prm-hover:hover{
+	background-color: #117E69;	
+}
+.text-primary{
+	color: #0E6655;
 }
 /*navigation*******************************************/
 .top-nav{
 	padding: 10px 30px 10px 10px;
-	background-color: #f5f5f5;
 }
 .dd-btn{
 	position: relative;
 	border-radius: 10px;
-}
-.dd-btn:hover{
-	background-color: #ddd;
+	box-shadow: 3px 3px 6px #777, -3px -3px 6px #fff;
+	color: #fff;
 }
 .dd-btn:active{
-	background-color: #eee;
+	box-shadow: 2px 2px 2px #777, -2px -2px 2px #fff;
 }
 .user-menu{
 	float: right;
@@ -62,23 +76,28 @@ body{
 	display: block;
 	padding: 15px 0px;
 	text-decoration: none;
-	color: #555;
+	color: #fff;
+	border-radius: 10px;
+	/*margin: 20px 0px;*/
+	/*box-shadow: 3px 3px 6px #000, -3px -3px 6px #fff;*/
+}
+.side-nav-links a:hover{
+	color: #000;
 }
 .dash-title{
 	display: block;
 	font-size: 40px;
 	font-weight: bold;
 	margin-bottom: 30px;
+	color: #fff;
 }
 .sidebar{
 	position: fixed;
 	width:230px;
 	height: 100%;
 	padding: 20px;
-	overflow: scroll;
-	-ms-overflow-style: none;			
-	box-shadow: 3px 0px 16px #7777;
-	background-color: #FFF;
+	box-shadow: 3px 0px 16px #0009;
+	background-color: #0E6655;
 }
 .side-icon{
 	padding-top: 5px;
@@ -86,9 +105,14 @@ body{
 	height: 30px;
 	width: 30px;
 	text-align: center;
-	background-color: #DDD;
+	/*background-color: #fff;*/
+	color: #fff;
 	margin-right: 10px;
 	border-radius: 7px;
+	box-shadow: 3px 3px 6px #0005, -3px -3px 5px #3E7469;
+}
+.side-icon:active{
+	box-shadow: 1px 1px 2px #777, -1px -1px 2px #fff;	
 }
 /*content*************************************************/
 .content-wrap{
@@ -101,7 +125,7 @@ body{
 	padding: 50px 0px 0px 20px;
 }
 
-/*table**************************************************/
+/*Card**************************************************/
 .card-header{
 	top: -20px;
 	position: absolute;
@@ -111,14 +135,15 @@ body{
 	border-radius: 10px;
 	font-size: 40px;
 	float: left;
-	box-shadow: 0px 0px 20px #999;
+	box-shadow: 3px 3px 6px #777, -3px -3px 5px #fff;
+	color: #FFF;
 }
 .card-head-text{
 	margin: 25px 0px 0px 15px;
 	float: left;
 }
 .card{
-	box-shadow: 2px 2px 40px #888;
+	box-shadow: 10px 10px 15px #888, -10px -10px 15px #eee;
 	padding: 40px;
 	border-radius: 10px;
 	margin: 80px 20px 0px 20px;
@@ -128,8 +153,8 @@ body{
 .card-body{
 	margin-top: 40px;
 	/*overflow: scroll;*/
-	overflow-x: scroll;
-	overflow-y: visible;
+	/*overflow-x: scroll;*/
+	/*overflow-y: visible;*/
 	/*min-height: 300px;*/
 }
 .table{
@@ -137,22 +162,18 @@ body{
 	border-collapse: collapse;
 	min-width: 650px;
 }
-.text-primary{
-	color: #99cc66
-}
 
 .table th{
 	text-align: left;
 	padding-bottom: 18px;
+	font-variant-caps: small-caps;
+	/*color: #56906A*/
 }
 .table td, .table th{
 	border-bottom: 1px solid #ddd;	
 }
 .table td{
 	padding: 19px 0px;
-}
-.options-td{
-	/*min-width: 200px;*/
 }
 .options-icon{
 	float: left;
@@ -162,6 +183,7 @@ body{
 	text-align: center;
 	border-radius: 7px;
 	position: relative;
+	color: #0E6655;
 }
 .options-icon:hover{
 	background-color: #ddd;
@@ -169,29 +191,40 @@ body{
 .options-icon:active{
 	background-color: #eee;
 }
+td.member-expand{
+	position: relative;
+	transform: scale(0,0);
+	overflow: hidden;
+}
+td.member-expand div{
+	/*position: absolute;*/
+	width: 100%;
+	background-color: blue;
+	/*height: 30px;*/
+	/*width: 100px;*/
+}
+/*doc-popup************************************/
 .doc-li{
 	display: block;
 	padding: 7px 0px;
 	cursor: pointer;
-	color: #99cc66;
-	/*height: 100%;*/
-	/*background-color: #f5f5f5;*/
-	/*border-bottom: 1px solid #ccc;*/
+	/*color: #99cc66;*/
 	min-width: 200px;
 	height: 36px;
 	overflow: hidden;
 }
 .doc-li:hover{
-	background-color: #eee;
+	background-color: #f9f9f9;
 }
 .doc-popup{
+	box-shadow: 3px 3px 6px #777, -3px -3px 5px #fff;
 	padding: 10px 0px;
 	position: absolute;
 	right: 35px;
 	top: 0;
-	background-color: #fff;
+	background-color: #eee;
 	border-radius: 10px;
-	box-shadow: 0px 0px 15px #999;
+	/*box-shadow: 0px 0px 15px #999;*/
 	width: 200px;
 	transform: scale(0,0);
 	transform-origin: 100% 0%;
@@ -199,7 +232,112 @@ body{
 	transition: transform .2s ease-out;
 	z-index: 100;
 }
+/*member details***********************************************/
+.mem-top-nav{
+	width: 100%;
+	padding: 3px 15px;
+	box-shadow: -5px 5px 15px #555d;
+	right: -5px;
+	top: -5px;
+	position: absolute;
+	border-radius: 10px 10px 0px 0px;
+}
+.mem-top-nav > i{
+	float: right;
+	color: #fff;
+	width: 30px;
+	text-align: center;
+	padding: 4px 0px;
+	border-radius: 7px;
+	margin-left: 4px;
+	text-shadow: 4px 4px 3px #0009;
+	transition: transform 0.3s;
+}
+.mem-top-nav > i:active{
+	text-shadow: 2px 2px 3px #0009;
+	transform: scale(0.9,0.9);
+}
+.mem-top-nav > i:hover{
+	transform: rotate3d(0,1,0,180deg);
+}
+.msg-line{
+	float: right;
+	color: #fff;
+	font-weight: bold;
+	font-variant-caps: petite-caps;
+	opacity:0;
+}
+.mem-edit{
+	display: none;
+}
+.member-details-card{
+	padding-top: 30px;
+	transform: scale(0,0);
+	transform-origin: 0% 0%;
+	transition: transform 0.2s ease-out;
+	position: absolute;
+	z-index: 1;
+	border-radius: 13px;
+	background-color: #eee;
+	left: 0;
+	box-shadow: 4px 4px 12px #0009, -4px -4px 12px #0002;
+	width: 700px;
+	margin-bottom: 10px;
+	border: 1px solid #0003;
+}
+.member-form{
+	width: 100%;
+	background-color: #333;
+}
+.table-f-name{
+	position: relative;
+}
+.form-group{
+	float: left;
+	padding: 4px;
+	box-sizing: border-box;
+	/*background-color: #567890;*/
+	/*border-radius: 10px;*/
+	width: 50%;
+}
+.form-group label{
+	font-variant-caps: small-caps;
+	font-weight: bold;
+	padding-left: 6px;
+	/*width: 100%;*/
+	display: inline-block;
+}
+.form-group input{
+	background-color: #0000;
+}
+.form-group:nth-child(1), .form-group:nth-child(2), .form-group:nth-child(3){
+	/*width: 33%;*/
+	/*padding-left: 10px;*/
+}
+.form-group:nth-child(1) label, .form-group:nth-child(2) label, .form-group:nth-child(3) label,
+.form-group:nth-child(1) input, .form-group:nth-child(2) input, .form-group:nth-child(3) input{
+	/*width: 100%;*/
+}
+.form-group:nth-child(){
 
+}
+.form-group:nth-child(){
+
+}
+.form-group:nth-child(){
+
+}
+input{
+	padding: 5px;
+	border-radius: 5px;
+	border: none;
+	margin: 3px;
+}
+input:focus{
+	outline: none;
+	box-shadow: 3px 3px 5px #777, -3px -3px 6px #fff;
+	/*background-color: #eee;*/
+}
 /*Mobile Responsiveness*************************************/
 @media (max-width: 768px){
 	.card-body{

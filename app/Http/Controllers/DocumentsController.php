@@ -77,43 +77,29 @@ class DocumentsController extends Controller
       }else{return redirect('profile')->withErrors(['Maximum number of files reached.']);}//end if count() <= 15
     }
 
-    public function adminFileAction($action, $id)
+    public function adminFileDownload($id)
     {
       $file = Document::find($id);
       if($file != null){
         if(Storage::exists($file->path)){
-          //if(isAdmin()){
-            //if is admin
-            /*switch ($file->type){
-              case 'application':
-                $downloadName = "ApplicationForm.".$file->extension;
-                break;
-              case 'idpassport':
-                $downloadName = "IdOrPassport.".$file->extension;
-                break;
-              case 'proofop':
-                $downloadName = "ProofOfPayment.".$file->extension;
-                break;
-              case 'supportingdoc':
-                $downloadName = "SuportingDocument".$file->id.".".$file->extension;
-                break;
-              default:
-                return redirect()->back()->withErrors("Invalid file type.");
-                break;
-            }*/
-            if ($action == 'download')
-              return Storage::download($file->path);
-            elseif ($action == 'delete'){
-              $member = Member::find($file->member_id);
-              if($file->type == 'application'){
-                $member->status = 'incomplete';
-                $member->save();
-              }
-              $file->delete();
-              Storage::delete($file->path);
-              return redirect()->back();
-            }else return redirect('profile')->withErrors('Unsupported action!');
-          //}else return redirect('profile')->withErrors('Access denied!');
+          return Storage::download($file->path);
+        }else return redirect('profile')->withErrors('File not found. #FA101');
+      }else return redirect('profile')->withErrors('File not found. #FA102');
+    }
+
+    public function adminFileDelete($id)
+    {
+      $file = Document::find($id);
+      if($file != null){
+        if(Storage::exists($file->path)){
+          $member = Member::find($file->member_id);
+          if($file->type == 'application'){
+            $member->status = 'incomplete';
+            $member->save();
+          }
+          $file->delete();//remove file from database
+          Storage::delete($file->path);//delete file from disk
+          return redirect()->back();
         }else return redirect('profile')->withErrors('File not found. #FA101');
       }else return redirect('profile')->withErrors('File not found. #FA102');
     }
@@ -125,25 +111,10 @@ class DocumentsController extends Controller
         if(Storage::exists($file->path)){
           if($file->member_id == auth()->user()->id){
             //if the file belongs to the asking user
-            switch ($file->type){
-              case 'application':
-                $downloadName = "ApplicationForm.".$file->extension;
-                break;
-              case 'idpassport':
-                $downloadName = "IdOrPassport.".$file->extension;
-                break;
-              case 'proofop':
-                $downloadName = "ProofOfPayment.".$file->extension;
-                break;
-              case 'supportingdoc':
-                $downloadName = "SuportingDocument".$file->id.".".$file->extension;
-                break;
-              default:
-                return redirect()->back()->withErrors("Invalid file type.");
-                break;
-            }
-            if ($action == 'download')
+            if ($action == 'download'){
+              $downloadName = $this->readableName($file).".".$file->extension;
               return Storage::download($file->path,$downloadName);
+            }
             elseif ($action == 'delete'){
               $member = Member::find(auth()->user()->id);
               if($file->type == 'application'){

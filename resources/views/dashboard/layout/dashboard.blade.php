@@ -26,7 +26,7 @@
       <div class="search">
       </div>
       <div class="user-menu">
-        <div class="user-btn dd-btn">
+        <div class="user-btn dd-btn bg-primary .bg-prm-hover">
           <i class="top-nav-icon fas fa-user"></i> 
           <ul class="dropdown-links user-links">
             <li>Change Password</li>

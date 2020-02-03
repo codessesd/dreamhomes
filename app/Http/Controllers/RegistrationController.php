@@ -55,7 +55,7 @@ class RegistrationController extends Controller
         {//user not in pending users table
 
           if(isset(request()->resend)){
-            //If the user clicked the resend button but he is not in pending users then we 
+            //If the user clicked the resend button but he is not in pending users 
             $msg = "This email address does not have a verification code. Double check your email address and try again";
             return redirect()->back()->withErrors(['resend',$msg])->withInput();
           }else{//otherwise it means the user clicked the submit button
@@ -63,7 +63,7 @@ class RegistrationController extends Controller
             request()['email_token'] = md5(request()->email);
             PendingUser::Create(request()->all());
           }
-          //send first verification email to the user
+          //send the first ever verification email to the user
           $emailMessage = "Welcome to Dream Homes. Click on the link below to verify your email address. Alternatively, you can copy the link into your browser. This link will expire in 24 Hours.";
           $name = request('f_name').' '.request('surname');
           #$link = "localhost:8000/verify/".request()->email_token."/".request()->verify_token;//for testing only. comment out on live website
@@ -72,9 +72,9 @@ class RegistrationController extends Controller
           $msg = "Thank you for registering. A verification email was sent to your email address. Please check your email and click on the link provided";
           return redirect()->back()->withErrors(['success',$msg]);
 
-        }else{//if user is already in pending users table
+        }else{//if user is in pending users table
           if(request('resend') == 'resend'){
-            //and if user has requested to be resent the code
+            //if user has requested to be resent the code resend the verification code
             $userInPending = $userInPending->first();
             $emailMessage = "You have requested to be resent the verification link. Click on the link below to verify your email address. Alternatively, you can copy the link into your browser. Note that resent links may expire in less than 24 Hours.";
             $name = request('f_name').' '.request('surname');
@@ -88,7 +88,7 @@ class RegistrationController extends Controller
           $msg = "A verification email was already sent to your email address. Please check your email and click on the link provided";
           return redirect()->back()->withErrors(['resend',$msg])->withInput();
         }
-      }else{//the user already registered
+      }else{//then the user is already registered
         $msg = "This email is already registered. Please login.";
         return redirect()->back()->withErrors([$msg])->withInput();
       }
