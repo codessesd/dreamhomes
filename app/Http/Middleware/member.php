@@ -3,24 +3,21 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
-class RedirectIfAuthenticated
+class member
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect('/');
-        }
-
+      if (auth()->user()->admin_level == 1)
         return $next($request);
+      else
+        return redirect('/members');//redirect to a landing page in the dashboard
     }
 }

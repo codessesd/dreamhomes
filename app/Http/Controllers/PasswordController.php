@@ -69,8 +69,11 @@ class PasswordController extends Controller
       }
 
       Resets::create(['email'=>request()->email,'token'=>$resetToken]);
-      $name = $member->f_name;
-      $emailMessage = "You have requested a new password for your account. Click on the link below to reset you password. This link will expire in 60 minutes";
+      if ($member != null)
+        $name = $member->f_name;
+      else
+        $name = "there";
+      $emailMessage = "You have requested a new password for your account. Click on the link below to reset you password. This link will expire in 24 hours";
       //$link = "localhost:8000/resetPassword/".request()->email."/".$resetToken;//comment out on live web
       $link = "https://www.dhs.org.za/resetPassword/".request()->email."/".$resetToken;//Uncomment on live website
 

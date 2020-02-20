@@ -15,19 +15,10 @@ function toggleDocPopup(id){
 		docPopup.style.transform = "scale(1,1)";
 	else
 		docPopup.style.transform = "scale(0,0)";
-	
-	//Close other open doc popups
-	// docPopup.addEventListener("webkitTransitionEnd", function(){
-	// 	docPopup.className = "doc-popup popup-active";
-	// });
-	// docPopup.addEventListener("transitionend", function(){
-	// 	docPopup.className = "doc-popup popup-active";
-	// });
-	// const activePopup = document.getElementsByClassName('popup-active');
-	// activePopup.style.transform = "scale(0,0)";
 }
 
-function toggleMemberDetails(id){
+function toggleMemberDetails(id)
+{
 	"use strict";
 	const memDetails = document.getElementById('member-details'+id);
 	const style = getComputedStyle(memDetails);
@@ -41,7 +32,7 @@ function toggleMemberDetails(id){
 
 function saveMember(id) 
 {
-  // "use strict";
+  //"use strict"
   var xhttp = new XMLHttpRequest();
   const msgLine = document.getElementById('msg-line'+id);
   const memberForm = document.getElementById('member-form'+id);
@@ -57,15 +48,109 @@ function saveMember(id)
    	let = inputValue = memberForm.elements[i].value;
     dataString += "&" + input + "=" + inputValue;
   }											
-  xhttp.onreadystatechange = function() {
+  xhttp.onreadystatechange = function()
+  {
     if (this.readyState == 4 && this.status == 200) {
       	msgLine.innerHTML = this.responseText;
     	msgLine.style.transition = 'opacity 5s';
     	msgLine.style.transitionDelay = "5s"
     	msgLine.style.opacity = '0';
+    	location.reload(true);
     }
   };
   xhttp.open("POST", "updateMember", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send(dataString);
 }
+
+function addAdmin(){
+	//"use strict"
+	var xhttp = new XMLHttpRequest();
+	const adminForm = document.getElementById('admin-form');
+	const progressBox = document.getElementById('progressBox');
+	const loadingIcon = document.getElementById('loading');
+	const warningIcon = document.getElementById('warning');
+	const responseMsg = document.getElementById('responseMsg');
+	const okBtn = document.getElementById('okBtn');
+
+	progressBox.style.display = "grid";
+	loadingIcon.style.display = 'inline-block';
+	warningIcon.style.display = 'none';
+	responseMsg.innerHTML = "SAVING...";
+
+	let dataString = adminForm.elements[0].getAttribute('name') + '=' + adminForm.elements[0].value;
+
+	for (i = 1; i < adminForm.length; i++)
+		dataString += "&" + adminForm.elements[i].getAttribute('name') + '=' + adminForm.elements[i].value;
+
+	xhttp.onreadystatechange = function()
+	{
+		if (this.readyState == 4 && this.status == 200)
+		{
+			const response = JSON.parse(this.responseText);
+			displayResponse(response);
+		}
+	}
+
+	xhttp.open('POST','/addAdmin',true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.send(dataString);
+}
+
+function displayResponse(response)
+{
+	const responseMsg = document.getElementById('responseMsg');
+	const loadingIcon = document.getElementById('loading');
+	const warningIcon = document.getElementById('warning');
+
+	if (response.type == 'error')
+	{
+		loadingIcon.style.display = 'none'
+		warningIcon.style.display = 'inline-block';
+		var message;
+		var msgToDisplay = '';
+		for (message in response)
+		{
+			if(response[message] != 'error')//remove 'error' in the displayed messages
+				msgToDisplay += '' + response[message] + '<br>';
+		}
+		responseMsg.innerHTML = msgToDisplay;
+		okBtn.style.display = 'block'
+	}
+	else if (response.type == 'success')
+	{
+		for (message in response)
+		{
+			if(response[message] != 'success')//remove 'success' in the displayed messages
+				msgToDisplay += '' + response[message] + '<br>';
+		}
+		responseMsg.innerHTML = msgToDisplay;
+		location.reload(true);
+	}else{
+		for (message in response)
+			msgToDisplay += '' + response[message] + '<br>';
+		
+		responseMsg.innerHTML = msgToDisplay;
+		okBtn.style.display = 'block'
+	}
+}
+function closePopup()
+{
+	document.getElementById('admin-form').reset();
+	document.getElementById('popup-filter').style.display = "none";
+	document.getElementById('progressBox').style.display = "none";
+	document.getElementById('okBtn').style.display = 'none';
+}
+
+function openPopup()
+{
+	document.getElementById('popup-filter').style.display = "grid";
+}
+
+function closeProgressBox()
+{
+	document.getElementById('progressBox').style.display = "none";
+	document.getElementById('okBtn').style.display = 'none';
+}
+
+

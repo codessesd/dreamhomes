@@ -23,6 +23,10 @@
 .website{
 	/*position: relative;*/
 }
+body{
+	max-width: 2200px;
+	margin: auto;
+}
 select{
 	padding: 5px;
 	border-radius: 5px;
@@ -151,7 +155,7 @@ button.btn{
 .header-container{
 	display: grid;
 	padding-top: 20px;
-	grid-template-columns: 40% 60%;
+	grid-template-columns: 25% 60%;
 	width: 80%;
 	margin-left: 10%;
 }
@@ -655,6 +659,17 @@ form.applicant-details .address input{
 	color: #eeeeee;
 	text-align: center;
 	padding-top: 50px;
+}
+@media (max-width: 1860px){
+	.header-container{
+	grid-template-columns: 33% 60%;
+	}
+}
+
+@media (max-width: 1500px){
+	.header-container{
+	grid-template-columns: 40% 60%;
+	}
 }
 @media (max-width: 1280px){
 	.header-container{

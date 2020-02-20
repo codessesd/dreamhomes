@@ -38,4 +38,9 @@ class User extends Authenticatable
   public function member(){
     return Member::where('id',auth()->user()->id)->first();
   }
+
+  public function admin()
+  {
+    return $this->hasOne('App\Admin');
+  }
 }

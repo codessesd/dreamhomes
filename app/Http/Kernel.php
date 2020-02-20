@@ -45,9 +45,13 @@ class Kernel extends HttpKernel
         'admin' => [\App\Http\Middleware\Authenticate::class,
                     \App\Http\Middleware\admin::class
         ],
-        'admin4' =>[
+        'admin5' =>[
                 \App\Http\Middleware\Authenticate::class,
-                \App\Http\Middleware\admin4::class
+                \App\Http\Middleware\admin5::class
+        ],
+        'member' =>[
+          \App\Http\Middleware\Authenticate::class,
+          \App\Http\Middleware\member::class
         ],
     ];
 

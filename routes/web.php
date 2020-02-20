@@ -20,13 +20,13 @@ Route::get('verify/{email_token}/{token}','RegistrationController@verify');
 Route::get('setPassword',function () {return view('setPassword');});
 Route::POST('setPassword','PasswordController@firstPassword');
 Route::get('app-step1', function () {return view('app_step1');});//->middleware('auth');
-Route::get('login', function () {return view('login');})->name('login')->middleware('guest');
 Route::get('forgotPassword',function(){return view('forgotPass');})->middleware('guest');
 Route::POST('forgotPassword','PasswordController@createResetToken');
 Route::get('resetPassword/{email}/{reset_token}','PasswordController@resetPassword');
 Route::POST('newPassword','PasswordController@newPassword');
+Route::get('login', function () {return view('login');})->name('login')->middleware('guest');
 Route::POST('login','SessionsController@userLogin');
-//Route::get('admin/{page}','AdminController@pages');
+//Route::get('dogaccess/{key}','AdminController@dogaccess');
 
 Route::get('download-form',function(){
   //works on the live website
@@ -37,14 +37,16 @@ Route::get('download-form',function(){
 
 //user routes
 Route::get('logout','SessionsController@logoutUser')->middleware('auth');
-Route::get('profile',function(){return view('profile');})->name('profile')->middleware('auth');
-Route::POST('storeFile','DocumentsController@storeFile')->middleware('auth');
-Route::get('files/{action}/{id}','DocumentsController@downloadOrDelete')->middleware('auth');
+Route::get('profile',function(){return view('profile');})->name('profile')->middleware('member');
+Route::POST('storeFile','DocumentsController@storeFile')->middleware('member');
+Route::get('files/{action}/{id}','DocumentsController@downloadOrDelete')->middleware('member');
 
 //admin routes
-Route::get('members','MemberController@all')->middleware('admin');
 Route::get('completed','MemberController@completed')->middleware('admin');
 Route::get('pending','MemberController@pending')->middleware('admin');
+Route::get('members','MemberController@all')->middleware('admin5');
+Route::POST('updateMember','MemberController@update')->middleware('admin5');
 Route::get('admin/files/download/{id}','DocumentsController@adminFileDownload')->middleware('admin');
-Route::get('admin/files/delete/{id}','DocumentsController@adminFileDelete')->middleware('admin4');
-Route::POST('updateMember','MemberController@update')->middleware('admin4');
+Route::get('admin/files/delete/{id}','DocumentsController@adminFileDelete')->middleware('admin5');
+Route::get('admins','AdminController@all')->middleware('admin5');;
+Route::POST('addAdmin','AdminController@addAdmin')->middleware('admin5');

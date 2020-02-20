@@ -16,8 +16,8 @@
       <li><a href="/completed"><span class="side-icon">CO</span>Completed</a></li>
       <li><a href="/pending"><span class="side-icon">PN</span>Pending</a></li>
       <li><a href="/pending"><span class="side-icon">BA</span>Batch</a></li>
-      <li><a href="/users"><span class="side-icon">US</span>Users</a></li>
-      <li><a href="/adduser"><span class="side-icon">AD</span>Add User</a></li>
+      <li><a href="/admins"><span class="side-icon">AD</span>Admins</a></li>
+      {{-- <li><a href="/adduser"><span class="side-icon">AD</span>Add Admin</a></li> --}}
     </ul>
   </div>
 
