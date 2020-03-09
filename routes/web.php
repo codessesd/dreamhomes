@@ -42,11 +42,15 @@ Route::POST('storeFile','DocumentsController@storeFile')->middleware('member');
 Route::get('files/{action}/{id}','DocumentsController@downloadOrDelete')->middleware('member');
 
 //admin routes
-Route::get('completed','MemberController@completed')->middleware('admin');
-Route::get('pending','MemberController@pending')->middleware('admin');
-Route::get('members','MemberController@all')->middleware('admin5');
-Route::POST('updateMember','MemberController@update')->middleware('admin5');
-Route::get('admin/files/download/{id}','DocumentsController@adminFileDownload')->middleware('admin');
-Route::get('admin/files/delete/{id}','DocumentsController@adminFileDelete')->middleware('admin5');
-Route::get('admins','AdminController@all')->middleware('admin5');;
-Route::POST('addAdmin','AdminController@addAdmin')->middleware('admin5');
+Route::get('completed','MemberController@completed')->middleware('admin1');
+Route::get('pending','MemberController@pending')->middleware('admin1');
+Route::get('members','MemberController@all')->middleware('admin1');
+Route::POST('updateMember','MemberController@update')->middleware('admin1');
+//Route::POST('updateMember','MemberController@update')->middleware('admin3');
+Route::get('admin/files/download/{id}','DocumentsController@adminFileDownload')->middleware('admin1');
+Route::get('admin/files/delete/{id}','DocumentsController@adminFileDelete')->middleware('admin4');
+Route::get('admins','AdminController@show')->middleware('admin4')->name('admins');;
+Route::POST('addAdmin','AdminController@addAdmin')->middleware('admin4');
+Route::POST('updateAdmin','AdminController@updateAdmin')->middleware('admin4');
+Route::get('deleteAdmin/{id}','AdminController@deleteAdmin');
+//Route::POST('testAdmin','AdminController@addAdmin')->middleware('admin5');

@@ -15,7 +15,7 @@ class member
      */
     public function handle($request, Closure $next)
     {
-      if (auth()->user()->admin_level == 1)
+      if (auth()->user()->admin_level == 0)
         return $next($request);
       else
         return redirect('/members');//redirect to a landing page in the dashboard

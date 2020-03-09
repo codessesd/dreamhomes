@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Member;
 use Illuminate\Http\Request;
+use App\Admin;
 
 class MemberController extends Controller
 {
@@ -15,8 +16,18 @@ class MemberController extends Controller
     public function update(Request $request)
     {
       $member = Member::find(request()->id);
+      $admin = Admin::find(auth()->user()->id);
 
-      $member->update(request()->all());
+      $writePermissions = $admin->permissions->where('entity','member')->where('type','write');
+      $attributesToUpdate = collect([]);
+
+      foreach ($writePermissions as $permission)
+      {
+        $attribute = $permission->attribute;
+        $attributesToUpdate->put($attribute,request()[$attribute]);
+      }
+
+      $member->update($attributesToUpdate->all());
 
       return 'saved!';
     }

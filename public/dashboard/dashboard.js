@@ -19,7 +19,7 @@ function toggleDocPopup(id){
 
 function toggleMemberDetails(id)
 {
-	"use strict";
+	//"use strict";
 	const memDetails = document.getElementById('member-details'+id);
 	const style = getComputedStyle(memDetails);
 	const transform = new WebKitCSSMatrix(style.webkitTransform);
@@ -71,7 +71,6 @@ function addAdmin(){
 	const loadingIcon = document.getElementById('loading');
 	const warningIcon = document.getElementById('warning');
 	const responseMsg = document.getElementById('responseMsg');
-	const okBtn = document.getElementById('okBtn');
 
 	progressBox.style.display = "grid";
 	loadingIcon.style.display = 'inline-block';
@@ -81,14 +80,22 @@ function addAdmin(){
 	let dataString = adminForm.elements[0].getAttribute('name') + '=' + adminForm.elements[0].value;
 
 	for (i = 1; i < adminForm.length; i++)
-		dataString += "&" + adminForm.elements[i].getAttribute('name') + '=' + adminForm.elements[i].value;
+	{
+		let formInput = adminForm.elements[i];
+		let formInputAttr = formInput.getAttribute('name');
+		if((formInputAttr != 'writePermissions[]')&&(formInputAttr != 'readPermissions[]')&&(formInputAttr != null))
+			dataString += "&" + formInputAttr + '=' + formInput.value;
+		else if(formInput.checked)
+			dataString += "&" + formInputAttr + '=' + formInput.value;
+	}
 
 	xhttp.onreadystatechange = function()
 	{
 		if (this.readyState == 4 && this.status == 200)
 		{
 			const response = JSON.parse(this.responseText);
-			displayResponse(response);
+			responseMsg.innerHTML = 'setRequestHeader';
+			displayResponse1(response);
 		}
 	}
 
@@ -97,18 +104,19 @@ function addAdmin(){
 	xhttp.send(dataString);
 }
 
-function displayResponse(response)
+function displayResponse1(response)
 {
 	const responseMsg = document.getElementById('responseMsg');
 	const loadingIcon = document.getElementById('loading');
 	const warningIcon = document.getElementById('warning');
+	const okBtn = document.getElementById('okBtn');
 
+	let msgToDisplay = '';
 	if (response.type == 'error')
 	{
 		loadingIcon.style.display = 'none'
 		warningIcon.style.display = 'inline-block';
 		var message;
-		var msgToDisplay = '';
 		for (message in response)
 		{
 			if(response[message] != 'error')//remove 'error' in the displayed messages
@@ -129,11 +137,12 @@ function displayResponse(response)
 	}else{
 		for (message in response)
 			msgToDisplay += '' + response[message] + '<br>';
-		
+
 		responseMsg.innerHTML = msgToDisplay;
 		okBtn.style.display = 'block'
 	}
 }
+
 function closePopup()
 {
 	document.getElementById('admin-form').reset();
@@ -146,11 +155,103 @@ function openPopup()
 {
 	document.getElementById('popup-filter').style.display = "grid";
 }
-
+function openAdminDetail(id)
+{
+	document.getElementById('popup-filter'+id).style.display = "grid";
+}
+function closeAdminDetail(id)
+{
+	document.getElementById('admin-form').reset();
+	document.getElementById('popup-filter'+id).style.display = "none";
+	document.getElementById('progressBox').style.display = "none";
+	document.getElementById('okBtn').style.display = 'none';
+}
 function closeProgressBox()
 {
 	document.getElementById('progressBox').style.display = "none";
 	document.getElementById('okBtn').style.display = 'none';
 }
 
+function updateAdmin(id){
+	//"use strict"
+	var xhttp = new XMLHttpRequest();
+	const adminForm = document.getElementById('admin-form'+id);
+	const progressBox = document.getElementById('progressBox'+id);
+	const loadingIcon = document.getElementById('loading'+id);
+	const warningIcon = document.getElementById('warning'+id);
+	const responseMsg = document.getElementById('responseMsg'+id);
 
+	progressBox.style.display = "grid";
+	loadingIcon.style.display = 'inline-block';
+	warningIcon.style.display = 'none';
+	responseMsg.innerHTML = "SAVING...";
+
+	let dataString = adminForm.elements[0].getAttribute('name') + '=' + adminForm.elements[0].value;
+
+	for (i = 1; i < adminForm.length; i++)
+	{
+		let formInput = adminForm.elements[i];
+		let formInputAttr = formInput.getAttribute('name');
+		if((formInputAttr != 'writePermissions[]')&&(formInputAttr != 'readPermissions[]')&&(formInputAttr != null))
+			dataString += "&" + formInputAttr + '=' + formInput.value;
+		else if(formInput.checked)
+			dataString += "&" + formInputAttr + '=' + formInput.value;
+	}
+
+	xhttp.onreadystatechange = function()
+	{
+		if (this.readyState == 4 && this.status == 200)
+		{
+			const response = JSON.parse(this.responseText);
+			displayResponse2(response,id);
+		}
+	}
+
+	xhttp.open('POST','/updateAdmin',true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.send(dataString);
+}
+
+function displayResponse2(response,id)
+{
+	const responseMsg = document.getElementById('responseMsg'+id);
+	const loadingIcon = document.getElementById('loading'+id);
+	const warningIcon = document.getElementById('warning'+id);
+	const okBtn = document.getElementById('okBtn'+id);
+
+	let msgToDisplay = '';
+	if (response.type == 'error')
+	{
+		loadingIcon.style.display = 'none'
+		warningIcon.style.display = 'inline-block';
+		var message;
+		for (message in response)
+		{
+			if(response[message] != 'error')//remove 'error' in the displayed messages
+				msgToDisplay += '' + response[message] + '<br>';
+		}
+		responseMsg.innerHTML = msgToDisplay;
+		okBtn.style.display = 'block'
+	}
+	else if (response.type == 'success')
+	{
+		for (message in response)
+		{
+			if(response[message] != 'success')//remove 'success' in the displayed messages
+				msgToDisplay += '' + response[message] + '<br>';
+		}
+		responseMsg.innerHTML = msgToDisplay;
+		location.reload(true);
+	}else{
+		for (message in response)
+			msgToDisplay += '' + response[message] + '<br>';
+
+		responseMsg.innerHTML = msgToDisplay;
+		okBtn.style.display = 'block'
+	}
+}
+
+function deleteAdmin(id)
+{
+	//window.open("")
+}

@@ -84,5 +84,6 @@
       <input class="borderless" type="text" name="liquidation" value="{{$member->liquidation}}">
     </div>
 
+    <button type="submit">Test submit </button>
   </form>
 </div>

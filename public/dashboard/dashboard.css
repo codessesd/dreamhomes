@@ -363,6 +363,9 @@ td.member-expand div{
 }
 
 /*pop up**************************************************************/
+:disabled{
+	color: #bbb;
+}
 .popup-filter{
 	position: fixed;
 	top: 0px;
@@ -373,16 +376,37 @@ td.member-expand div{
 	display: none;
 	justify-content: center;
 	align-content: center;
+	z-index: 2;
 }
 
 .popup{
 	position: relative;
 	min-width: 700px;
-	max-height: 300px;
+	min-height: 300px;
 	padding: 40px 10px 10px 10px;
 	background-color: #fff;
 	border-radius: 10px;
 	box-shadow: 3px 3px 10px #0007;
+}
+.grid-cover-50{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+.permissions{
+	margin: 20px;
+}
+.padded-check{
+	margin-left: 20px;
+}
+.perms-cover{
+	display: grid;
+	grid-template-columns: 1fr;
+	justify-content: center;
+}
+.pop-head{
+	margin-top: 20px;
+	text-align: center;
+	font-variant: small-caps;
 }
 .progressBox{
 	width: 100%;

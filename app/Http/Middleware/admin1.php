@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class admin
+class admin1
 {
   /**
    * Handle an incoming request.
@@ -15,7 +15,7 @@ class admin
    */
     public function handle($request, Closure $next)
   {
-    abort_unless(auth()->user()->admin_level >= 2, 403);
+    abort_unless(auth()->user()->admin_level >= 1, 403);
       return $next($request);
   }
 }

@@ -5,8 +5,8 @@
     <div class="card-header">
       <span class="colour-sqr bg-primary"><i class="fas fa-users"></i></span>
       <div class="card-head-text">
-        <h4 class="card-title ">Users</h4>
-        <p class="card-category">User list</p>
+        <h4 class="card-title ">Admins</h4>
+        <p class="card-category">Admin list</p>
       </div>
     </div>
     <div class="card-body">
@@ -62,11 +62,11 @@
                 </td>
                 <td class="options-td">
                   <div class="options d-flex justify-content-center">
-                    <div class="options-icon" onclick="toggleMemberDetails({{$admin['id']}})" data-toggle="tooltip" data-placement="top" title="Edit Admin">
+                    <div class="options-icon" onclick="openAdminDetail({{$admin['id']}})" data-toggle="tooltip" data-placement="top" title="Edit Admin">
                       <i class="fas fa-pen"></i>
                     </div>
 
-                    <div class="options-icon" data-toggle="tooltip" data-placement="top" title="Delete Admin">
+                    <div class="options-icon" onclick="location.href='/deleteAdmin/{{$admin->id}}'" data-toggle="tooltip" data-placement="top" title="Delete Admin">
                       <i class="fas fa-user-minus"></i>
                     </div>
 
@@ -77,6 +77,7 @@
                   </div>
                 </td>
               </tr>
+              @include('components.admin_details')
             @endforeach
           </tbody>
         </table>
