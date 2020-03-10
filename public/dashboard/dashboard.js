@@ -47,7 +47,7 @@ function saveMember(id)
    	let input = memberForm.elements[i].getAttribute('name');
    	let = inputValue = memberForm.elements[i].value;
     dataString += "&" + input + "=" + inputValue;
-  }											
+  }									
   xhttp.onreadystatechange = function()
   {
     if (this.readyState == 4 && this.status == 200) {

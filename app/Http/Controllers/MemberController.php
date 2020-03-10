@@ -26,7 +26,7 @@ class MemberController extends Controller
         $attribute = $permission->attribute;
         $attributesToUpdate->put($attribute,request()[$attribute]);
       }
-
+      //dd($attributesToUpdate->all());
       $member->update($attributesToUpdate->all());
 
       return 'saved!';
