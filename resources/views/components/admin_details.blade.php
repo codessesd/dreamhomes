@@ -57,6 +57,7 @@
         </select>
       </div>
       <div class="clr"></div>
+      <button type="submit">Test</button>
     </div>
 
     <div class="perms-cover">

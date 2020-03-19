@@ -36,7 +36,8 @@ class User extends Authenticatable
   ];
 
   public function member(){
-    return Member::where('id',auth()->user()->id)->first();
+    return $this->hasOne(Member::class);
+    //return Member::where('id',auth()->user()->id)->first();
   }
 
   public function admin()

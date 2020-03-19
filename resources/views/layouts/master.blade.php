@@ -103,5 +103,7 @@
   <script type="text/javascript" src="/js/jquery.min.js"></script> 
   <script type="text/javascript" src="/js/script.js"></script>
   <script type="text/javascript" src="/js/mobile-menu.js"></script>
+  <script src="https://kit.fontawesome.com/a5eb13ec56.js" crossorigin="anonymous"></script>
+  @yield('javascript')
 </body>
 </html>

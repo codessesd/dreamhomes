@@ -52,7 +52,7 @@
       
       @php
         // get all member documents and store their ID and "readable" type in an array to list them later
-        $member = auth()->user()->member();
+        $member = auth()->user()->member;
         $docIDandType = [];
         $allDocuments = $member->document->all();
 
@@ -77,9 +77,9 @@
         }
       @endphp
 
-      <p>Name: {{auth()->user()->member()->f_name}} {{auth()->user()->member()->surname}}</p>
-      <p>Contact: {{auth()->user()->member()->cell_number}}</p>
-      <p>Email: {{auth()->user()->email}}</p>
+      <p>Name: {{$member->f_name}} {{$member->surname}}</p>
+      <p>Contact: {{$member->cell_number}}</p>
+      <p>Email: {{$member->user->email}}</p>
 
       <!--Member Status-->
       @if ($member->status == "incomplete")

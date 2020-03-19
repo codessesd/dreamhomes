@@ -20,27 +20,27 @@
     <div class="grid-cover-50">
       <div class="form-group">
         <label class=""  for="name">Name </label>
-        <input class="softborder" type="text" name="name" value="Makhado">
+        <input class="softborder" type="text" name="name" value="">
       </div>
 
       <div class="form-group">
         <label class="" for="surname">Surname </label>
-        <input class="softborder" type="text" name="surname" value="Makhado">
+        <input class="softborder" type="text" name="surname" value="">
       </div>
 
       <div class="form-group">
         <label class="" for="contact">Contact </label>
-        <input class="softborder" type="text" name="contact" value="0987655">
+        <input class="softborder" type="text" name="contact" value="">
       </div>
 
       <div class="form-group">
         <label class="" for="email">Email </label>
-        <input class="softborder" type="text" name="email" value="M@kh.do">
+        <input class="softborder" type="text" name="email" value="">
       </div>
 
       <div class="form-group">
         <label class="" for="password">Password </label>
-        <input class="softborder" type="text" name="password" value="Makhado">
+        <input class="softborder" type="text" name="password" value="">
       </div>
 
       {{-- <div class="form-group" disabled hidden>

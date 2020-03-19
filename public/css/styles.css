@@ -33,10 +33,9 @@ select{
 	margin-top: 5px;
 	margin-bottom: 20px;
 }
-input{
+input, textarea{
 	padding: 5px;
 	border-radius: 5px;
-	/*background-color: #99cc6633;*/
 	border: 1px solid #ccc;
 	color: #555;
 	box-shadow: 1px 1px 2px #ccc;
@@ -44,8 +43,8 @@ input{
 	outline: none;
 }
 input:focus{
-	box-shadow: 0px 0px 4px #e00;
-	border: 1px solid #e00;
+	box-shadow: 0px 0px 4px #99cc66;
+	border: 1px solid #99cc66;
 }
 button{
 	border: none;
@@ -54,10 +53,23 @@ button{
 	clear: both;
 	width: 100%;
 }
-button.btn{
-	min-width: 100px;
+.line{
+	width: 100%;
+	height: 1px;
+	background-color: #ccc;
+}
+.spacer{
+	margin-left: 10px;
+}
+.spacer-btm{
+	margin-bottom: 10px;
+}
+.spacer-tb{
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 .btn{
+	min-width: 100px;
 	background-color: #99cc66;
 	text-align: center;
 	color: #FFFFFF;
@@ -76,7 +88,6 @@ button.btn{
 	color: #FFFFFF !important;
 	display: inline-block;
 	text-decoration: none;
-	/*background-color: orange;*/
 	width: 100%;
 	height: 100%;
 	border-radius: 30px;
@@ -328,17 +339,30 @@ button.btn{
 	float: right;
 }
 /*Application from********************************************/
+.areas-form{
+	max-width: 800px;
+	min-width: 600px;
+}
+.grid-center-form{
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
 .application > h1 {
 	text-align: center;
 	margin-bottom: 60px;
 }
-.application div label, .application div input{
+.application > h3{
+	text-align: center;
+	margin-bottom: 30px;
+}
+.application div label, .application .form-group input{
 	width: 100%;
 }
 form.applicant-details{
 	display: inline-block;
 	padding: 25px;
 	box-shadow: 3px 3px 9px #ccc;
+	width: 100%;
 }
 .application .applicant-details>div{
 	float: left;
@@ -356,38 +380,93 @@ form.applicant-details .first-name{
 form.applicant-details .mid-name{
 	width: 43%;
 }
-form.applicant-details .surname{
+.w16{
+	width: 16%;
+}
+.w33{
+	width: 33.333%;
+	box-sizing: border-box;
+}
+.w50{
 	width: 50%;
 }
-form.applicant-details .id-passport{
-	width: 50%;
+.w100{
+	width: 100%;
 }
-form.applicant-details .tel-no{
-	width: 33.333%;
+.grid1122{
+	display: grid;
+	grid-template-columns: 1fr 1fr 3fr 3fr;
+	grid-gap: 5px;
 }
-form.applicant-details .cell-no{
-	width: 33.333%;
-}
-form.applicant-details .email{
-	width: 33.333%;	
-}
-.application button{
+
+.application .btn{
 	float: right;
-}
-form.applicant-details .marital-status{
-	/*width: 28%;*/
-}
-form.applicant-details .insolve1{
-	/*width: 36%;*/
-}
-form.applicant-details .insolve2{
-	/*width: 36%;*/
 }
 form.applicant-details .address{
  width: 100%;
 }
-form.applicant-details .address input{
- width: 33%;
+form.applicant-details .grid-3{
+ display: grid;
+ grid-template-columns:1fr 1fr 1fr;
+ grid-gap: 10px;
+}
+.grid1111{
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 0.7fr 0.3fr;
+	grid-gap: 5px;
+}
+.grid11{
+	display: grid;
+	grid-template-columns: 1fr 1fr 0.1fr ;
+	grid-gap: 5px;
+}
+.grid-list{
+	margin-bottom: 5px;
+}
+.grid-list .remove{
+	text-align: center;
+	border-radius: 5px;	
+}
+.grid-list .remove:hover{
+	background-color: #eee;
+}
+.grid-list .remove:active{
+	background-color: #99cc66;
+	color: #fff;
+}
+.btn-add button{
+	margin-top: 7px;
+	min-height: 35px;
+	background-color: #fff;
+	width: 100%;
+	border-radius: 10px;
+	text-align: center;
+	font-size: 1.3em;
+}
+.btn-add button:hover{
+	background-color: #eee;
+}
+.btn-add button:active{
+	background-color: #99cc66;
+	color: #fff;
+}
+.btn-add .button:focus{
+	outline-color: yellow;
+}
+.agreement{
+	text-align: justify;
+}
+.aggr-bold{
+	font-weight: bold;
+	font-style: italic;
+}
+.fg-aggr{
+	display: grid;
+	grid-template-columns: 10fr 1fr;
+}
+.fg-aggr input{
+	min-width: 40px;
+	max-height: 40px;
 }
 /*End Application Form*/
 

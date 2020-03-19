@@ -7,6 +7,7 @@ use App\User;
 use App\Admin;
 use App\Permission;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
 {
@@ -85,21 +86,14 @@ class AdminController extends Controller
 
     public function updateAdmin(Request $request)
     {
-      if(strlen($request->password) > 0)
-      {
-        $validator = Validator::make($request->all(),[
-          'name' => 'required',
-          'surname' => 'required',
-          'contact' => 'required',
-          'password' => 'required|min:8'
-        ]);
-      }else{
         $validator = Validator::make($request->all(),[
           'name' => 'required',
           'surname' => 'required',
           'contact' => 'required',
         ]);
-      }
+      $validator->sometimes('password','min:8',function($request){
+        return strlen($request->password) > 0;
+      });
 
       if ($validator->fails())
       {
@@ -127,7 +121,7 @@ class AdminController extends Controller
       //$remember_token = hash('sha256',rand(0,999999999));
       $hashedPassword = bcrypt(request()->password);
       if(strlen(request()->password)>=8)
-      {
+      {//only change password if present
         $userToUpdate->password = $hashedPassword;
         $userToUpdate->save();
       }
@@ -146,7 +140,7 @@ class AdminController extends Controller
     public function deleteAdmin($id)
     {
       $admin = Admin::find($id);
-      $userData = Admin::find($id);
+      $userData = User::find($id);
 
       if($admin->level != 4)
       {
