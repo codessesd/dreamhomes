@@ -4,6 +4,9 @@
 @endsection
 
 @section('section')
+  @if(count($errors) > 0)
+    @include('partials.floatingMsg')
+  @endif
   <div class="application">
     <h1>APPLICANTION STEP 3 OF 4</h1>
     <h3>Beneficiaries</h3>
@@ -29,24 +32,32 @@
       @endforeach
         <div class="grid1111 w100">
           <div class="form-group">
-            <input id="name" type="text" name="name" required>
+            <input oninput="enableAddBen()" id="name" type="text" name="name" required>
           </div>
           <div class="form-group">
-            <input id="surname" type="text" name="surname" required>
+            <input oninput="enableAddBen()" id="surname" type="text" name="surname" required>
           </div>
           <div class="form-group">
-            <input id="relationship" type="text" name="relationship" required>
+            <select class="w100" name="relationship">
+              <option value="Spouse">Spouse</option>
+              <option value="Child">Child</option>
+              <option value="Mother">Mother</option>
+              <option value="Father">Father</option>
+              <option value="Sister">Sister</option>
+              <option value="Brother">Brother</option>
+              <option value="Other">Other</option>
+            </select>
           </div>
           <div class="form-group">
-            <input id="id_number" type="text" name="id_number" required>
+            <input oninput="enableAddBen()" id="id_number" type="text" name="id_number" required>
           </div>
           <div class="form-group btn-add">
             <button type="submit" ><i class="fas fa-plus-square"></i></button>
           </div>
         </div>
       <div class="clr"></div>
-      <button onclick="submitBeneficiary()" class="spacer btn">Next</button>
-      <span onclick="location.href='/apply/step2'" class="spacer btn">Back</span>
+      <button type="button" id="btnNxt" class="btn spacer" onclick="submitBeneficiary()">Next</button>
+      <button type="button" onclick="location.href='/apply/step2'" class="btn spacer">Back</button>
   </form>
   </div>
 @endsection

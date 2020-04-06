@@ -16,11 +16,11 @@ class CreateHomeAddressesTable extends Migration
         Schema::create('home_addresses', function (Blueprint $table) {
           $table->bigIncrements('id');
           $table->integer('member_id');
-          $table->string('addr_line1');
+          $table->string('addr_line1')->nullable();
           $table->string('addr_line2')->nullable();
-          $table->string('surbub');
-          $table->string('city');
-          $table->string('area_code');
+          $table->string('surbub')->nullable();
+          $table->string('city')->nullable();
+          $table->string('area_code')->nullable();
           $table->timestamps();
         });
     }

@@ -40,20 +40,22 @@ Route::get('logout','SessionsController@logoutUser')->middleware('auth');
 Route::get('profile',function(){return view('profile');})->name('profile')->middleware('member');
 Route::POST('storeFile','DocumentsController@storeFile')->middleware('member');
 Route::get('files/{action}/{id}','DocumentsController@downloadOrDelete')->middleware('member');
-Route::get('apply/{step}','ApplicationController@show')->middleware('auth');
-Route::get('apply/step3/remove/{id}','ApplicationController@removeBeneficiary')->middleware('auth');
-Route::POST('apply/{step}','ApplicationController@store')->middleware('auth');
+Route::get('apply/{step}','ApplicationController@show')->middleware('member','applicationStatus');
+Route::POST('apply/{step}','ApplicationController@save')->middleware('member','applicationStatus');
+Route::get('apply/step3/remove/{id}','ApplicationController@removeBeneficiary')->middleware('member','applicationStatus');
+Route::get('apply/step4/remove/{id}','ApplicationController@removeArea')->middleware('member','applicationStatus');
+Route::POST('validation','ApplicationController@validateInfo')->middleware('member','applicationStatus');
 
 //admin routes
 Route::get('completed','MemberController@completed')->middleware('admin1');
 Route::get('pending','MemberController@pending')->middleware('admin1');
 Route::get('members','MemberController@all')->middleware('admin1');
+Route::get('member/{id}','MemberController@showOne')->middleware('admin1');
 Route::POST('updateMember','MemberController@update')->middleware('admin1');
-//Route::POST('updateMember','MemberController@update')->middleware('admin3');
 Route::get('admin/files/download/{id}','DocumentsController@adminFileDownload')->middleware('admin1');
 Route::get('admin/files/delete/{id}','DocumentsController@adminFileDelete')->middleware('admin4');
 Route::get('admins','AdminController@show')->middleware('admin4')->name('admins');;
 Route::POST('addAdmin','AdminController@addAdmin')->middleware('admin4');
 Route::POST('updateAdmin','AdminController@updateAdmin')->middleware('admin4');
-Route::get('deleteAdmin/{id}','AdminController@deleteAdmin');
+Route::get('deleteAdmin/{id}','AdminController@deleteAdmin')->middleware('admin4');
 //Route::POST('testAdmin','AdminController@addAdmin')->middleware('admin5');

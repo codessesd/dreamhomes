@@ -46,16 +46,17 @@ function saveMember(id)
   {
    	let input = memberForm.elements[i].getAttribute('name');
    	let = inputValue = memberForm.elements[i].value;
-    dataString += "&" + input + "=" + inputValue;
+   	if (input != null)
+    	dataString += "&" + input + "=" + inputValue;
   }									
   xhttp.onreadystatechange = function()
   {
     if (this.readyState == 4 && this.status == 200) {
-      	msgLine.innerHTML = this.responseText;
+      msgLine.innerHTML = this.responseText;
     	msgLine.style.transition = 'opacity 5s';
     	msgLine.style.transitionDelay = "5s"
     	msgLine.style.opacity = '0';
-    	location.reload(true);
+    	//location.reload(true);
     }
   };
   xhttp.open("POST", "updateMember", true);
@@ -150,7 +151,6 @@ function closePopup()
 	document.getElementById('progressBox').style.display = "none";
 	document.getElementById('okBtn').style.display = 'none';
 }
-
 function openPopup()
 {
 	document.getElementById('popup-filter').style.display = "grid";
@@ -158,6 +158,26 @@ function openPopup()
 function openAdminDetail(id)
 {
 	document.getElementById('popup-filter'+id).style.display = "grid";
+}
+function selectAll(id)
+{
+	const adminForm = document.getElementById('admin-form'+id);
+	const selectBtn = document.getElementById('btnSelectAll'+id) ;
+
+	if (selectBtn.checked == false){
+		for(i = 0; i < adminForm.length; i++)
+		{
+			if(adminForm.elements[i].getAttribute('type') == 'checkbox')
+				adminForm.elements[i].checked = true;
+		}
+	}
+	else{
+		for(i = 0; i < adminForm.length; i++)
+		{
+			if(adminForm.elements[i].getAttribute('type') == 'checkbox')
+				adminForm.elements[i].checked = false;
+		}
+	}
 }
 function closeAdminDetail(id)
 {

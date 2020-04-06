@@ -1,0 +1,186 @@
+/*Application from********************************************/
+#postCheckbox{
+	margin: 0px 0px 0px 5px;
+	box-shadow: none;
+}
+.application select {
+    /*padding: 9.5px;*/
+    /*border-radius: 5px;*/
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    /*margin-bottom: 20px;*/
+    color: #555;
+    outline: none;
+}
+.application label{
+	font-variant: small-caps;
+	font-weight: bold;
+}
+.lbl-minor{
+	color: #999;
+	font-style: italic;
+	font-size: 13px;
+}
+.areas-form{
+	max-width: 800px;
+	min-width: 600px;
+}
+.grid-center-form{
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+.application > h1 {
+	text-align: center;
+	margin-bottom: 60px;
+}
+.application > h3{
+	text-align: center;
+	margin-bottom: 30px;
+}
+.application div label, .application .form-group input{
+	width: 100%;
+}
+.application input, .application textarea{
+	padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    color: #555;
+    box-shadow: 1px 1px 2px #ccc;
+    margin: 5px 0px 20px 0px;
+    outline: none;
+    line-height: 27px;
+}
+.form-group{
+	float: left;
+	padding: 0px 6px;
+}
+form.applicant-details{
+	display: inline-block;
+	padding: 25px;
+	box-shadow: 3px 3px 9px #ccc;
+	width: 100%;
+}
+.application .applicant-details>div{
+	/*float: left;*/
+	/*padding: 0px 6px;*/
+}
+form.applicant-details .title{
+	width: 5%;
+}
+form.applicant-details .initials{
+	width: 10%;
+}
+form.applicant-details .first-name{
+	width: 42%;
+}
+form.applicant-details .mid-name{
+	width: 43%;
+}
+.form-divide{
+	margin-bottom: 20px;
+	padding-bottom: 40px;
+	border-bottom: 1px dashed #666;
+}
+.form-divide>h1{
+	text-align: center;
+	margin-bottom: 10px;
+}
+.w16{
+	width: 16%;
+}
+.w33{
+	width: 33.333%;
+	box-sizing: border-box;
+}
+.w50{
+	width: 50%;
+}
+.w100{
+	width: 100%;
+}
+.c80{
+	width: 80%;
+	margin-left: 10%;
+}
+.grid1122{
+	display: grid;
+	grid-template-columns: 1fr 1fr 3fr 3fr;
+	grid-gap: 5px;
+}
+
+.application .btn{
+	float: right;
+}
+form.applicant-details .address{
+ width: 100%;
+}
+form.applicant-details .grid-3{
+ display: grid;
+ grid-template-columns:1fr 1fr 1fr;
+ grid-gap: 10px;
+}
+.grid1111{
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 0.7fr 0.3fr;
+	grid-gap: 5px;
+}
+.grid11{
+	display: grid;
+	grid-template-columns: 1fr 1fr 0.1fr ;
+	grid-gap: 5px;
+}
+.grid-list{
+	margin-bottom: 5px;
+	color: #555;
+	font-size: 0.9em;
+}
+.grid-list .remove{
+	text-align: center;
+	border-radius: 5px;	
+}
+.grid-list .remove:hover{
+	background-color: #eee;
+}
+.grid-list .remove:active{
+	background-color: #99cc66;
+	color: #fff;
+}
+.btn-add button{
+	margin-top: 7px;
+	min-height: 35px;
+	background-color: #fff;
+	width: 100%;
+	border-radius: 10px;
+	text-align: center;
+	font-size: 1.3em;
+}
+.btn-add button:hover{
+	background-color: #eee;
+}
+.btn-add button:active{
+	background-color: #99cc66;
+	color: #fff;
+}
+.btn-add .button:focus{
+	outline-color: yellow;
+}
+.agreement{
+	text-align: justify;
+}
+.aggr-bold{
+	font-weight: bold;
+	font-style: italic;
+}
+.fg-aggr{
+	/*display: grid;*/
+	/*grid-template-columns: 1fr 10fr;*/
+}
+.fg-aggr input[type=checkbox]{
+	width: 20px;
+	box-shadow: none;
+	/*max-height: 40px;*/
+}
+.fg-aggr input{
+	float: left;
+}
+/*End Application Form*/

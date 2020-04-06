@@ -46,7 +46,7 @@
                   @include('components.member_details')
                 </td>
                 <td>
-                  {{$member->membership_no}}
+                  {{$member->misc->membership_no}}
                 </td>
                 <td>
                   {{$member->id_passport_no}}
@@ -59,13 +59,13 @@
                 </td>
                 <td class="options-td">
                   <div class="options d-flex justify-content-center">
-                    <div class="options-icon" onclick="toggleMemberDetails({{$member['id']}})" data-toggle="tooltip" data-placement="top" title="View Member">
+                    <div class="options-icon" tabindex="-1" onclick="toggleMemberDetails({{$member['id']}})" data-toggle="tooltip" data-placement="top" title="Edit Member">
                       <i class="fas fa-eye"></i>
                     </div>
 
-                    <div class="options-icon" data-toggle="tooltip" data-placement="top" title="Application Incomplete">
-                      <i class="fas fa-hourglass-half"></i>
-                    </div>
+                    <a class="options-icon" href="/member/{{$member->id}}" data-toggle="tooltip" data-placement="top" title="Open Member">
+                      <i class="fas fa-folder-open"></i>
+                    </a>
 
                     <div class="options-icon" onclick="toggleDocPopup({{$member['id']}})" data-toggle="tooltip" data-placement="top" title="Documents">
                       <i class="far fa-file-alt"></i>

@@ -14,14 +14,18 @@ class AdminController extends Controller
     public function show()
     {
       $admins = Admin::all();
-      $permissions = Permission::orderBy('entity','ASC')
-                               ->orderBy('attribute','ASC')
-                               ->orderBy('type','ASC')
-                               ->get();
-      //dd($permissions);
-      return view('dashboard.admins',compact('admins','permissions'));
-    }
+      $permissions = Permission::all();
+      $writePermissions = $permissions->where('type','write');
 
+      //if you want a custom name displayed on the permissions table write it in this array as 'current name'=>'custom name'
+      $readableNames = ['f_name'=>'first name','membership_no'=>'membership no.','id_passport_no'=>'id or passport number',
+                        'member_certified_id'=>'member id', 'pop'=>'proof of payment','date_payment'=>'date of payment',
+                        'nok'=>'next of kin', 'nok_id'=>'next of kin id'];
+
+      $tables = ['members','miscs','next_of_kin','home_addresses','beneficiaries','areas','documents','post_addresses','subscriptions'];
+      return view('dashboard.admins',compact('admins','permissions','writePermissions','tables','readableNames'));
+    }
+    
     public function addAdmin(Request $request)
     {
       request()['admin_level'] = 1; //Set default admin_level. Current implementation only requires admin level 1;
@@ -56,7 +60,7 @@ class AdminController extends Controller
     }
 
     public function storeToDatabase()
-    {
+    {//function when storing NEW admn to database
       $remember_token = hash('sha256',rand(0,999999999));
       $hashedPassword = bcrypt(request()->password);
 
@@ -86,11 +90,11 @@ class AdminController extends Controller
 
     public function updateAdmin(Request $request)
     {
-        $validator = Validator::make($request->all(),[
-          'name' => 'required',
-          'surname' => 'required',
-          'contact' => 'required',
-        ]);
+      $validator = Validator::make($request->all(),[
+        'name' => 'required',
+        'surname' => 'required',
+        'contact' => 'required',
+      ]);
       $validator->sometimes('password','min:8',function($request){
         return strlen($request->password) > 0;
       });
@@ -117,8 +121,7 @@ class AdminController extends Controller
     }
 
     public function adminToDatabase($userToUpdate)
-    {
-      //$remember_token = hash('sha256',rand(0,999999999));
+    {//function when updating admin
       $hashedPassword = bcrypt(request()->password);
       if(strlen(request()->password)>=8)
       {//only change password if present
@@ -145,8 +148,9 @@ class AdminController extends Controller
       if($admin->level != 4)
       {
         $admin->permissions()->detach();
-        $admin->delete();
-        $userData->delete();
+        $admin->status = 'Blocked';
+        $admin->save();
+        //$userData->delete();
       }
 
       return redirect('admins');

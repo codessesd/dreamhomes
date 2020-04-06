@@ -46,4 +46,9 @@ class Member extends Model
   {
     return $this->hasOne(NextOfKin::class);
   }
+
+  public function subscriptions()
+  {
+    return $this->belongsToMany(Subscription::class);
+  }
 }

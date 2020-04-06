@@ -31,8 +31,9 @@ class PasswordController extends Controller
       $member = Member::Create(["id" => $user->id,
                                 "f_name" => $pendingUser->f_name,
                                 "surname" => $pendingUser->surname,
-                                "cell_number" => $pendingUser->contact_no,
-                                "status" => "incomplete"]);
+                                "cell_number" => $pendingUser->contact_no]);
+      $status = MemberController::status();
+      $member->misc()->create(['status'=> $status['in']]);//status => incomplete
       $pendingUser->delete();
 
       $erSMessage = ["bigTitle"=>"",

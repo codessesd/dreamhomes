@@ -82,20 +82,49 @@
       <p>Email: {{$member->user->email}}</p>
 
       <!--Member Status-->
-      @if ($member->status == "incomplete")
+      @switch($member->misc->status)
+        @case('incomplete')
+          <p>Status: <span class="txt-green">Registered</span></p>
+          <p>Application: <span class="txt-red">Incomplete</span></p>
+          @break
+        @case('review')
+          <p>Status: <span class="txt-green">Registered</span></p>
+          <p>Application: <span class="txt-yellow">Reviewing</span></p>
+          @break
+        @case('approved')
+          <p>Status: <span class="txt-green">Registered</span></p>
+          <p>Application: <span class="txt-green">Approved</span></p>
+          @break
+        @case('attention')
+          <p>Status: <span class="txt-green">Registered</span></p>
+          <p>Application: <span class="txt-yellow">Attention!</span></p>
+          @break
+        @case('blocked')
+          <p>Status: <span class="txt-red">Blocked</span></p>
+          <p>Application: <span class="txt-red">Rejected!</span></p>
+          @break
+        @default
+          <p>Status: <span class="txt-red">Not Defined</span></p>
+      @endswitch
+
+     {{--  @if ($member->misc->status == "incomplete")
         <p>Status: <span class="txt-green">Registered</span></p>
         <p>Application: <span class="txt-red">Incomplete</span></p>
-      @elseif ($member->status == "complete")
+      @elseif ($member->misc->status == "review")
         <p>Status: <span class="txt-green">Registered</span></p>
-        <p>Application: <span class="txt-green">Complete</span></p>
-      @elseif ($member->status == "blocked")
-        <p>Status: <span class="txt-red">Blocked Account</span></p>
-      @elseif(($member->status == "verifyingApplication"))
+        <p>Application: <span class="txt-yellow">Reviewing</span></p>
+      @elseif ($member->misc->status == "approved")
+        <p>Status: <span class="txt-green">Registered</span></p>
+        <p>Application: <span class="txt-green">Approved</span></p>
+      @elseif ($member->misc->status == "rejected")
+        <p>Status: <span class="txt-green">Registered</span></p>
+        <p>Application: <span class="txt-red">Rejected</span></p>
+      @elseif(($member->misc->status == "verifyingApplication"))
         <p>Status: <span class="txt-green">Registered</span></p>
         <p>Application: <span class="txt-yellow">Submitted</span></p>
       @else
         <p>Status: <span class="txt-red">Not Defined</span></p>
-      @endif
+      @endif --}}
 
       <br>
 

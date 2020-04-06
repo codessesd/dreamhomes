@@ -81,7 +81,6 @@
             @endforeach
           </tbody>
         </table>
-        
         <div class="clr"></div>
         {{--Add admin form--}}
         @include('components.popup')

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Member;
 use Illuminate\Http\Request;
 use App\Admin;
+use Illuminate\Support\Facades\Schema;
 
 class MemberController extends Controller
 {
@@ -17,25 +18,49 @@ class MemberController extends Controller
     {
       $member = Member::find(request()->id);
       $admin = Admin::find(auth()->user()->id);
+      $requestKeys = array_keys($request->all());
+      $message = 'Something went wrong!';
+      $entities = ['miscs','members','next_of_kin'];
+      foreach($entities as $entity){
+        $arrayToSave = [];
+        $writePermissions = $admin->permissions->where('type','write')->where('entity',$entity)->pluck('attribute')->all(); 
+        $requestArray = ($request[$entity] == null) ? [] : $request[$entity];
+        $arrayToSave = array_intersect_key($requestArray, array_flip($writePermissions));
 
-      $writePermissions = $admin->permissions->where('entity','member')->where('type','write');
-      $attributesToUpdate = collect([]);
-
-      foreach ($writePermissions as $permission)
-      {
-        $attribute = $permission->attribute;
-        $attributesToUpdate->put($attribute,request()[$attribute]);
+        if(!empty($arrayToSave)){
+          $message = 'Something went wrong...!';
+          $editor['processed_by'] = $admin->id;
+          switch($entity){
+            case 'miscs':
+              $arrayToSave['processed_by'] = $admin->id;
+              $member->misc->update($arrayToSave);
+              $message = 'Save Successful!';
+              break;
+            case 'members':
+              $member->update($arrayToSave);
+              break;
+            case 'next_of_kin':
+              $member->next_of_kin->updateOrCreate($arrayToSave);
+              break;
+            default:
+              break;
+          }
+        }
       }
-      //dd($attributesToUpdate->all());
-      $member->update($attributesToUpdate->all());
-
-      return 'saved!';
+      return $message;
     }
 
     public function all()
     {
       $members = Member::all();
-      return view('dashboard.members',compact('members'));
+      $processedBy = Admin::select('id','name','surname')->get()->keyBy('id')->toArray();
+      return view('dashboard.members',compact('members','processedBy'));
+    }
+
+    public function showOne($id)
+    {
+      $member = Member::find($id);
+      return view('dashboard.member',compact('member'));
     }
 
     public function completed()
@@ -56,9 +81,15 @@ class MemberController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public static function status()
     {
-      //
+      return [
+        'in'=>'incomplete',
+        're'=>'review',
+        'ap'=>'approved',
+        'at'=>'attention',
+        'bl'=>'blocked',
+      ];
     }
 
     /**

@@ -14,37 +14,41 @@
     <span class="responseMsg"><b id="responseMsg{{$admin->id}}">This is a long response message  </b></span>
     <span class="okBtn" id="okBtn{{$admin->id}}" onclick="closeProgressBox()">OK</span>
   </div>
-
   <form id="admin-form{{$admin->id}}" action="updateAdmin" method="POST">
     {{csrf_field()}}
     <div class="grid-cover-50">
-      <div class="form-group">
+      <div class="dash-form-group">
         <label class="" for="name">Name </label>
         <input class="softborder" type="text" name="name" value="{{$admin->name}}">
       </div>
 
-      <div class="form-group">
+      <div class="dash-form-group">
         <label class="" for="surname">Surname </label>
         <input class="softborder" type="text" name="surname" value="{{$admin->surname}}">
       </div>
 
-      <div class="form-group">
+      <div class="dash-form-group">
+        <label class="" for="id_number">ID Number </label>
+        <input class="softborder" type="text" name="id_number" value="{{$admin->id_number}}">
+      </div>
+
+      <div class="dash-form-group">
         <label class="" for="contact">Contact </label>
         <input class="softborder" type="text" name="contact" value="{{$admin->contact}}">
       </div>
 
-      <div class="form-group">
+      <div class="dash-form-group">
         <label class="" for="email">Email </label>
         <input class="softborder" type="text" name="email" value="{{$admin->user->email}}" hidden>
         <input class="softborder" type="text" name="disabled-email" value="{{$admin->user->email}}" disabled>
       </div>
 
-      <div class="form-group">
+      <div class="dash-form-group">
         <label class="" for="password">Password </label>
         <input class="softborder" type="text" name="password" value="">
       </div>
 
-      <div class="form-group" style="display: none">
+      <div class="dash-form-group" style="display: none">
         {{-- Display has been set to none because this is currently not needed.
         A default admin_level value is currently being assigned.
         Admin powers are being controlled through permissions. --}}
@@ -61,32 +65,34 @@
     </div>
 
     <div class="perms-cover">
-      <fieldset class="permissions">
+      <fieldset>
         <legend>Write Permissions</legend>
-      <div class="form-group permissions">
-        @foreach($permissions as $permission)
-          @if($permission->type == 'write')
-            @if(in_array($permission->id,$admin->permissions->pluck('id')->all()))
-              <input class="padded-check" type="checkbox" value="{{$permission->id}}" name="writePermissions[]" checked>
-            @else
-              <input class="padded-check" type="checkbox" value="{{$permission->id}}" name="writePermissions[]">
-            @endif
-            <label for="{{$permission->attribute}}">{{$permission->attribute}}</label>
-          @endif
-        @endforeach
-      </div>
-      </fieldset>
-
-      <fieldset class="permissions" disabled hidden>
-        <legend>Read Permissions</legend>
-      <div class="form-group permissions">
-        @foreach($permissions as $permission)
-          @if($permission->type == 'read')
-            <input class="padded-check" type="checkbox" value="{{$permission->id}}" name="readPermissions[]">
-            <label for="{{$permission->attribute}}">{{$permission->attribute}}</label>
-          @endif
-        @endforeach
-      </div>
+        <button type="button" class="select-all" onclick="selectAll({{$admin->id}})">
+          <input type="checkbox" id="btnSelectAll{{$admin->id}}">Select All
+        </button>
+        <div class="permissions">
+          @foreach($tables as $table)
+            <div class="entity-cover">
+              <p class="entity-name">{{$table}}</p>
+              <div class="line"></div>
+              <div class="perms-group">
+                @foreach($writePermissions->where('entity',$table) as $permission)
+                  @if(in_array($permission->id,$admin->permissions->pluck('id')->all()))
+                    <input id="{{$permission->attribute}}" class="padded-check" type="checkbox" value="{{$permission->id}}" name="writePermissions[]" checked>
+                  @else
+                    <input id="{{$permission->attribute}}" class="padded-check" type="checkbox" value="{{$permission->id}}" name="writePermissions[]">
+                  @endif
+                  <label for="{{$permission->attribute}}">
+                    @if(array_key_exists($permission->attribute,$readableNames))
+                      {{$readableNames[$permission->attribute]}}
+                    @else
+                      {{$permission->attribute}}
+                    @endif
+                  </label>
+                @endforeach
+              </div>
+            </div>
+          @endforeach
       </fieldset>
     </div>
   </form>

@@ -16,8 +16,6 @@ class CreateMembersTable extends Migration
         Schema::create('members', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
-            $table->string('membership_no')->nullable();
-            $table->integer('position')->nullable();
             $table->string('title')->nullable();
             $table->string('initials')->nullable();
             $table->string('f_name')->nullable();
@@ -31,8 +29,6 @@ class CreateMembersTable extends Migration
             $table->string('insolvency')->nullable();
             $table->string('liquidation')->nullable();
             $table->string('application_type')->nullable();
-            $table->string('completed_at')->nullable();
-            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

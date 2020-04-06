@@ -26,24 +26,45 @@ function showConfirmDelete(id){
 	document.getElementById('delete'+id).style.display = "none";
 	document.getElementById('confirmDelete'+id).style.display = "inline-block";
 }
-function setSelect()
+function populatePostAddress()
 {
-	//document.getElementById('marital-status').selectedIndex="2";
+	const postCheckbox = document.getElementById('postCheckbox');
+	const postLine1 = document.getElementById('post-line1');
+	const postCode = document.getElementById('post-code');
+	const addrLine1  = document.getElementById('addr_line1').value;
+	const addrLine2 = document.getElementById('addr_line2').value;
+	const suburb = document.getElementById('suburb').value;
+	const city = document.getElementById('city').value;
+	const areaCode = document.getElementById('area_code').value;
 
+	const fullAddress = addrLine1 + '\n' +
+						addrLine2 + '\n' +
+						suburb + '\n' +
+						city;
+
+	if(postCheckbox.checked == true)
+	{
+		postLine1.value = fullAddress;
+		postCode.value = areaCode;
+	}else{
+		postLine1.value = '';
+		postCode.value = '';
+
+	}
 }
 
 function submitBeneficiary()
 {
 	const name = document.getElementById('name').value.length;
 	const surname = document.getElementById('surname').value.length;
-	const relationship = document.getElementById('relationship').value.length;
+	//const relationship = document.getElementById('relationship').value.length;
 	const idNumber = document.getElementById('id_number').value.length;
 
-	const benForm = document.getElementById('benef-form');
-	if ((name>0)&&(surname>0)&&(relationship>0)&&(idNumber>0))
+	//const benForm = document.getElementById('benef-form');
+	if ((name>0)&&(surname>0)&&(idNumber>0))
 	{
-		benForm.submit;
-		window.open('/apply/step4','_self');
+		document.getElementById('benef-form').submit();
+		//window.open('/apply/step4','_self');
 	}else{
 		window.open('/apply/step4','_self');
 	}
@@ -57,9 +78,38 @@ function submitArea()
 	const mainForm = document.getElementById('main-form');
 	if ((municipality>0)&&(area>0))
 	{
-		mainForm.submit;
-		window.open('/apply/step5','_self');
+		mainForm.submit();
+		//window.open('/apply/step5','_self');
 	}else{
 		window.open('/apply/step5','_self');
+	}
+}
+
+function enableAddBen()
+{
+	const name = document.getElementById('name').value.length;
+	const surname = document.getElementById('surname').value.length;
+	const idNumber = document.getElementById('id_number').value.length;
+	const btnNxt = document.getElementById('btnNxt');
+
+	if((name>0)&&(surname>0)&&(idNumber>0))
+	{
+		btnNxt.innerHTML = 'Add';
+	}else{
+		btnNxt.innerHTML = 'Next';
+	}
+
+}
+
+function enableAddArea()
+{
+	const area = document.getElementById('area').value.length;
+	const btnNxt = document.getElementById('btnNxt');
+
+	if (area>0)
+	{
+		btnNxt.innerHTML = 'Add';
+	}else{
+		btnNxt.innerHTML = 'Next';
 	}
 }

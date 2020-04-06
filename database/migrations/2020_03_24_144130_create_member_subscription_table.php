@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePostAddressesTable extends Migration
+class CreateMemberSubscriptionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreatePostAddressesTable extends Migration
      */
     public function up()
     {
-        Schema::create('post_addresses', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('member_subscription', function (Blueprint $table) {
             $table->integer('member_id');
-            $table->string('post_line1')->nullable();
-            $table->string('post_code')->nullable();
+            $table->integer('subscription_id');
+            $table->primary(['member_id','subscription_id']);
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreatePostAddressesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post_addresses');
+        Schema::dropIfExists('member_subscription');
     }
 }

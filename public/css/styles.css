@@ -28,10 +28,21 @@ body{
 	margin: auto;
 }
 select{
-	padding: 5px;
+	padding: 9.5px;
 	border-radius: 5px;
+	border: 1px solid #ccc;
 	margin-top: 5px;
 	margin-bottom: 20px;
+	color: #555;
+	outline: none;
+}
+select:focus{
+	box-shadow: 0px 0px 4px #99cc66;
+	border: 1px solid #99cc66;	
+	outline-color: #99cc66;
+}
+.padd5{
+	/*padding: 10px;*/
 }
 input, textarea{
 	padding: 5px;
@@ -99,6 +110,9 @@ button{
 }
 .bg-success{
 	background-color: #99cc66;
+}
+.bg-warning{
+	background-color: #FF7440;
 }
 .bg-error{
 	background-color: #DD3333;
@@ -338,137 +352,6 @@ button{
 .register form button{
 	float: right;
 }
-/*Application from********************************************/
-.areas-form{
-	max-width: 800px;
-	min-width: 600px;
-}
-.grid-center-form{
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-}
-.application > h1 {
-	text-align: center;
-	margin-bottom: 60px;
-}
-.application > h3{
-	text-align: center;
-	margin-bottom: 30px;
-}
-.application div label, .application .form-group input{
-	width: 100%;
-}
-form.applicant-details{
-	display: inline-block;
-	padding: 25px;
-	box-shadow: 3px 3px 9px #ccc;
-	width: 100%;
-}
-.application .applicant-details>div{
-	float: left;
-	padding: 0px 6px;
-}
-form.applicant-details .title{
-	width: 5%;
-}
-form.applicant-details .initials{
-	width: 10%;
-}
-form.applicant-details .first-name{
-	width: 42%;
-}
-form.applicant-details .mid-name{
-	width: 43%;
-}
-.w16{
-	width: 16%;
-}
-.w33{
-	width: 33.333%;
-	box-sizing: border-box;
-}
-.w50{
-	width: 50%;
-}
-.w100{
-	width: 100%;
-}
-.grid1122{
-	display: grid;
-	grid-template-columns: 1fr 1fr 3fr 3fr;
-	grid-gap: 5px;
-}
-
-.application .btn{
-	float: right;
-}
-form.applicant-details .address{
- width: 100%;
-}
-form.applicant-details .grid-3{
- display: grid;
- grid-template-columns:1fr 1fr 1fr;
- grid-gap: 10px;
-}
-.grid1111{
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 0.7fr 0.3fr;
-	grid-gap: 5px;
-}
-.grid11{
-	display: grid;
-	grid-template-columns: 1fr 1fr 0.1fr ;
-	grid-gap: 5px;
-}
-.grid-list{
-	margin-bottom: 5px;
-}
-.grid-list .remove{
-	text-align: center;
-	border-radius: 5px;	
-}
-.grid-list .remove:hover{
-	background-color: #eee;
-}
-.grid-list .remove:active{
-	background-color: #99cc66;
-	color: #fff;
-}
-.btn-add button{
-	margin-top: 7px;
-	min-height: 35px;
-	background-color: #fff;
-	width: 100%;
-	border-radius: 10px;
-	text-align: center;
-	font-size: 1.3em;
-}
-.btn-add button:hover{
-	background-color: #eee;
-}
-.btn-add button:active{
-	background-color: #99cc66;
-	color: #fff;
-}
-.btn-add .button:focus{
-	outline-color: yellow;
-}
-.agreement{
-	text-align: justify;
-}
-.aggr-bold{
-	font-weight: bold;
-	font-style: italic;
-}
-.fg-aggr{
-	display: grid;
-	grid-template-columns: 10fr 1fr;
-}
-.fg-aggr input{
-	min-width: 40px;
-	max-height: 40px;
-}
-/*End Application Form*/
 
 /*Profile Page****************************/
 .txt-green, .txt-red, .txt-yellow{

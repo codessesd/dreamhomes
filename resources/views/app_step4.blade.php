@@ -4,9 +4,12 @@
 @endsection
 
 @section('section')
+  @if(count($errors) > 0)
+    @include('partials.floatingMsg')
+  @endif
   <div class="application areas-container">
     <h1>APPLICANTION STEP 4 OF 4</h1>
-    <h3>Area Of Choice</h3>
+    <h3>Areas Of Choice</h3>
 
     <div class="grid-center-form">
       <div></div>
@@ -22,15 +25,22 @@
           <div class="grid11 w100 grid-list">
             <span>{{++$i}}. {{$area->municipality}}</span>
             <span>{{$area->area}}</span>
-            <span class="remove" onclick="location.href='/apply/step4/remove/{{$area}}'"><i class="fas fa-trash-alt"></i></span>
+            <span class="remove" onclick="location.href='/apply/step4/remove/{{$area->id}}'"><i class="fas fa-trash-alt"></i></span>
           </div>
         @endforeach
           <div class="grid11 w100">
             <div class="form-group">
-              <input id="municipality" type="text" name="municipality" required>
+              {{-- <input id="municipality" type="text" name="municipality" required> --}}
+              <select class="w100 padd5" id="municipality" name="municipality" required>
+                <option value="Ekurhuleni">Ekurhuleni</option>
+                <option value="Sedibeng/Vaal">Sedibeng/Vaal</option>
+                <option value="City of Joburg">City of Joburg</option>
+                <option value="Tshwane">Tshwane</option>
+                <option value="West Rand">West Rand</option>
+              </select>
             </div>
             <div class="form-group">
-              <input id="area" type="text" name="area" required>
+              <input id="area" oninput="enableAddArea()" type="text" name="area" required>
             </div>
             <div class="form-group btn-add">
               <button type="submit" ><i class="fas fa-plus-square"></i></button>
@@ -39,8 +49,8 @@
         <div class="clr"></div>
         {{-- <button onclick="location.href='/profile'" class="spacer btn">Save for later</button> --}}
         {{-- <span onclick="submitArea()" class="spacer btn">Submit</span> --}}
-        <button onclick="submitArea()" class="spacer btn">Next</button>
-        <span onclick="location.href='/apply/step3'" class="spacer btn">Back</span>
+        <button type="button" id="btnNxt" onclick="submitArea()" class="spacer btn">Next</button>
+        <button type="button" onclick="location.href='/apply/step3'" class="spacer btn">Back</button>
     </form>
     <div></div>
   </div>

@@ -4,6 +4,9 @@
 @endsection
 
 @section('section')
+  @if(count($errors) > 0)
+    @include('partials.floatingMsg')
+  @endif
   <div class="application">
     <h1>APPLICANTION STEP 2 OF 4</h1>
     <h3>Spouse/Next Of Kin</h3>
@@ -29,8 +32,17 @@
         </div>
       </div>
       <div class="form-group w33">
-        <label for="relationship">Relationship</label>
-        <input type="text" name="relationship" value="{{$nextOfKin['relationship']}}">
+        <label for="relationship">Relationship*</label>
+        <select class="w100" name="relationship">
+          <option value="Spouse" @if($nextOfKin['relationship'] == 'Spouse')  selected @endif>Spouse</option>
+          <option value="Child" @if($nextOfKin['relationship'] == 'Child') selected @endif>Child</option>
+          <option value="Mother" @if($nextOfKin['relationship'] == 'Mother') selected @endif>Mother</option>
+          <option value="Father" @if($nextOfKin['relationship'] == 'Father') selected @endif>Father</option>
+          <option value="Sister" @if($nextOfKin['relationship'] == 'Sister') selected @endif>Sister</option>
+          <option value="Brother" @if($nextOfKin['relationship'] == 'Brother') selected @endif>Brother</option>
+          <option value="Other" @if($nextOfKin['relationship'] == 'Other') selected @endif>Other</option>
+        </select>
+        {{-- <input type="text" name="relationship" value="{{$nextOfKin['relationship']}}"> --}}
       </div>
       <div class="form-group cell-no w33">
         <label for="contact_no">Cell Phone No.</label>
@@ -56,7 +68,7 @@
       </div>
       <div class="clr"></div>
       <button type="submit" class="spacer btn">Next</button>
-      <span onclick="location.href='/apply/step1'" class="spacer btn">Back</span>
+      <button type="button" onclick="location.href='/apply/step1'" class="spacer btn">Back</button>
   </form>
   </div>
 @endsection
