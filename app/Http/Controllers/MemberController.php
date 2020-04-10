@@ -20,7 +20,14 @@ class MemberController extends Controller
       $admin = Admin::find(auth()->user()->id);
       $requestKeys = array_keys($request->all());
       $message = 'Something went wrong!';
-      $entities = ['miscs','members','next_of_kin'];
+      $entities = ['miscs','members','next_of_kin','beneficiaries','areas'];
+      /*
+       * $entities are databases and should be written as database names because that's how they're stored in the permissions table
+       * therefore the code, where('entity',$entity), for retrieving permissions will be able to work as supposed to.
+       * Input names on the form should always follow this structure name="entityName[field]". Otherwise the code foreach($entities as $entity)
+       * will not read the input properly.
+       */
+
       foreach($entities as $entity){
         $arrayToSave = [];
         $writePermissions = $admin->permissions->where('type','write')->where('entity',$entity)->pluck('attribute')->all(); 
@@ -29,25 +36,35 @@ class MemberController extends Controller
 
         if(!empty($arrayToSave)){
           $message = 'Something went wrong...!';
-          $editor['processed_by'] = $admin->id;
+          $member->misc->update(['processed_by'=>$admin->id]);
           switch($entity){
             case 'miscs':
-              $arrayToSave['processed_by'] = $admin->id;
+              $arrayToSave['processed_by'] = $admin->id;//This seems redundant but the statement below has the potential to change this value so I must ensure that it remains $admin->id
               $member->misc->update($arrayToSave);
               $message = 'Save Successful!';
               break;
             case 'members':
               $member->update($arrayToSave);
+              $message = 'Save Successful!';
               break;
             case 'next_of_kin':
               $member->next_of_kin->updateOrCreate($arrayToSave);
+              $message = 'Save Successful!';
+              break;
+            case 'beneficiaries':
+              $member->beneficiaries()->create($arrayToSave);
+              $message = 'Save Successful!';
+              break;
+            case 'areas':
+              $member->areas()->create($arrayToSave);
+              $message = 'Save Successful!';
               break;
             default:
               break;
           }
         }
       }
-      return $message;
+      return response()->json(["message"=>$message]);
     }
 
     public function all()
@@ -60,7 +77,7 @@ class MemberController extends Controller
     public function showOne($id)
     {
       $member = Member::find($id);
-      return view('dashboard.member',compact('member'));
+      return view('dashboard.member_details',compact('member'));
     }
 
     public function completed()
@@ -74,13 +91,6 @@ class MemberController extends Controller
       $members = Member::where('status','incomplete');
       return view('dashboard.members',compact('members'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public static function status()
     {
       return [
@@ -92,44 +102,16 @@ class MemberController extends Controller
       ];
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Member  $member
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Member $member)
+    public function removeBeneficiary($memId,$benefId)
     {
-        //return view('app_step1');
+      $member = Member::find($memId);
+      $member->beneficiaries()->where('id',$benefId)->first()->delete();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Member  $member
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Member $member)
+    public function removeArea($memId,$areaId)
     {
-        //
+      $member = Member::find($memId);
+      $member->areas()->where('id',$areaId)->first()->delete();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Member  $member
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Member  $member
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Member $member)
-    {
-        //
-    }
 }

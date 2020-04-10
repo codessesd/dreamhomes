@@ -168,9 +168,9 @@ class ApplicationController extends Controller
     
     //validate declarations
     $request->validate(['agreement'=>'required'],['agreement.required'=>'You have to agree to the terms to continue.']);
-    $member->subscriptions()->sync($request->subscriptions);//test sync 3,4
-    $status = MemberController::status();//get the status options
-    $member->misc()->update(['member_id'=>$member->id],['status'=>$status['re']]); //status => review
+    $member->subscriptions()->sync($request->subscriptions);//should test sync 3,4
+    $status = MemberController::status();
+    $member->misc()->update(['status'=>$status['re']]); //status => review
 
     return redirect('/profile')->withErrors(['success','You application has been sent.']);
   }

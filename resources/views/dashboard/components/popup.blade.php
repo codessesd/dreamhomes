@@ -1,6 +1,7 @@
 <div class="popup-filter" id="popup-filter">
 <div class="popup">
   <div class="mem-top-nav bg-primary">
+    <p class="pop-topBar">Add New Admin</p>
     <i class="fas fa-times" onclick="closePopup()"></i>
     {{-- <i class="fas fa-pen"></i> --}}
   </div>
@@ -72,7 +73,7 @@
           @foreach($tables as $table)
             <div class="entity-cover">
               <p class="entity-name">{{$table}}</p>
-              <div class="line"></div>
+              <div class="perms-line"></div>
               <div class="perms-group">
                 @foreach($writePermissions->where('entity',$table) as $permission)
                   <input id="{{$permission->attribute}}" class="padded-check" type="checkbox" value="{{$permission->id}}" name="writePermissions[]">
@@ -95,7 +96,3 @@
   <div class="clr"></div>
 </div>
 </div>
-
-<style type="text/css">
-
-</style>

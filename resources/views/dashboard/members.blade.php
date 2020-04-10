@@ -42,8 +42,8 @@
                   {{++$i}}.
                 </td>
                 <td class="table-f-name">
-                  {{$member->f_name}} {{$member->surname}}
-                  @include('components.member_details')
+                  <a class="nameLink" href="/member/{{$member->id}}">{{$member->f_name}} {{$member->surname}}</a>
+                  @include('dashboard.components.office_use')
                 </td>
                 <td>
                   {{$member->misc->membership_no}}
@@ -59,7 +59,7 @@
                 </td>
                 <td class="options-td">
                   <div class="options d-flex justify-content-center">
-                    <div class="options-icon" tabindex="-1" onclick="toggleMemberDetails({{$member['id']}})" data-toggle="tooltip" data-placement="top" title="Edit Member">
+                    <div class="options-icon" onclick="toggleMemberDetails({{$member['id']}})" data-toggle="tooltip" data-placement="top" title="Edit Member">
                       <i class="fas fa-eye"></i>
                     </div>
 
@@ -71,7 +71,7 @@
                       <i class="far fa-file-alt"></i>
                       @if($member->document->isNotEmpty())
                         <div class="doc-popup" id="popup{{$member['id']}}">
-                          @include('components.documents_popup')
+                          @include('dashboard.components.documents_popup')
                         </div>
                       @else
                         <div class="doc-popup" id="popup{{$member['id']}}">

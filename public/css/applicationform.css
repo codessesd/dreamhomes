@@ -3,15 +3,20 @@
 	margin: 0px 0px 0px 5px;
 	box-shadow: none;
 }
-.application select {
-    /*padding: 9.5px;*/
-    /*border-radius: 5px;*/
+.appl-line{
+	width: 100%;
+	height: 1px;
+	background-color: #ccc;
+}
+/*.application select {
+    padding: 9.5px;
+    //border-radius: 5px;
     border: 1px solid #ccc;
     margin-top: 5px;
-    /*margin-bottom: 20px;*/
+    //margin-bottom: 20px;
     color: #555;
     outline: none;
-}
+} Testing removal of this code. So far so good*/
 .application label{
 	font-variant: small-caps;
 	font-weight: bold;
@@ -40,15 +45,21 @@
 .application div label, .application .form-group input{
 	width: 100%;
 }
-.application input, .application textarea{
-	padding: 5px;
+.application input, .application textarea,
+.application select
+{
     border-radius: 5px;
     border: 1px solid #ccc;
     color: #555;
     box-shadow: 1px 1px 2px #ccc;
     margin: 5px 0px 20px 0px;
     outline: none;
-    line-height: 27px;
+}
+.application input, .application textarea{
+	padding: 9px 5px;
+}
+.application select{
+	padding: 8px 5px;
 }
 .form-group{
 	float: left;
@@ -126,7 +137,7 @@ form.applicant-details .grid-3{
 }
 .grid11{
 	display: grid;
-	grid-template-columns: 1fr 1fr 0.1fr ;
+	grid-template-columns: 1fr 1fr 0.16fr ;
 	grid-gap: 5px;
 }
 .grid-list{
@@ -147,7 +158,7 @@ form.applicant-details .grid-3{
 }
 .btn-add button{
 	margin-top: 7px;
-	min-height: 35px;
+	height: 35px;
 	background-color: #fff;
 	width: 100%;
 	border-radius: 10px;
@@ -184,3 +195,11 @@ form.applicant-details .grid-3{
 	float: left;
 }
 /*End Application Form*/
+
+/*Additional**********************************/
+.elPad{
+	display: none;
+}
+.elPad img{
+	margin-top: 2px;
+}

@@ -17,9 +17,9 @@ class applicationStatus
     public function handle($request, Closure $next)
     {
       $member = Member::find(auth()->user()->id);
-      if($member->misc->status == 'review')
+      if($member->misc->status !== 'incomplete')
       {
-        return redirect('/profile/')->withErrors(['warning','You have already submitted an application.','You application is being reviewed.']);
+        return redirect('/profile/')->withErrors(['warning','Action not allowed','You have already submitted an application.']);
       }
       return $next($request);
     }

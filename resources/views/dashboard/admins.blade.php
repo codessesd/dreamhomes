@@ -77,14 +77,11 @@
                   </div>
                 </td>
               </tr>
-              @include('components.admin_details')
+              @include('dashboard.components.admin_details')
             @endforeach
           </tbody>
         </table>
-        <div class="clr"></div>
-        {{--Add admin form--}}
-        @include('components.popup')
-        <div class="clr"></div>
+        @include('dashboard.components.popup')
         <span class="btn bg-primary" onclick="openPopup()">Add New Admin</span>
         <div class="clr"></div>
       </div>

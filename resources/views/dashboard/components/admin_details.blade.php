@@ -1,6 +1,7 @@
 <div class="popup-filter" id="popup-filter{{$admin->id}}">
 <div class="popup">
   <div class="mem-top-nav bg-primary">
+    <p class="pop-topBar">Edit Admin</p>
     <i class="fas fa-times" onclick="closeAdminDetail({{$admin->id}})"></i>
     {{-- <i class="fas fa-pen"></i> --}}
   </div>
@@ -14,7 +15,7 @@
     <span class="responseMsg"><b id="responseMsg{{$admin->id}}">This is a long response message  </b></span>
     <span class="okBtn" id="okBtn{{$admin->id}}" onclick="closeProgressBox()">OK</span>
   </div>
-  <form id="admin-form{{$admin->id}}" action="updateAdmin" method="POST">
+  <form id="admin-form{{$admin->id}}" method="POST">
     {{csrf_field()}}
     <div class="grid-cover-50">
       <div class="dash-form-group">
@@ -61,7 +62,6 @@
         </select>
       </div>
       <div class="clr"></div>
-      <button type="submit">Test</button>
     </div>
 
     <div class="perms-cover">
@@ -74,7 +74,7 @@
           @foreach($tables as $table)
             <div class="entity-cover">
               <p class="entity-name">{{$table}}</p>
-              <div class="line"></div>
+              <div class="perms-line"></div>
               <div class="perms-group">
                 @foreach($writePermissions->where('entity',$table) as $permission)
                   @if(in_array($permission->id,$admin->permissions->pluck('id')->all()))

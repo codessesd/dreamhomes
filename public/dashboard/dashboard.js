@@ -52,7 +52,7 @@ function saveMember(id)
   xhttp.onreadystatechange = function()
   {
     if (this.readyState == 4 && this.status == 200) {
-      msgLine.innerHTML = this.responseText;
+      msgLine.innerHTML = JSON.parse(this.responseText)['message'];
     	msgLine.style.transition = 'opacity 5s';
     	msgLine.style.transitionDelay = "5s"
     	msgLine.style.opacity = '0';
@@ -95,7 +95,7 @@ function addAdmin(){
 		if (this.readyState == 4 && this.status == 200)
 		{
 			const response = JSON.parse(this.responseText);
-			responseMsg.innerHTML = 'setRequestHeader';
+			//responseMsg.innerHTML = 'setRequestHeader';
 			displayResponse1(response);
 		}
 	}
@@ -274,4 +274,105 @@ function displayResponse2(response,id)
 function deleteAdmin(id)
 {
 	//window.open("")
+}
+
+// Member details JS ---------------------------------------------------------------------------------
+function submitBeneficiary()
+{
+	const benefEllipsis = document.getElementById('benefEllipsis');
+	const benefAdd = document.getElementById('benefAdd');
+
+	const id = document.getElementById('memId').value;
+	const token = document.getElementsByName('_token')[0].value;
+
+	const name = document.getElementById('benef_name').value;
+	const surname = document.getElementById('benef_surname').value;
+	const relationship = document.getElementById('benef_relation').value;
+	const idNumber = document.getElementById('benef_id_number').value;
+
+	if ((name.length>0)&&(surname.length>0)&&(idNumber.length>0))
+	{
+		benefAdd.style.display = 'none';
+		benefEllipsis.style.display = 'inline-block';
+		let dataString =  '_token=' + token + '&' +
+										 'id=' + id + '&' +
+										 'beneficiaries[name]=' + name + '&' +
+										 'beneficiaries[relationship]=' + relationship + '&' +
+										 'beneficiaries[surname]=' + surname + '&' +
+										 'beneficiaries[id_number]=' + idNumber;
+		let xhttp = new XMLHttpRequest();
+
+		xhttp.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200)
+				location.reload();
+				//const response = JSON.parse(this.responseText);
+				// document.getElementById('theInsertedBen').innerHTML = this.responseText;
+		}
+		xhttp.open('POST','/updateMember',true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhttp.send(dataString);
+		
+	}
+}
+function removeBeneficiary(memId,benefId)
+{
+	var xhttp = new XMLHttpRequest;
+
+	xhttp.onreadystatechange = function()
+	{
+		if (this.readyState == 4 && this.status == 200)
+			location.reload();
+	}
+	xhttp.open('GET','/removeBeneficiary/'+memId+'/'+benefId,true);
+	xhttp.send();
+}
+
+function removeArea(memId,areaId)
+{
+	var xhttp = new XMLHttpRequest;
+
+	xhttp.onreadystatechange = function()
+	{
+		if (this.readyState == 4 && this.status == 200)
+			location.reload();
+	}
+	xhttp.open('GET','/removeArea/'+memId+'/'+areaId,true);
+	xhttp.send();
+}
+
+function submitArea()
+{
+	const areaEllipsis = document.getElementById('areaEllipsis');
+	const areaAdd = document.getElementById('areaAdd');
+
+	const id = document.getElementById('memId').value;
+	const token = document.getElementsByName('_token')[0].value;
+
+	const municipality = document.getElementById('municipality').value;
+	const area = document.getElementById('area').value;
+
+	if (area.length>0)
+	{
+		areaAdd.style.display = 'none';
+		areaEllipsis.style.display = 'inline-block';
+		let dataString =  '_token=' + token + '&' +
+										 'id=' + id + '&' +
+										 'areas[municipality]=' + municipality + '&' +
+										 'areas[area]=' + area;
+		let xhttp = new XMLHttpRequest();
+
+		xhttp.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200)
+			{
+				location.reload();
+				
+			}
+		}
+		xhttp.open('POST','/updateMember',true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhttp.send(dataString);
+		
+	}
 }

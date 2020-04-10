@@ -22,7 +22,6 @@ function openDialog(type, typeName){
 	document.getElementById('upload-dialog').style.display = "block";
 }
 function showConfirmDelete(id){
-	// document.getElementByClassName('confirmDelete').style.display = 'none';
 	document.getElementById('delete'+id).style.display = "none";
 	document.getElementById('confirmDelete'+id).style.display = "inline-block";
 }
@@ -57,14 +56,11 @@ function submitBeneficiary()
 {
 	const name = document.getElementById('name').value.length;
 	const surname = document.getElementById('surname').value.length;
-	//const relationship = document.getElementById('relationship').value.length;
 	const idNumber = document.getElementById('id_number').value.length;
 
-	//const benForm = document.getElementById('benef-form');
 	if ((name>0)&&(surname>0)&&(idNumber>0))
 	{
 		document.getElementById('benef-form').submit();
-		//window.open('/apply/step4','_self');
 	}else{
 		window.open('/apply/step4','_self');
 	}
@@ -79,7 +75,6 @@ function submitArea()
 	if ((municipality>0)&&(area>0))
 	{
 		mainForm.submit();
-		//window.open('/apply/step5','_self');
 	}else{
 		window.open('/apply/step5','_self');
 	}

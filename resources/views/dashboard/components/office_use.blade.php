@@ -1,15 +1,17 @@
 {{-- Member details popup ************************************************--}}
 <div class="member-details-card" id="member-details{{$member->id}}">
   <div class="mem-top-nav bg-primary">
+    <p class="pop-topBar">Office Use</p>
     <i class="fas fa-times" onclick="toggleMemberDetails({{$member->id}})"></i>
     <i class="fas fa-save" onclick="saveMember({{$member->id}})"></i>
-    <i class="fas fa-print" id="ajax-tester"></i>
+    {{-- <i class="fas fa-print" id="ajax-tester"></i> --}}
     <span class="msg-line" id="msg-line{{$member->id}}"></span>
   </div>
 
-  <form class="form-50" id="member-form{{$member->id}}" action="updateMember" method="POST">
+  <form class="form-50" id="member-form{{$member->id}}">
     {{csrf_field()}}
     <input type="hidden" name="id" value="{{$member->id}}">
+
     <div class="dash-form-group">
       <label for="created_at">Date of Application: </label>
       <input class="borderless" type="text" name="miscs[created_at]" value="{{$member->misc->created_at}}" readonly>
@@ -21,17 +23,26 @@
     </div>
     
     <div class="dash-form-group">
-      <label for="member_certified_id">Member ID</label>
+      <label for="member_certified_id">Status</label>
+      <select name="miscs[status]">
+        @php
+          $mStatus = $member->misc->status;
+          use App\Http\Controllers\MemberController;
+          $allStatus = MemberController::status();
+        @endphp
+        @foreach ($allStatus as $status)
+          <option value="{{$status}}" @if($status == $mStatus) selected @endif>{{$status}}</option>
+        @endforeach
+      </select>
+    </div>
+
+    <div class="dash-form-group">
+      <label for="member_certified_id">ID Document</label>
       <select name="miscs[member_certified_id]">
         @php $mID = $member->misc->member_certified_id @endphp
         <option value='Not Received' @if($mID == 'Not Received') selected @endif>Not Received</option>
         <option value='Received' @if($mID == 'Received') selected @endif>Received</option>
       </select>
-    </div>
-
-    <div class="dash-form-group">
-      <label for="position">Position: </label>
-      <input class="borderless" type="number" name="miscs[position]" value="{{$member->misc->position}}">
     </div>
 
     <div class="dash-form-group">
@@ -44,8 +55,8 @@
     </div>
 
     <div class="dash-form-group">
-      <label for="life_cover">Life Cover: </label>
-      <input class="borderless" type="text" name="miscs[life_cover]" value="{{$member->misc->life_cover}}">
+      <label for="position">Position: </label>
+      <input class="borderless" type="number" name="miscs[position]" value="{{$member->misc->position}}">
     </div>
 
     <div class="dash-form-group">
@@ -104,6 +115,11 @@
     </div>
 
     <div class="dash-form-group">
+      <label for="life_cover">Life Cover: </label>
+      <input class="borderless" type="text" name="miscs[life_cover]" value="{{$member->misc->life_cover}}">
+    </div>
+
+    <div class="dash-form-group">
       <label for="processed_by">Updated By: </label>
       @php
         $pById = $member->misc->processed_by;
@@ -111,7 +127,5 @@
       @endphp
       <input class="borderless" type="text" name="miscs[processed_by]" value="{{$pByName}}" readonly>
     </div>
-
-    <button type="submit">Test submit </button>
   </form>
 </div>
