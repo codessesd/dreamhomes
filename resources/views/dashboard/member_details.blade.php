@@ -180,6 +180,7 @@
         </div>
       @endforeach
         <div class="grid1111 w100 grid-list">
+          <span id="testTester"></span>
         </div>
         <div class="grid1111 w100">
           <div class="form-group">
@@ -203,7 +204,7 @@
             <input id="benef_id_number" type="text" name="beneficiaries[id_number]">
           </div>
           <div class="form-group btn-add">
-            <button type="button" onclick="submitBeneficiary()" >
+            <button id="benefBtn" type="button" onclick="submitBeneficiary()" >
               <span class="elPad" id="benefEllipsis"><img src="/images/ellipsist.gif" height="26"></span>
               <i id="benefAdd" class="fas fa-plus-square"></i>
             </button>
@@ -243,7 +244,7 @@
               <input id="area" type="text" name="areas[area]">
             </div>
             <div class="form-group btn-add">
-              <button type="button" onclick="submitArea()" >
+              <button type="button" onclick="submitArea()">
                 <span class="elPad" id="areaEllipsis"><img src="/images/ellipsist.gif" height="26"></span>
                 <i id="areaAdd" class="fas fa-plus-square"></i>
               </button>

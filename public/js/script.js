@@ -14,7 +14,6 @@ function closeMsgDialog() {
 }
 
 function openDialog(type, typeName){
-
 	document.getElementById('uploadType').innerHTML = type;
 	document.getElementById('document-type').value = typeName;
 

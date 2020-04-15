@@ -15,7 +15,7 @@ class AdminController extends Controller
     {
       $admins = Admin::all();
       $permissions = Permission::all();
-      $writePermissions = $permissions->where('type','write');
+      $writePermissions = $permissions->where('type','write')->merge($permissions->where('type','delete'));
 
       //if you want a custom name displayed on the permissions table write it in this array as 'current name'=>'custom name'
       $readableNames = ['f_name'=>'first name','membership_no'=>'membership no.','id_passport_no'=>'id or passport number',

@@ -8,7 +8,7 @@
     @include('partials.floatingMsg')
   @endif
   <div class="application areas-container">
-    <h1>APPLICANTION STEP 4 OF 4</h1>
+    <h1>APPLICANTION STEP 4 OF 6</h1>
     <h3>Areas Of Choice</h3>
 
     <div class="grid-center-form">

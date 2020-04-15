@@ -8,7 +8,7 @@
     <span class="msg-line" id="msg-line{{$member->id}}"></span>
   </div>
 
-  <form class="form-50" id="member-form{{$member->id}}">
+  <form class="form-50" id="member-form{{$member->id}}" action="/updateMember" method="POST">
     {{csrf_field()}}
     <input type="hidden" name="id" value="{{$member->id}}">
 

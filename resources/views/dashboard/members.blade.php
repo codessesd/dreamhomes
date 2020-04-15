@@ -60,22 +60,24 @@
                 <td class="options-td">
                   <div class="options d-flex justify-content-center">
                     <div class="options-icon" onclick="toggleMemberDetails({{$member['id']}})" data-toggle="tooltip" data-placement="top" title="Edit Member">
-                      <i class="fas fa-eye"></i>
+                      <i class="fas fa-edit"></i>
                     </div>
 
                     <a class="options-icon" href="/member/{{$member->id}}" data-toggle="tooltip" data-placement="top" title="Open Member">
-                      <i class="fas fa-folder-open"></i>
+                      <i class="fas fa-eye"></i>
                     </a>
 
                     <div class="options-icon" onclick="toggleDocPopup({{$member['id']}})" data-toggle="tooltip" data-placement="top" title="Documents">
                       <i class="far fa-file-alt"></i>
                       @if($member->document->isNotEmpty())
                         <div class="doc-popup" id="popup{{$member['id']}}">
+                          <span class="doc-li">Close</span>
                           @include('dashboard.components.documents_popup')
                         </div>
                       @else
                         <div class="doc-popup" id="popup{{$member['id']}}">
                           <span class="doc-li">No Uploads</span>
+                          <span class="doc-li"><i class="fas fa-times"></i> Close</span>
                         </div>
                       @endif
                     </div>

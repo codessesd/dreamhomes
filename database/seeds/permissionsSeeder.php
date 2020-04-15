@@ -14,7 +14,7 @@ class permissionsSeeder extends Seeder
     {
       DB::table('permissions')->truncate();
       $tables = ['areas','beneficiaries','documents','home_addresses','members','miscs','next_of_kin','post_addresses','subscriptions'];
-      $ignoreColumns = ['id','member_id','created_at','updated_at','user_id','application_type'];
+      $ignoreColumns = ['id','member_id','created_at','updated_at','user_id','application_type','processed_by'];
       foreach($tables as $table){
         $tableName = $table;
         $colNames = Schema::getColumnListing($tableName);
@@ -27,5 +27,9 @@ class permissionsSeeder extends Seeder
         }
       }
 
+      //Additional Permissions
+      //A permission of type 'delete' and attribute 'delete' means the admin can delete a row in that table
+      DB::table('permissions')->insert(['type'=>'delete','entity'=>'beneficiaries','attribute'=>'delete']);
+      DB::table('permissions')->insert(['type'=>'delete','entity'=>'areas','attribute'=>'delete']);
     }
 }

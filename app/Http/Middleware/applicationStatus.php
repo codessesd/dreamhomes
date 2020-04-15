@@ -18,9 +18,7 @@ class applicationStatus
     {
       $member = Member::find(auth()->user()->id);
       if($member->misc->status !== 'incomplete')
-      {
-        return redirect('/profile/')->withErrors(['warning','Action not allowed','You have already submitted an application.']);
-      }
+        return redirect('/profile')->withErrors(['warning','Action not allowed','You have already submitted an application.']);
       return $next($request);
     }
 }

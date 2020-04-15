@@ -1,5 +1,5 @@
 @php
-  $error = ["success","save successfully"];
+  $error = ["success","saved successfully"];
 @endphp
 
 <div class="msg-disabler" id="msg-disabler"></div>

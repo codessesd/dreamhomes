@@ -40,6 +40,7 @@ Route::get('logout','SessionsController@logoutUser')->middleware('auth');
 Route::get('profile',function(){return view('profile');})->name('profile')->middleware('member');
 Route::POST('storeFile','DocumentsController@storeFile')->middleware('member','applicationStatus');
 Route::get('files/{action}/{id}','DocumentsController@downloadOrDelete')->middleware('member');
+//Route::get('files/download/{id}','DocumentsController@downloadOrDelete')->middleware('member');
 Route::get('apply/{step}','ApplicationController@show')->middleware('member','applicationStatus');
 Route::POST('apply/{step}','ApplicationController@save')->middleware('member','applicationStatus');
 Route::get('apply/step3/remove/{id}','ApplicationController@removeBeneficiary')->middleware('member','applicationStatus');

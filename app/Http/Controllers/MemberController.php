@@ -15,11 +15,11 @@ class MemberController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
-    {
+    {//I need to look over this update function. It's not as crisp as I want it to be. Something just doesn't feel right
       $member = Member::find(request()->id);
       $admin = Admin::find(auth()->user()->id);
       $requestKeys = array_keys($request->all());
-      $message = 'Something went wrong!';
+      $message = 'No Permissions Granted!';
       $entities = ['miscs','members','next_of_kin','beneficiaries','areas'];
       /*
        * $entities are databases and should be written as database names because that's how they're stored in the permissions table
@@ -52,11 +52,16 @@ class MemberController extends Controller
               $message = 'Save Successful!';
               break;
             case 'beneficiaries':
-              $member->beneficiaries()->create($arrayToSave);
+              $allFieldsPresent = ($arrayToSave['name'] != null)&&($arrayToSave['surname'] != null)&&
+                                  ($arrayToSave['relationship'] != null)&&($arrayToSave['id_number'] != null);
+              if ($allFieldsPresent)
+                $member->beneficiaries()->create($arrayToSave);
               $message = 'Save Successful!';
               break;
             case 'areas':
-              $member->areas()->create($arrayToSave);
+              $allFieldsPresent = ($arrayToSave['municipality'] != null)&&($arrayToSave['area'] != null);
+              if ($allFieldsPresent)
+                $member->areas()->create($arrayToSave);
               $message = 'Save Successful!';
               break;
             default:
@@ -65,6 +70,11 @@ class MemberController extends Controller
         }
       }
       return response()->json(["message"=>$message]);
+    }
+
+    public function delete()
+    {
+
     }
 
     public function all()
@@ -105,13 +115,21 @@ class MemberController extends Controller
     public function removeBeneficiary($memId,$benefId)
     {
       $member = Member::find($memId);
-      $member->beneficiaries()->where('id',$benefId)->first()->delete();
+      $admin = Admin::find(auth()->user()->id);
+      $delPermission = $admin->permissions->where('type','delete')->where('entity','beneficiaries');
+      if($delPermission->isNotEmpty())
+        $member->beneficiaries()->where('id',$benefId)->first()->delete();
+      //else
+        //return response()->json(['']);
     }
 
     public function removeArea($memId,$areaId)
     {
       $member = Member::find($memId);
-      $member->areas()->where('id',$areaId)->first()->delete();
+      $admin = Admin::find(auth()->user()->id);
+      $delPermission = $admin->permissions->where('type','delete')->where('entity','areas');
+      if($delPermission->isNotEmpty())
+        $member->areas()->where('id',$areaId)->first()->delete();
     }
 
 }

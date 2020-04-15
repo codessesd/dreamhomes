@@ -20,9 +20,7 @@
 	/*font-size: 16px;*/
 	line-height: 27px;
 }
-.website{
-	/*position: relative;*/
-}
+
 body{
 	max-width: 2200px;
 	margin: auto;
@@ -407,17 +405,20 @@ button{
 .profile-btns-mobile .btn2, .profile-btns-mobile .btn3{
 	margin-left: 0px;
 }
-.btn2, .btn3{
+
+.btn2, .btn3, .btn4{
 	display: inline-block;
-	margin: 10px;
 	padding: 10px;
 	background-color: #99cc66;
 	border-radius: 7px;
 	box-shadow: 2px 2px 2px #999;
 	cursor: pointer;
+	clear: both;
+}
+.btn2, .btn3{
 	width: 60%;
 	float: left;
-	clear: both;
+	margin: 10px;
 }
 .btn3{
 	padding: 0px;		
@@ -425,10 +426,10 @@ button{
 .btn3 a{
 	padding: 10px;
 }
-.btn2:hover, .btn3:hover{
+.btn2:hover, .btn3:hover, .btn4:hover{
 	background-color: #CFCFCF;
 }
-.btn2:active, .btn3:active{
+.btn2:active, .btn3:active, .btn4:active{
 	box-shadow: 0px 0px 2px #999;
 }
 .profile-btns a{
@@ -500,7 +501,7 @@ button{
 }
 .li-width{
 	display: inline-block;
-	width: 100%;
+	width: calc(100% - 40px);
 }
 .li-card{
 	box-shadow: 0px 0px 4px #999;
@@ -511,7 +512,9 @@ button{
 	margin-bottom: 5px;
 	max-width: 300px;
 }
-
+.li-card .fas{
+	width: 30px;
+}
 /*End profile*/
 /*Contact page***********************************************/
 .contact{

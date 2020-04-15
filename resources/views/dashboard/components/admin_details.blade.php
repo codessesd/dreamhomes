@@ -8,12 +8,12 @@
 
   <div class="progressBox" id="progressBox{{$admin->id}}">
     <div class="img-div">
-      <img id="loading{{$admin->id}}" src="/images/giphy3.gif" width="80px">
+      <img id="loading{{$admin->id}}" src="/images/doubleRing.svg" width="80px">
       <img id="warning{{$admin->id}}" src="/images/warning.svg" width="50px">
     </div>
     <div class="clr"></div>
-    <span class="responseMsg"><b id="responseMsg{{$admin->id}}">This is a long response message  </b></span>
-    <span class="okBtn" id="okBtn{{$admin->id}}" onclick="closeProgressBox()">OK</span>
+    <span class="responseMsg bg-primary"><b id="responseMsg{{$admin->id}}">This is a long response message  </b></span>
+    <span class="okBtn bg-primary" id="okBtn{{$admin->id}}" onclick="closeProgressBox({{$admin->id}})">OK</span>
   </div>
   <form id="admin-form{{$admin->id}}" method="POST">
     {{csrf_field()}}

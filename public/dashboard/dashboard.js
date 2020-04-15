@@ -183,15 +183,19 @@ function closeAdminDetail(id)
 {
 	document.getElementById('admin-form').reset();
 	document.getElementById('popup-filter'+id).style.display = "none";
-	document.getElementById('progressBox').style.display = "none";
-	document.getElementById('okBtn').style.display = 'none';
+	document.getElementById('progressBox'+id).style.display = "none";
+	document.getElementById('okBtn'+id).style.display = 'none';
+}
+function closeProgressBox(id)
+{
+	document.getElementById('progressBox'+id).style.display = "none";
+	document.getElementById('okBtn'+id).style.display = 'none';
 }
 function closeProgressBox()
 {
 	document.getElementById('progressBox').style.display = "none";
 	document.getElementById('okBtn').style.display = 'none';
 }
-
 function updateAdmin(id){
 	//"use strict"
 	var xhttp = new XMLHttpRequest();
@@ -292,6 +296,7 @@ function submitBeneficiary()
 
 	if ((name.length>0)&&(surname.length>0)&&(idNumber.length>0))
 	{
+		document.getElementById('benefBtn').disabled = 'true';
 		benefAdd.style.display = 'none';
 		benefEllipsis.style.display = 'inline-block';
 		let dataString =  '_token=' + token + '&' +
@@ -315,6 +320,7 @@ function submitBeneficiary()
 		
 	}
 }
+
 function removeBeneficiary(memId,benefId)
 {
 	var xhttp = new XMLHttpRequest;

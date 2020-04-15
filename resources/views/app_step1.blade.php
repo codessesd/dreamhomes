@@ -8,7 +8,7 @@
     @include('partials.floatingMsg')
   @endif
   <div class="application">
-    <h1>APPLICANTION STEP 1 OF 4</h1>
+    <h1>APPLICANTION STEP 1 OF 6</h1>
 
     <form class="applicant-details" action="/apply/step1" method="POST">
       {{csrf_field()}}
@@ -95,18 +95,8 @@
         <input class="w33" type="text" id="post-code" value="{{$post_address['post_code']}}" name="post_address[post_code]" placeholder="Postal Code*">
       </div>
       <div class="clr"></div>
-      <button type="submit" class="btn">Next</button>
+      <button type="submit" class="btn spacer">Next</button>
+      <button type="button" onclick="location.href='/profile'" id="btnNxt" class="spacer btn">Save for Later</button>
   </form>
   </div>
 @endsection
-{{--
-@section('javascript')
-  This javascript is executed onLoad --}}
-  {{-- <script type="text/javascript">
-    function onLoad(telephone)
-    {
-      document.getElementById('marital-status').selectedIndex="2";
-      document.getElementById('tel_no').value = telephone;
-    }
-  </script>
-@endsection --}}

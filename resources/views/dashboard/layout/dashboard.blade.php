@@ -11,16 +11,16 @@
 <div class="dashboard">
 
   <div class="sidebar">
-    <span class="dash-title">Dashboard</span>
+    <span class="dash-title">Dashboard {{-- <i class="icn fas fa-caret-square-down"></i> --}}</span>
     <ul class="side-nav-links">
       <li><a href="/members"><span class="side-icon">MB</span>Members</a></li>
-      <li><a href="/completed"><span class="side-icon">CO</span>Completed</a></li>
-      <li><a href="/pending"><span class="side-icon">PN</span>Pending</a></li>
-      <li><a href="/pending"><span class="side-icon">BA</span>Batch</a></li>
+      {{-- <li><a href="/completed"><span class="side-icon">CO</span>Completed</a></li> --}}
+      {{-- <li><a href="/pending"><span class="side-icon">PN</span>Pending</a></li> --}}
       <li><a href="/admins"><span class="side-icon">AD</span>Admins</a></li>
       {{-- <li><a href="/adduser"><span class="side-icon">AD</span>Add Admin</a></li> --}}
     </ul>
   </div>
+  <div class="mbl-menu"></div>
 
   <div class="content-wrap">
     <div class="top-nav">

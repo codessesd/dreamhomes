@@ -17,6 +17,7 @@ class CreateDocumentsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('member_id');
             $table->string('type')->nullable();
+            $table->string('original_name',100)->nullable();
             $table->string('extension')->nullable();
             $table->string('path')->nullable();
             $table->timestamps();

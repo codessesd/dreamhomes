@@ -35,7 +35,16 @@ class ApplicationController extends Controller
         return view('app_step4',compact('areas'));
         break;
       case 'step5':
-        return view('app_step5');
+        $member = Member::find(auth()->user()->id);
+        $docTypes = DocumentsController::docTypes();
+        $allDocuments = collect($member->document->all());
+        $idOrPassport = $member->document()->where('type',$docTypes['id'])->first();
+        $proofop = $member->document()->where('type',$docTypes['pr'])->first();
+        $supportDoc = $member->document->where('type',$docTypes['su']);
+        return view('app_step5',compact('member','allDocuments','docTypes','idOrPassport','proofop','supportDoc'));
+        break;
+      case 'step6':
+        return view('app_step6');
       default:
         return redirect('apply/step1')->withErrors(['Error'=>'Path Not Found']);
     }
@@ -47,7 +56,6 @@ class ApplicationController extends Controller
     {
       case 'step1':
         $member = Member::find(auth()->user()->id);
-        //dd($request->member);
         $member->update($request->member);
         $member->home_address()->updateOrCreate(['member_id'=>$member->id],$request->home_address);
         $member->post_address()->updateOrCreate(['member_id'=>$member->id],$request->post_address);
@@ -71,8 +79,8 @@ class ApplicationController extends Controller
         $member->areas()->create($request->all());
         return redirect('/apply/step4');
         break;
-      case 'step5':
-        // There is no step 5 instead I used validateInfo
+      case 'step6':
+        // There is no step 6 instead I used validateInfo
         break;
       default:
         return redirect('apply/step1')->withErrors(['Error'=>'Path Not Found']);

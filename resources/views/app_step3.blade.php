@@ -8,7 +8,7 @@
     @include('partials.floatingMsg')
   @endif
   <div class="application">
-    <h1>APPLICANTION STEP 3 OF 4</h1>
+    <h1>APPLICANTION STEP 3 OF 6</h1>
     <h3>Beneficiaries</h3>
 
     <form class="applicant-details" id="benef-form" action="/apply/step3" method="POST">
