@@ -6,7 +6,7 @@
 @section('section')
   <div class="register">
     <div class="form">
-      <h1>Login</h1>
+      <h1 class="login-h">Login</h1>
 
       @if (count($errors)  > 0)
         <div class="message bg-error">

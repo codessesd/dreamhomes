@@ -1,8 +1,10 @@
-{{-- Member details popup ************************************************--}}
-<div class="member-details-card" id="member-details{{$member->id}}">
+{{-- Office popup ************************************************--}}
+<div class="office-filter" id="office-filter{{$member->id}}">
+<div></div>
+<div class="office-card" id="member-details{{$member->id}}">
   <div class="mem-top-nav bg-primary">
     <p class="pop-topBar">Office Use</p>
-    <i class="fas fa-times" onclick="toggleMemberDetails({{$member->id}})"></i>
+    <i class="fas fa-times" onclick="toggleOfficePopup({{$member->id}})"></i>
     <i class="fas fa-save" onclick="saveMember({{$member->id}})"></i>
     {{-- <i class="fas fa-print" id="ajax-tester"></i> --}}
     <span class="msg-line" id="msg-line{{$member->id}}"></span>
@@ -128,4 +130,6 @@
       <input class="borderless" type="text" name="miscs[processed_by]" value="{{$pByName}}" readonly>
     </div>
   </form>
+</div>
+<div></div>
 </div>

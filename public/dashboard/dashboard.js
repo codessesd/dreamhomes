@@ -38,17 +38,26 @@ function toggleDocPopup(id){
 		docPopup.style.transform = "scale(0,0)";
 }
 
-function toggleMemberDetails(id)
+function toggleOfficePopup(id)
 {
 	//"use strict";
+	const officeFilter = document.getElementById('office-filter'+id);
 	const memDetails = document.getElementById('member-details'+id);
-	const style = getComputedStyle(memDetails);
-	const transform = new WebKitCSSMatrix(style.webkitTransform);
+	const popDisplay = getComputedStyle(officeFilter);
+	//const transform = new WebKitCSSMatrix(style.webkitTransform);
 
-	if(transform == 'matrix(0, 0, 0, 0, 0, 0)')
+	if(popDisplay.zIndex == '-1'){
 		memDetails.style.transform = "scale(1,1)";
-	else
+		officeFilter.style.zIndex = '2';
+		officeFilter.style.backgroundColor = '#fff9';
+		officeFilter.style.transition = 'background-color 0.4s linear'
+	}
+	else{
+		officeFilter.style.backgroundColor = '#fff0';
+		officeFilter.style.zIndex = '-1';
 		memDetails.style.transform = "scale(0,0)";
+		officeFilter.style.transition = 'background-color 0.4s linear, z-index 0.1s linear 0.4s'
+	}
 }
 
 function saveMember(id) 
@@ -180,6 +189,7 @@ function openAdminDetail(id)
 {
 	document.getElementById('popup-filter'+id).style.display = "grid";
 }
+
 function selectAll(id)
 {
 	const adminForm = document.getElementById('admin-form'+id);
@@ -187,19 +197,33 @@ function selectAll(id)
 
 	if (selectBtn.checked == false){
 		for(i = 0; i < adminForm.length; i++)
-		{
 			if(adminForm.elements[i].getAttribute('type') == 'checkbox')
 				adminForm.elements[i].checked = true;
-		}
 	}
 	else{
 		for(i = 0; i < adminForm.length; i++)
-		{
 			if(adminForm.elements[i].getAttribute('type') == 'checkbox')
 				adminForm.elements[i].checked = false;
-		}
 	}
 }
+
+function selectAll2()
+{
+	const adminForm = document.getElementById('admin-form');
+	const selectBtn = document.getElementById('btnSelectAll');
+
+	if (selectBtn.checked == false){
+		for(i = 0; i < adminForm.length; i++)
+			if(adminForm.elements[i].getAttribute('type') == 'checkbox')
+				adminForm.elements[i].checked = true;
+	}
+	else{
+		for(i = 0; i < adminForm.length; i++)
+			if(adminForm.elements[i].getAttribute('type') == 'checkbox')
+				adminForm.elements[i].checked = false;
+	}
+}
+
 function closeAdminDetail(id)
 {
 	document.getElementById('admin-form').reset();

@@ -53,7 +53,9 @@
     <div class="perms-cover">
       <fieldset>
         <legend>Write Permissions</legend>
-        {{-- <button type="button">Select All</button> --}}
+        <button type="button" class="select-all" onclick="selectAll2()">
+          <input type="checkbox" id="btnSelectAll" onclick="selectAll2()" readonly>Select All-
+        </button>
         <div class="permissions">
           @foreach($tables as $table)
             <div class="entity-cover">
@@ -73,6 +75,7 @@
               </div>
             </div>
           @endforeach
+        </div>
       </fieldset>
     </div>
   </form>

@@ -39,11 +39,11 @@
             @foreach($members as $member)
               <tr>
                 <td class="text-primary">
+                  @include('dashboard.components.office_use')
                   {{++$i}}.
                 </td>
                 <td class="table-f-name">
                   <a class="nameLink" href="/member/{{$member->id}}">{{$member->f_name}} {{$member->surname}}</a>
-                  @include('dashboard.components.office_use')
                 </td>
                 <td>
                   {{$member->misc->membership_no}}
@@ -59,14 +59,12 @@
                 </td>
                 <td class="options-td">
                   <div class="options d-flex justify-content-center">
-                    <div class="options-icon" onclick="toggleMemberDetails({{$member['id']}})" data-toggle="tooltip" data-placement="top" title="Edit Member">
+                    <div class="options-icon" onclick="toggleOfficePopup({{$member['id']}})" data-toggle="tooltip" data-placement="top" title="Office Use">
                       <i class="fas fa-edit"></i>
                     </div>
-
                     <a class="options-icon" href="/member/{{$member->id}}" data-toggle="tooltip" data-placement="top" title="Open Member">
                       <i class="fas fa-eye"></i>
                     </a>
-
                     <div class="options-icon" onclick="toggleDocPopup({{$member['id']}})" data-toggle="tooltip" data-placement="top" title="Documents">
                       <i class="far fa-file-alt"></i>
                       @if($member->document->isNotEmpty())

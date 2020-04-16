@@ -68,7 +68,7 @@
       <fieldset>
         <legend>Write Permissions</legend>
         <button type="button" class="select-all" onclick="selectAll({{$admin->id}})">
-          <input type="checkbox" id="btnSelectAll{{$admin->id}}">Select All
+          <input type="checkbox" id="btnSelectAll{{$admin->id}}"  onclick="selectAll({{$admin->id}})" readonly>Select All
         </button>
         <div class="permissions">
           @foreach($tables as $table)

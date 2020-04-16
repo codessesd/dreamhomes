@@ -41,9 +41,6 @@ select:focus{
 	border: 1px solid #99cc66;	
 	outline-color: #99cc66;
 }
-.padd5{
-	/*padding: 10px;*/
-}
 input, textarea{
 	padding: 10px 5px;
 	border-radius: 5px;
@@ -333,6 +330,10 @@ button{
 }
 
 /*end about*/
+/*Login Page********************************************/
+.login-h{
+	padding-left: 20px;
+}
 /*register page*****************************************/
 .register{
 	display: grid;
@@ -662,8 +663,8 @@ button{
 
 @media (max-width: 1080px){
 	.section{
-		width: 90%;
-		margin-left: 5%;
+		width: 95%;
+		margin-left: 2.5%;
 	}
 	.register form{
 		padding: 40px 100px 0px 0px;
@@ -679,7 +680,7 @@ button{
 		grid-template-columns: auto;
 	}
 	.register form{
-		padding: 40px 20px 0px 0px;
+		padding: 40px 20px 0px 20px;
 	}
 	.register .side-pic img {
 		width: 600px;
@@ -700,7 +701,12 @@ button{
 	.upload-dialog, .msg-dialog {
 		width: 60%;
 		left: 20%;
-	}}
+	}
+	.section{
+		width: 100%;
+		margin-left: 0%;
+	}
+}
 @media (max-width: 768px){
 	.inforgraphic{
 		width: 90%;
@@ -755,8 +761,8 @@ button{
 }
 @media(max-width: 475px){
 	.section{
-		width: 100%;
-		margin-left: 0px;
+		width: 96%;
+		margin-left: 2%;
 	}
 }
 
