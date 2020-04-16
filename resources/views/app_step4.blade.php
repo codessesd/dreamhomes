@@ -13,7 +13,7 @@
 
     <div class="grid-center-form">
       <div></div>
-      <form class="applicant-details areas-form" id="main-form" action="/apply/step4" method="POST">
+      <form class="areas-form applicant-details" id="main-form" action="/apply/step4" method="POST">
         {{csrf_field()}}
           <div class="grid11 w100">
             <h4>Municipality</h4>

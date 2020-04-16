@@ -80,7 +80,7 @@ class ApplicationController extends Controller
         return redirect('/apply/step4');
         break;
       case 'step6':
-        // There is no step 6 instead I used validateInfo
+        // There is no step 6 instead I used validateInfo() function
         break;
       default:
         return redirect('apply/step1')->withErrors(['Error'=>'Path Not Found']);

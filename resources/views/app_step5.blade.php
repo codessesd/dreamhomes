@@ -15,10 +15,10 @@
 
     <div class="grid-center-form">
       <div></div>
-      <div>
+      <div class="up-btns">
         @if($idOrPassport != null)
           <div class="doc-li1">
-            <p><i>{{$idOrPassport->original_name}}</i></p>
+            <p class="smCaps">{{$idOrPassport->original_name}}</p>
             <span><i onclick="location.href='/files/delete/{{$idOrPassport->id}}'" class="icn fas fa-backspace"></i></span>
           </div>
         @else <p><i>Upload a certified copy of your ID or Passport</i></p> @endif
@@ -28,7 +28,7 @@
 
         @if($proofop != null)
           <div class="doc-li1">
-            <p><i>{{$proofop->original_name}}</i></p>
+            <p class="smCaps">{{$proofop->original_name}}</p>
             <span><i onclick="location.href='/files/delete/{{$proofop->id}}'" class="icn fas fa-backspace"></i></span>
           </div>
         @else <p><i>Upload proof of payment. <a href="#">How to pay?</a></i></p> @endif
@@ -39,7 +39,7 @@
         @if($supportDoc->count() > 0)
           @foreach($supportDoc as $doc)
             <div class="doc-li1">
-              <p><i>{{$doc->original_name}}</i></p>
+              <p class="smCaps">{{$doc->original_name}}</p>
               <span><i onclick="location.href='/files/delete/{{$doc->id}}'" class="icn fas fa-backspace"></i></span>
             </div>
           @endforeach
@@ -49,9 +49,11 @@
         <div class="line spacer-tb"></div>
 
         <div class="spacer-tb"></div>
-        <button type="button" onclick="location.href='/apply/step6'"id="btnNxt" class="spacer btn">Next</button>
-        <button type="button" onclick="location.href='/apply/step5'" class="spacer btn">Back</button>
-        <button type="button" onclick="location.href='/profile'" id="btnNxt" class="spacer btn">Upload Later</button>
+        <div class="grid111">
+          <button type="button" onclick="location.href='/profile'" id="btnNxt" class="btn">Upload Later</button>
+          <button type="button" onclick="location.href='/apply/step4'" class="btn">Back</button>
+          <button type="button" onclick="location.href='/apply/step6'"id="btnNxt" class="btn">Next</button>
+        </div>
       </div>
       <div></div>
   </div>

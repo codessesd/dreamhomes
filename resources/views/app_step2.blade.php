@@ -22,11 +22,11 @@
           <label for="initials">Initials*</label>
           <input type="text" name="initials" value="{{$nextOfKin['initials']}}">
         </div>
-        <div class="form-group">
-          <label for="first-name">First Name*</label>
+        <div class="form-group nok-name">
+          <label for="first-name">Name(s)*</label>
           <input type="text" name="name" value="{{$nextOfKin['name']}}">
         </div>
-        <div class="form-group">
+        <div class="form-group nok-sur">
           <label for="surname">Surname*</label>
           <input type="text" name="surname" value="{{$nextOfKin['surname']}}">
         </div>

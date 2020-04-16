@@ -10,7 +10,9 @@
   <div class="application">
     <h1>APPLICANTION STEP 3 OF 6</h1>
     <h3>Beneficiaries</h3>
-
+    
+    <div class="scrollable">
+    <div class="mw550">
     <form class="applicant-details" id="benef-form" action="/apply/step3" method="POST">
       {{csrf_field()}}
         <div class="grid1111 w100">
@@ -59,5 +61,7 @@
       <button type="button" id="btnNxt" class="btn spacer" onclick="submitBeneficiary()">Next</button>
       <button type="button" onclick="location.href='/apply/step2'" class="btn spacer">Back</button>
   </form>
+  </div>
+  </div>
   </div>
 @endsection

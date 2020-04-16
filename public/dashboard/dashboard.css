@@ -83,21 +83,49 @@ input.borderless{
 }
 /*Mobile menu****************************************************/
 .mbl-menu{
-	
+	display: none;
+	width: 260px;
+	height: 50px;
+	margin-top: 20px;
+	position: fixed;
+	border-radius: 0px 10px 10px 0px;
+	text-align: right;
+	color: #fff;
+	font-size: 36px;
+	padding-top: 3px;
+	padding-right: 5px;
+	transition: width 0.2s;
 }
-
+#mnIcn{
+	transform: rotate(-90deg);
+	transition: transform 1s;
+}
+.mbl-ddown{
+	position: fixed;
+	padding-top: 0px;
+	padding-left: 10px;
+	width: 210px;
+	height: 0px;
+	margin-top: 70px;
+	margin-left: 10px;
+	z-index: 1;
+	border-radius: 0px 0px 10px 10px;
+	box-shadow: 3px 0px 16px #0009;
+	transition: height 0.5s ease-out 0.2s, padding 0.7s ease-in 0.2s;
+	overflow: hidden;
+}
 /*navigation*******************************************/
 .top-nav{
-	padding: 10px 30px 10px 10px;
+	padding: 20px 30px 10px 10px;
 }
 .dd-btn{
 	position: relative;
 	border-radius: 10px;
-	box-shadow: 3px 3px 6px #777, -3px -3px 6px #fff;
+	box-shadow: 3px 3px 6px #777;
 	color: #fff;
 }
 .dd-btn:active{
-	box-shadow: 2px 2px 2px #777, -2px -2px 2px #fff;
+	box-shadow: 2px 2px 2px #777;
 }
 .user-menu{
 	float: right;
@@ -507,13 +535,16 @@ td.member-expand div{
 	.content-wrap{
 		width: 100%;
 	}
+	.mbl-menu{
+		display: block;
+	}
 	.sidebar{
 		margin-top: 10px;
-		box-shadow: none;
 		z-index: 2;
 		height: 70px;
 		overflow: hidden;
 		border-radius: 0px 10px 10px 0px;
+		padding-top: 13px;
 	}
 
 	.dash-title{
@@ -521,7 +552,19 @@ td.member-expand div{
 	}
 }
 @media (max-width: 768px){
+	.content{
+		padding-left: 0px;
+	}
 	.card-body{
 		overflow: scroll;
+	}
+}
+
+@media (max-width: 375px){
+	.top-nav{
+		padding-right: 2px;
+	}
+	.top-nav-icon{
+		font-size: 30px;
 	}
 }

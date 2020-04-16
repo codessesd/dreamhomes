@@ -48,6 +48,7 @@
         <label for="email">Email*</label>
         <input type="text" value="{{$member->user->email}}" name="user[email]" disabled>
       </div>
+      <div class="clr"></div>
       <div class="marital-status">
         <label for="marital-status">Marital Status*</label>
         <select name="member[marital_status]" id="marital-status">

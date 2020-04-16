@@ -5,6 +5,27 @@ $(document).ready(function(){
 	});
 
 });
+function mblMenuToggle(){
+	const mnBtn = document.getElementById('mnBtn');
+	const mnBtnStyle = getComputedStyle(mnBtn);
+	const mnIcon = document.getElementById('mnIcn');
+	const mnDropdown = document.getElementById('mnDropdown');
+
+	if(mnBtnStyle.width == '260px')
+	{
+		mnBtn.style.width = '280px';
+		mnIcon.style.transform = "rotate(90deg)";
+		mnDropdown.style.height = '200px';
+		mnDropdown.style.paddingTop = '20px';
+	}
+	else
+	{
+		mnBtn.style.width = '260px';
+		mnIcon.style.transform = "rotate(-90deg)";
+		mnDropdown.style.height = '0px';
+		mnDropdown.style.paddingTop = '0px';
+	}
+}
 function toggleDocPopup(id){
 	"use strict";
 	const docPopup = document.getElementById('popup'+id);

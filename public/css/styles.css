@@ -18,6 +18,8 @@
 	font-family: 'Montserrat', sans-serif;
 	/*font-family: 'Raleway', sans-serif;*/
 	/*font-size: 16px;*/
+}
+p{
 	line-height: 27px;
 }
 
@@ -43,7 +45,7 @@ select:focus{
 	/*padding: 10px;*/
 }
 input, textarea{
-	padding: 5px;
+	padding: 10px 5px;
 	border-radius: 5px;
 	border: 1px solid #ccc;
 	color: #555;
@@ -78,7 +80,7 @@ button{
 	margin-bottom: 10px;
 }
 .btn{
-	min-width: 100px;
+	min-width: 80px;
 	background-color: #99cc66;
 	text-align: center;
 	color: #FFFFFF;
@@ -173,7 +175,7 @@ button{
 .info-bar{
 	background-color: black;
 	width: 100%;
-	height: 30px;
+	height: 0px;
 }
 .header-container{
 	display: grid;
@@ -749,6 +751,12 @@ button{
 	.upload-dialog, .msg-dialog {
 		left: 5%;
 		width: 90%;
+	}
+}
+@media(max-width: 475px){
+	.section{
+		width: 100%;
+		margin-left: 0px;
 	}
 }
 

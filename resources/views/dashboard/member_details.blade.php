@@ -66,8 +66,8 @@
         <select name="members[insolvency]">
           @php $inslv = $member->insolvency; @endphp
           <option value="No" @if($inslv=='No') selected @endif>No</option>
-          <option value="Yes|Rehabilitated" @if($inslv=='Yes|Rehabilitated') selected @endif>Yes, I have been rehabilitated</option>
-          <option value="Yes|NotRehabilitated" @if($inslv=='Yes|NotRehabilitated') selected @endif>Yes, I have NOT been rehabilitated</option>
+          <option value="Yes|Rehabilitated" @if($inslv=='Yes|Rehabilitated') selected @endif>Yes, Rehabilitated</option>
+          <option value="Yes|NotRehabilitated" @if($inslv=='Yes|NotRehabilitated') selected @endif>Yes, NOT been rehabilitated</option>
         </select>
       </div>
       <div class="form-group insolv2 w33">
@@ -112,11 +112,11 @@
           <label for="initials">Initials*</label>
           <input type="text" name="next_of_kin[initials]" value="{{$member->next_of_kin['initials']}}">
         </div>
-        <div class="form-group">
-          <label for="first-name">First Name*</label>
+        <div class="form-group nok-name">
+          <label for="first-name">Name(s)*</label>
           <input type="text" name="next_of_kin[name]" value="{{$member->next_of_kin['name']}}">
         </div>
-        <div class="form-group">
+        <div class="form-group nok-sur">
           <label for="surname">Surname*</label>
           <input type="text" name="next_of_kin[surname]" value="{{$member->next_of_kin['surname']}}">
         </div>
@@ -141,6 +141,7 @@
         <label for="email">Email</label>
         <input type="text" name="next_of_kin[email]" value="{{$member->next_of_kin['email']}}">
       </div>
+      <div class="clr"></div>
       <div class="form-group physical-address w50">
         <label>Physical Address*</label>
         <div class="">
@@ -161,7 +162,8 @@
     {{-- Beneficiaries************************************************************************************ --}}
     <div class="form-divide">
       <h1>Beneficiaries</h1>
-
+      <div class="scrollable">
+      <div class="mw450">
       <div class="grid1111 w100">
         <h4>Name</h4>
         <h4>Surname</h4>
@@ -210,6 +212,8 @@
             </button>
           </div>
         </div>
+      </div>
+      </div>
     </div>
 
     {{-- Area of choice***************************************************************************************** --}}
