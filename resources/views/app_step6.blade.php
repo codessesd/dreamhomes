@@ -34,13 +34,14 @@
             <input type="checkbox" id="sendMeInfo" name="subscriptions[sendMeInfo]" value="1"checked>
             <label for="sendMeInfo"><b>Suggested property Investment and any new or existing product offerings.</b></label>
           </div>
+          <div class="clr"></div>
           <div class="line spacer-tb"></div>
-          <br>
           <div class="form-group fg-aggr w100">
             <p>I hereby give consent to Dream Homes Stokvel to refer my details to:</p>
             <input type="checkbox" id="referMyDetails" name="subscriptions[referMyDetails]" value="2" checked>
             <label for="referMyDetails"><b>Dream Homes Stokvel for the purposes of contacting me in relation to any new or existing product offering.</b></label>
           </div>
+          <div class="clr"></div>
           <div class="line spacer-tb"></div>
           <div class="form-group fg-aggr w100">
             <input type="checkbox" id="agreement" name="agreement" value="signed" required>

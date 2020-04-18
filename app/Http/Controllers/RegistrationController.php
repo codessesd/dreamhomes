@@ -55,7 +55,7 @@ class RegistrationController extends Controller
         {//user not in pending users table
 
           if(isset(request()->resend)){
-            //If the user clicked the resend button but he is not in pending users 
+            //If the user clicked the resend button but he is not in pending users
             $msg = "This email address does not have a verification code. Double check your email address and try again";
             return redirect()->back()->withErrors(['resend',$msg])->withInput();
           }else{//otherwise it means the user clicked the submit button

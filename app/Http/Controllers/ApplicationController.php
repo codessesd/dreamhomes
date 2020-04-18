@@ -106,7 +106,7 @@ class ApplicationController extends Controller
   public function validateInfo(Request $request)
   {
     $member = Member::find(auth()->user()->id);
-    //Validate member
+    //Validate member------------------------------------
     $validateMember = Validator::make($member->getAttributes(),[
       'title'=>'required',
       'initials'=>'required',
@@ -135,7 +135,7 @@ class ApplicationController extends Controller
     if($validateHomeAddress->fails())
       return redirect('/apply/step1/')->withErrors($validateHomeAddress);
 
-    //Validate Post Address
+    //Validate Post Address--------------------------------------------
     $validatePostAddress = Validator::make($member->post_address->getAttributes(),[
       'post_line1' => 'required',
       'post_code' => 'required',
@@ -145,7 +145,7 @@ class ApplicationController extends Controller
     if($validatePostAddress->fails())
       return redirect('/apply/step1/')->withErrors($validatePostAddress);
 
-    //Validate Next Of Kin
+    //Validate Next Of Kin-----------------------------------------------------
     $validateNextOfKin = Validator::make($member->next_of_kin->getAttributes(),[
       'id' => 'bail|required',
       'title' => 'required',
@@ -167,14 +167,39 @@ class ApplicationController extends Controller
     if($validateNextOfKin->fails())
       return redirect('/apply/step2')->withErrors($validateNextOfKin);
 
-    //Validate Area
+    //Validate Area----------------------------------------------------------------
     $validateArea = Validator::make(['numberOfAreas'=>$member->areas->count()],[
       'numberOfAreas'=>'gt:2',
     ]);
     if($validateArea->fails())
       return redirect('apply/step4')->withErrors($validateArea);
     
-    //validate declarations
+    //validate documents-----------------------------------------------------------
+    $docs = [];
+    foreach($member->document as $document){
+      switch($document->type){
+        case 'idpassport':
+          $docs['idOrPassport'] = 'submitted';
+          break;
+        case 'proofop':
+          $docs['proofop'] = 'submitted';
+          break;
+        default:
+          break;
+      }
+    }
+    $validateDocs = Validator::make($docs,[
+      'idOrPassport' => 'required',
+      'proofop' => 'required',
+    ],[
+      'idOrPassport.required' => 'Please upload you ID or Passport',
+      'proofop.required' => 'Please upload a proof of payment',
+    ]);
+
+    if($validateDocs->fails())
+      return redirect('/apply/step5/')->withErrors($validateDocs);
+
+    //validate declarations--------------------------------------------------------
     $request->validate(['agreement'=>'required'],['agreement.required'=>'You have to agree to the terms to continue.']);
     $member->subscriptions()->sync($request->subscriptions);//should test sync 3,4
     $status = MemberController::status();

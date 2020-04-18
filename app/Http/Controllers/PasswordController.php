@@ -29,6 +29,7 @@ class PasswordController extends Controller
       
       $user = User::Create(["email" => $email,"admin_level" => 0,"password" => $hashedPassword,"remember_token" => $rememberToken]);
       $member = Member::Create(["id" => $user->id,
+                                "user_id"=>$user->id,
                                 "f_name" => $pendingUser->f_name,
                                 "surname" => $pendingUser->surname,
                                 "cell_number" => $pendingUser->contact_no]);

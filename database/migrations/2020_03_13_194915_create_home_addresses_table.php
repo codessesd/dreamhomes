@@ -18,7 +18,7 @@ class CreateHomeAddressesTable extends Migration
           $table->integer('member_id');
           $table->string('addr_line1')->nullable();
           $table->string('addr_line2')->nullable();
-          $table->string('surbub')->nullable();
+          $table->string('suburb')->nullable();
           $table->string('city')->nullable();
           $table->string('area_code')->nullable();
           $table->timestamps();
