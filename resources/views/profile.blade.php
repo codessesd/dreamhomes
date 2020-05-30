@@ -118,7 +118,7 @@
       <p>
         Bank Name: FNB <br>
         Account Holder: Su Casa Property Investment Group PTY LTD <br>
-        Account Number: 62830853489 <br>
+        Account Number: 62843838189 <br>
         Branch Name: Bank City <br>
         Branch Code: 250805 <br>
         Reference: Please put your name and surname

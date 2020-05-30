@@ -12,6 +12,7 @@
 */
 
 Route::get('/', function () {return view('index');});
+Route::get('maintenance', function () {return view('maintenance');});
 Route::get('about', function () {return view('about');});
 Route::get('contact', function () {return view('contact');});
 Route::get('register', function () {return view('register');})->middleware('guest');

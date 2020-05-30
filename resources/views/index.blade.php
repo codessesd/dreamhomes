@@ -57,7 +57,7 @@
           </div>
           <div class="inf-content fl-l">
             <h3 class="inf-heading txt-al-l">Apply</h3>
-            <p class="inf-txt">Download and complete the application form <br>or fill in our online application</p>
+            <p class="inf-txt">Complete the application form</p>
           </div>
           <div class="clr"></div>
         </div>
@@ -68,7 +68,7 @@
           </div>
           <div class="inf-content fl-r">
             <h3 class="inf-heading txt-al-r">Joining fee</h3>
-            <p class="inf-txt txt-al-r">Deposit R1 500 joining fee</p>
+            <p class="inf-txt txt-al-r">Deposit R500 joining fee</p>
           </div>
           <div class="clr"></div>
         </div>
@@ -78,8 +78,8 @@
             <div class="inf-num">4</div>
           </div>
           <div class="inf-content fl-l">
-            <h3 class="inf-heading txt-al-l">Your Spot</h3>
-            <p class="inf-txt">You will now be booked a spot on the list <br>with your registration number</p>
+            <h3 class="inf-heading txt-al-l">Plan</h3>
+            <p class="inf-txt">Choose your investment plan</p>
           </div>
           <div class="clr"></div>
         </div>
@@ -89,8 +89,8 @@
             <div class="inf-num fl-r">5</div>
           </div>
           <div class="inf-content fl-r">
-            <h3 class="inf-heading txt-al-r">1000 Members</h3>
-            <p class="inf-txt txt-al-r">Once we recruit 1000 members then<br>monthly contributions will begin</p>
+            <h3 class="inf-heading txt-al-r">Withdrawal</h3>
+            <p class="inf-txt txt-al-r">After 3 months you can start withdrawing from your accounts. All withdrawals should be property related.</p>
           </div>
           <div class="clr"></div>
         </div>
@@ -104,7 +104,7 @@
       <h1 class="center-h">Why <span class="deBold">does it Work?</span></h1>
       <span class="center-img"><img src="/images/howworks.svg"></span>
       <p class="txt-justify">
-        If you take a home a loan of say R500 000 over 20 years at an interest rate of 10%, your monthly repaymets amount to about R4 825.00. 10% is the current prime lending rate and most people will likely get more than 10% interest rate meaning that they will pay more that R4 825.00 per month. But for the sake of this calculation let's use 10%. Calculate this monthly repayment over a period of 20 years and it sums up to around R1 158 000.00. This is more than twice the bond amount given by the bank. This is because the bank charges you interests. At <b>Dream Homes</b> we use a stokvel system and thus there is no need to pay interests. Through each members contributions the stokvel is able to afford land and housing costs cash and thus saving members on interests.
+        If you take a home a loan of say R500 000 over 20 years at an interest rate of 10%, your monthly repaymets amount to about R4 825.00. Interest rates varies all the time but for the sake of this calculation let's use 10%. Calculate this monthly repayment over a period of 20 years and it sums up to around R1 158 000.00. This is more than twice the bond amount given by the bank. This is because the bank charges you interests. At <b>Dream Homes</b> we use a stokvel system and thus there is no need to pay interests. Through each members contributions the stokvel is able to afford land and housing costs cash and thus saving members on interests.
         </p>
         <div class="clr"></div>
     </div>
