@@ -15,8 +15,8 @@
     <input type="hidden" name="id" value="{{$member->id}}">
 
     <div class="dash-form-group">
-      <label for="created_at">Date of Application: </label>
-      <input class="borderless" type="text" name="miscs[created_at]" value="{{$member->misc->created_at}}" readonly>
+      <label for="created_at">Date of Registration: </label>
+      <input class="borderless" type="text" name="miscs[created_at]" value="{{$member->created_at}}" readonly>
     </div>
  
     <div class="dash-form-group">
@@ -57,8 +57,8 @@
     </div>
 
     <div class="dash-form-group">
-      <label for="position">Position: </label>
-      <input class="borderless" type="number" name="miscs[position]" value="{{$member->misc->position}}">
+      <label for="Option">Option: </label>
+      <input class="borderless" type="number" name="miscs[investment]" value="{{$member->misc->investment}}">
     </div>
 
     <div class="dash-form-group">
@@ -129,6 +129,13 @@
       @endphp
       <input class="borderless" type="text" name="miscs[processed_by]" value="{{$pByName}}" readonly>
     </div>
+
+    <div class="dash-form-group">
+      <label for="Amount">Amount: </label>
+      <input class="borderless" type="text" name="miscs[amount]" value="{{$member->misc->amount}}">
+    </div>
+
+    <button type="submit">tester</button>
   </form>
 </div>
 <div></div>

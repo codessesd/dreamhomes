@@ -15,7 +15,7 @@ function mblMenuToggle(){
 	{
 		mnBtn.style.width = '280px';
 		mnIcon.style.transform = "rotate(90deg)";
-		mnDropdown.style.height = '200px';
+		mnDropdown.style.height = '350px';
 		mnDropdown.style.paddingTop = '20px';
 	}
 	else

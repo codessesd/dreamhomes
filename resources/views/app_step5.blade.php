@@ -31,7 +31,7 @@
             <p class="smCaps">{{$proofop->original_name}}</p>
             <span><i onclick="location.href='/files/delete/{{$proofop->id}}'" class="icn fas fa-backspace"></i></span>
           </div>
-        @else <p><i>Upload proof of payment. <a href="#">How to pay?</a></i></p> @endif
+        @else <p><i>Upload proof of payment. {{-- <a href="#">How to pay?</a> --}}</i></p> @endif
         <button type="button" class="btn4 w100" onclick="openDialog('Proof Of Payment','{{$docTypes['pr']}}')">Upload Proof of payment</button>
         <div class="clr"></div>
         <div class="line spacer-tb"></div>
@@ -51,7 +51,7 @@
         <div class="spacer-tb"></div>
         <div class="grid111">
           <button type="button" onclick="location.href='/profile'" id="btnNxt" class="btn">Upload Later</button>
-          <button type="button" onclick="location.href='/apply/step4'" class="btn">Back</button>
+          <button type="button" onclick="location.href='/apply/step4_2'" class="btn">Back</button>
           <button type="button" onclick="location.href='/apply/step6'"id="btnNxt" class="btn">Next</button>
         </div>
       </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use symfony\httpfoundation\File;
 use App\Member;
+use App\Misc;
 use Illuminate\Support\Facades\Validator;
 
 class ApplicationController extends Controller
@@ -31,8 +32,14 @@ class ApplicationController extends Controller
         break;
       case 'step4':
         $member = Member::find(auth()->user()->id);
-        $areas = $member->areas;
-        return view('app_step4',compact('areas'));
+        dd("This view is not allowed");
+        //$areas = $member->areas;
+        //return view('app_step4',compact('areas'));
+        break;
+      case 'step4_2':
+        $member = Member::find(auth()->user()->id);
+        $investment = $member->misc->investment;
+        return view('app_step4_2',compact('investment'));
         break;
       case 'step5':
         $member = Member::find(auth()->user()->id);
@@ -78,6 +85,14 @@ class ApplicationController extends Controller
         $member = Member::find($id);
         $member->areas()->create($request->all());
         return redirect('/apply/step4');
+        break;
+      case 'step4_2':
+        $id = auth()->user()->id;
+        $member = Member::find($id);
+        //dd($request->investment);
+        $member->misc->investment = $request->investment;
+        $member->misc->save();
+        return redirect('/apply/step5');
         break;
       case 'step6':
         // There is no step 6 instead I used validateInfo() function
@@ -153,9 +168,6 @@ class ApplicationController extends Controller
       'name' => 'required',
       'surname' => 'required',
       'relationship' => 'required',
-      'contact_no' => 'required',
-      'postal_address' => 'required',
-      'postal_code' => 'required',
       'address_line_1' => 'required',
       'suburb' => 'required',
       'city' => 'required',
@@ -168,12 +180,20 @@ class ApplicationController extends Controller
       return redirect('/apply/step2')->withErrors($validateNextOfKin);
 
     //Validate Area----------------------------------------------------------------
-    $validateArea = Validator::make(['numberOfAreas'=>$member->areas->count()],[
+    /*$validateArea = Validator::make(['numberOfAreas'=>$member->areas->count()],[
       'numberOfAreas'=>'gt:2',
     ]);
     if($validateArea->fails())
-      return redirect('apply/step4')->withErrors($validateArea);
+      return redirect('apply/step4')->withErrors($validateArea);*/
     
+    //Validate Investment options
+      $validateInvOptions = Validator::make(['investment'=>$member->misc->investment],[
+        'investment'=>'required',
+      ],['investment.required'=>'Select an investment option']);
+      //dd($member->misc->investment);
+      if($validateInvOptions->fails())
+        return redirect('/apply/step4_2')->withErrors($validateInvOptions);
+
     //validate documents-----------------------------------------------------------
     $docs = [];
     foreach($member->document as $document){
@@ -203,9 +223,28 @@ class ApplicationController extends Controller
     $request->validate(['agreement'=>'required'],['agreement.required'=>'You have to agree to the terms to continue.']);
     $member->subscriptions()->sync($request->subscriptions);//should test sync 3,4
     $status = MemberController::status();
-    $member->misc()->update(['status'=>$status['re']]); //status => review
+    //create membership number
+    $unique_id = 100 + auth()->user()->id;
+    $membership_no = 'DHS'.date('y').$unique_id.'-SCP';
+    $member->misc()->update(['membership_no'=>$membership_no,'status'=>$status['re']]); //status => review
+
 
     return redirect('/profile')->withErrors(['success','You application has been sent.']);
+  }
+
+  public function saveReferredBy(Request $request){
+    $request->validate(['referrer'=>'required'],['referrer.required'=>'Please enter a value']);
+    $referrer = Misc::where('membership_no',$request->referrer)->get();
+    if($referrer->isNotEmpty()){
+      $member = Member::find(auth()->user()->id);
+      if($request->referrer == $member->misc->membership_no)
+        return redirect('profile')->withErrors(['Action not allowed.','You cannot refer yourself.']);
+      $member->misc->referred_by = $request->referrer;
+      $member->misc->save();
+      return redirect('profile')->withErrors(['success','Done']);
+    }else{
+      return redirect('profile')->withErrors(['This number does not exist']);
+    }
   }
 
 }

@@ -15,7 +15,7 @@ class maintenance
      */
     public function handle($request, Closure $next)
     {
-      if(($request->ip() != '41.113.242.90')&&($request->ip() != '127.0.0.1'))
+      if(($request->ip() != '41.113.194.131')&&($request->ip() != '127.0.0.1'))
         if ($request->path() != 'maintenance')
           return redirect('/maintenance');
 

@@ -58,7 +58,9 @@
           </div>
         </div>
       <div class="clr"></div>
-      <button type="button" id="btnNxt" class="btn spacer" onclick="submitBeneficiary()">Next</button>
+      {{--some users seem to be having a problem moving to app_step4_2 so I changed the 'next' button code --}}
+      {{-- <button type="button" id="btnNxt" class="btn spacer" onclick="submitBeneficiary()">Next</button> --}}
+      <button type="button" id="btnStep4" class="btn spacer" onclick="location.href='/apply/step4_2'">Step 4</button>
       <button type="button" onclick="location.href='/apply/step2'" class="btn spacer">Back</button>
   </form>
   </div>

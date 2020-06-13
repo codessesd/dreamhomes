@@ -10,6 +10,7 @@
 
 @section('section')
   @include('partials.fileUploader')
+  @include('partials.inputBox')
 
   @if(count($errors) > 0)
     @include('partials.floatingMsg')
@@ -21,6 +22,7 @@
     #NB! I must create a controller for this page and handle all the code in the controller!
     // get all member documents and store their ID and "readable" type in an array to list them later
     $member = auth()->user()->member;
+    $misc = $member->misc;
     $docIDandType = [];
     $allDocuments = $member->document->all();
 
@@ -54,7 +56,7 @@
     </div>
     <div class="side-menu">
       <h3 class="fl-l">Personal Details</h3>
-      @if($member->misc->status == 'incomplete')
+      @if($misc->status == 'incomplete')
         <span class="fl-r profile-btns-menu">
           <img class="profile-btn-open" src="/images/dots.png">
         </span>
@@ -62,37 +64,51 @@
       <div class="clr"></div>
       <hr>
 
-      <p>Name: {{$member->f_name}} {{$member->surname}}</p>
-      <p>Contact: {{$member->cell_number}}</p>
-      <p>Email: {{$member->user->email}}</p>
+      <p class="p-par"><span class="p-label">Name:</span> {{$member->f_name}} {{$member->surname}}</p>
+      <p class="p-par"><span class="p-label">Contact:</span> {{$member->cell_number}}</p>
+      <p class="p-par"><span class="p-label">Email:</span> {{$member->user->email}}</p>
+      <p class="p-par"><span class="p-label">Member Number:</span> {{$misc->membership_no == NULL ? 'Not Yet Allocated' : $misc->membership_no}}</p>
+      <p class="p-par">
+        <span class="p-label">Option:</span>
+        @if($misc->investment == 1) {{'285 x 12 months'}} @endif
+        @if($misc->investment == 2) {{'450 x 12 months'}} @endif
+        @if($misc->investment == 3) {{'750 x 12 months'}} @endif
+      </p>
 
       <!--Member Status-->
-      @switch($member->misc->status)
+      @switch($misc->status)
         @case('incomplete')
-          <p>Status: <span class="txt-green">Registered</span></p>
-          <p>Application: <span class="txt-red">Incomplete</span></p>
+          <p class="p-par"><span class="p-label">Status:</span> <span class="txt-green">Registered</span></p>
+          <p class="p-par"><span class="p-label">Application:</span> <span class="txt-red">Incomplete</span></p>
           @break
         @case('review')
-          <p>Status: <span class="txt-green">Registered</span></p>
-          <p>Application: <span class="txt-yellow">Reviewing</span></p>
+          <p class="p-par"><span class="p-label">Status:</span> <span class="txt-green">Registered</span></p>
+          <p class="p-par"><span class="p-label">Application:</span> <span class="txt-yellow">Reviewing</span></p>
           @break
         @case('approved')
-          <p>Status: <span class="txt-green">Registered</span></p>
-          <p>Application: <span class="txt-green">Approved</span></p>
+          <p class="p-par"><span class="p-label">Status:</span> <span class="txt-green">Registered</span></p>
+          <p class="p-par"><span class="p-label">Application:</span> <span class="txt-green">Approved</span></p>
           @break
         @case('attention')
-          <p>Status: <span class="txt-green">Registered</span></p>
-          <p>Application: <span class="txt-yellow">Attention!</span></p>
+          <p class="p-par"><span class="p-label">Status:</span> <span class="txt-green">Registered</span></p>
+          <p class="p-par"><span class="p-label">Application:</span> <span class="txt-yellow">Attention!</span></p>
           @break
         @case('blocked')
-          <p>Status: <span class="txt-red">Blocked</span></p>
-          <p>Application: <span class="txt-red">Rejected!</span></p>
+          <p class="p-par"><span class="p-label">Status:</span> <span class="txt-red">Blocked</span></p>
+          <p class="p-par"><span class="p-label">Application:</span> <span class="txt-red">Rejected!</span></p>
           @break
         @default
-          <p>Status: <span class="txt-red">Not Defined</span></p>
+          <p class="p-par"><span class="p-label">Status:</span> <span class="txt-red">Not Defined</span></p>
       @endswitch
-      <br>
 
+      <p class="p-par"><span class="p-label">Referred By:</span>
+        @if($misc->referred_by == null)
+          <button class="btn5 mar-bt8 " onclick="showInputBox()">Select</button>
+        @else
+          {{$misc->referred_by}}</p>
+        @endif
+
+      <br>
       {{-- List Documents --}}
       @if(count($docIDandType) > 0)
         <p><b>Uploaded Documents:</b></p>
@@ -134,7 +150,7 @@
         </p>
       </div> --}}
       <div class="profile-btns-desktop"> 
-        @if($member->misc->status == 'incomplete') @include('partials.profile_btns')@endif
+        @if($misc->status == 'incomplete') @include('partials.profile_btns')@endif
       </div>
     </div>
   </div>

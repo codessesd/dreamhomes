@@ -20,6 +20,10 @@
 	font-family: 'Montserrat', sans-serif;
 	/*font-family: 'Raleway', sans-serif;*/
 }
+#investment{
+	width: 100%;
+	text-align: center;
+}
 p{
 	line-height: 27px;
 }
@@ -417,10 +421,26 @@ button{
 .profile-btns-mobile .btn2, .profile-btns-mobile .btn3{
 	margin-left: 0px;
 }
-
-.btn2, .btn3, .btn4{
+.p-label{
+	font-weight: bold;
 	display: inline-block;
+	width: 100px;
+}
+.p-par{
+	margin-top: 5px;
+	border-bottom: 1px solid #ddd;
+}
+.btn2, .btn3, .btn4{
 	padding: 10px;
+}
+.btn5{
+	padding: 5px;
+}
+.mar-bt8{
+	margin-bottom: 8px;
+}
+.btn2, .btn3, .btn4, .btn5{
+	display: inline-block;
 	background-color: #99cc66;
 	border-radius: 7px;
 	box-shadow: 2px 2px 2px #999;
@@ -627,7 +647,7 @@ button{
 .footer{
 	/*margin-top: 100px;*/
 	margin-top: 50px;
-	height: 200px;
+	height: 80px;
 	background-color: #333333;
 }
 .footer-inner{
@@ -635,7 +655,7 @@ button{
 	grid-template-columns: auto auto auto;
 	color: #eeeeee;
 	text-align: center;
-	padding-top: 50px;
+	padding-top: 30px;
 }
 @media (max-width: 1860px){
 	.header-container{

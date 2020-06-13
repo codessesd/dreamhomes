@@ -169,6 +169,9 @@ input.borderless{
 .side-nav-links a:hover{
 	color: #000;
 }
+.side-nav-links li{
+	/*background-color: yellow;*/
+}
 .dash-title{
 	display: block;
 	font-size: 40px;
@@ -202,6 +205,10 @@ input.borderless{
 }
 .side-icon:active{
 	box-shadow: 1px 1px 2px #777, -1px -1px 2px #fff;	
+}
+.s-active{
+	/*color: #000;*/
+	background-color: #22947D;
 }
 /*content*************************************************/
 .content-wrap{

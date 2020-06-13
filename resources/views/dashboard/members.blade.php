@@ -5,7 +5,7 @@
     <div class="card-header">
       <span class="colour-sqr bg-primary"><i class="fas fa-users"></i></span>
       <div class="card-head-text">
-        <h4 class="card-title ">Members</h4>
+        <h4 class="card-title ">{{$listName}}</h4>
         <p class="card-category">DHS member list</p>
       </div>
     </div>
@@ -28,7 +28,7 @@
               Contact
             </th>
             <th>
-              Pos
+              Option
             </th>
             <th class="text-center">
               {{-- Status --}}
@@ -55,7 +55,7 @@
                   {{$member->cell_number}}
                 </td>
                 <td>
-                  {{$member->position}}
+                  {{$member->misc->investment}}
                 </td>
                 <td class="options-td">
                   <div class="options d-flex justify-content-center">

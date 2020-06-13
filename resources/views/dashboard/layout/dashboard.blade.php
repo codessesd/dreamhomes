@@ -13,21 +13,23 @@
   <div class="sidebar">
     <span class="dash-title">Dashboard</span>
     <ul class="side-nav-links">
-      <li><a href="/members"><span class="side-icon">MB</span>Members</a></li>
-      {{-- <li><a href="/completed"><span class="side-icon">CO</span>Completed</a></li> --}}
-      {{-- <li><a href="/pending"><span class="side-icon">PN</span>Pending</a></li> --}}
-      <li><a href="/admins"><span class="side-icon">AD</span>Admins</a></li>
-      {{-- <li><a href="/adduser"><span class="side-icon">AD</span>Add Admin</a></li> --}}
+      <li><a href="/members"><span class="side-icon @if($listNum==1) s-active @endif">MB</span>Members</a></li>
+      <li><a href="/completed"><span class="side-icon @if($listNum==2) s-active @endif">CO</span>Completed</a></li>
+      <li><a href="/pending"><span class="side-icon @if($listNum==3) s-active @endif">PN</span>Pending</a></li>
+      <li><a href="/approved"><span class="side-icon @if($listNum==4) s-active @endif">AP</span>Approved</a></li>
+      <li><a href="/admins"><span class="side-icon @if($listNum==5) s-active @endif">AD</span>Admins</a></li>
+      {{-- <li><a href="/adduser"><span class="side-icon @if($listNum==6) s-active @endif">AD</span>Add Admin</a></li> --}}
     </ul>
   </div>
   <div class="mbl-menu bg-primary" id="mnBtn" onclick="mblMenuToggle()"><i id="mnIcn" class="icn fas fa-caret-down"></i></div>
   <div class="mbl-ddown bg-primary" id="mnDropdown">
     <ul class="side-nav-links">
-      <li><a href="/members"><span class="side-icon">MB</span>Members</a></li>
-      {{-- <li><a href="/completed"><span class="side-icon">CO</span>Completed</a></li> --}}
-      {{-- <li><a href="/pending"><span class="side-icon">PN</span>Pending</a></li> --}}
-      <li><a href="/admins"><span class="side-icon">AD</span>Admins</a></li>
-      {{-- <li><a href="/adduser"><span class="side-icon">AD</span>Add Admin</a></li> --}}
+      <li><a href="/members"><span class="side-icon @if($listNum==1) s-active @endif">MB</span>Members</a></li>
+      <li><a href="/completed"><span class="side-icon @if($listNum==2) s-active @endif">CO</span>Completed</a></li>
+      <li><a href="/pending"><span class="side-icon @if($listNum==3) s-active @endif">PN</span>Pending</a></li>
+      <li><a href="/approved"><span class="side-icon @if($listNum==4) s-active @endif">AP</span>Approved</a></li>
+      <li><a href="/admins"><span class="side-icon @if($listNum==5) s-active @endif">AD</span>Admins</a></li>
+      {{-- <li><a href="/adduser"><span class="side-icon @if($listNum==6) s-active @endif">AD</span>Add Admin</a></li> --}}
     </ul>
   </div>
 

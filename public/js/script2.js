@@ -24,6 +24,14 @@ function showConfirmDelete(id){
 	document.getElementById('delete'+id).style.display = "none";
 	document.getElementById('confirmDelete'+id).style.display = "inline-block";
 }
+function showInputBox(){
+	document.getElementById('disabler2').style.display = 'block';
+	document.getElementById('inputCover').style.display = 'block';
+}
+function closeInputBox(){
+	document.getElementById('disabler2').style.display = 'none';
+	document.getElementById('inputCover').style.display = 'none';	
+}
 function populatePostAddress()
 {
 	const postCheckbox = document.getElementById('postCheckbox');
@@ -61,7 +69,7 @@ function submitBeneficiary()
 	{
 		document.getElementById('benef-form').submit();
 	}else{
-		window.open('/apply/step4','_self');
+		window.open('/apply/step4_2','_self');
 	}
 }
 

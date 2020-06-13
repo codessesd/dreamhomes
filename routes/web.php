@@ -47,10 +47,12 @@ Route::POST('apply/{step}','ApplicationController@save')->middleware('member','a
 Route::get('apply/step3/remove/{id}','ApplicationController@removeBeneficiary')->middleware('member','applicationStatus');
 Route::get('apply/step4/remove/{id}','ApplicationController@removeArea')->middleware('member','applicationStatus');
 Route::POST('validation','ApplicationController@validateInfo')->middleware('member','applicationStatus');
+Route::POST('saveReferredBy','ApplicationController@saveReferredBy')->middleware('member');
 
 //admin routes
 Route::get('completed','MemberController@completed')->middleware('admin1');
 Route::get('pending','MemberController@pending')->middleware('admin1');
+Route::get('approved','MemberController@approved')->middleware('admin1');
 Route::get('members','MemberController@all')->middleware('admin1');
 Route::get('member/{id}','MemberController@showOne')->middleware('admin1');
 Route::POST('updateMember','MemberController@update')->middleware('admin1');

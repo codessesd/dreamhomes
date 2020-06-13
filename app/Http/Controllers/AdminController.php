@@ -23,7 +23,8 @@ class AdminController extends Controller
                         'nok'=>'next of kin', 'nok_id'=>'next of kin id'];
 
       $tables = ['members','miscs','next_of_kin','home_addresses','beneficiaries','areas','documents','post_addresses','subscriptions'];
-      return view('dashboard.admins',compact('admins','permissions','writePermissions','tables','readableNames'));
+      $listNum = 5;
+      return view('dashboard.admins',compact('admins','permissions','writePermissions','tables','readableNames','listNum'));
     }
     
     public function addAdmin(Request $request)

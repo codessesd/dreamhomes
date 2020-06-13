@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Member;
 use Illuminate\Http\Request;
 use App\Admin;
+use App\Misc;
 use Illuminate\Support\Facades\Schema;
 
 class MemberController extends Controller
@@ -15,15 +16,15 @@ class MemberController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
-    {//I need to look over this update function. It's not as crisp as I want it to be. Something just doesn't feel right
+    {//I need to look over this update function. It's not as crisp as I want it to be. Something just doesn't feel solid
       $member = Member::find(request()->id);
-      $admin = Admin::find(auth()->user()->id);
+      $admin = Admin::where('user_id',auth()->user()->id)->first();
       $requestKeys = array_keys($request->all());
       $message = 'No Permissions Granted!';
       $entities = ['miscs','members','next_of_kin','beneficiaries','areas'];
       /*
        * $entities are databases and should be written as database names because that's how they're stored in the permissions table
-       * therefore the code, where('entity',$entity), for retrieving permissions will be able to work as supposed to.
+       * therefore the code, where('entity',$entity), for retrieving permissions will work as supposed to.
        * Input names on the form should always follow this structure name="entityName[field]". Otherwise the code foreach($entities as $entity)
        * will not read the input properly.
        */
@@ -81,7 +82,9 @@ class MemberController extends Controller
     {
       $members = Member::all();
       $processedBy = Admin::select('id','name','surname')->get()->keyBy('id')->toArray();
-      return view('dashboard.members',compact('members','processedBy'));
+      $listName = "All Members";
+      $listNum = 1;
+      return view('dashboard.members',compact('members','processedBy','listName','listNum'));
     }
 
     public function showOne($id)
@@ -92,14 +95,38 @@ class MemberController extends Controller
 
     public function completed()
     {
-      $members = Member::where('status','completed');
-      return view('dashboard.members',compact('members'));
+      $miscs = Misc::where('status',$this->status()['re'])->get();
+      $members = collect([]);
+      foreach($miscs as $misc)
+        $members = $members->concat([$misc->member]);
+      $processedBy = Admin::select('id','name','surname')->get()->keyBy('id')->toArray();
+      $listName = 'Approved';
+      $listNum = 2;
+      return view('dashboard.members',compact('members','processedBy','listName','listNum'));
     }
 
     public function pending()
     {
-      $members = Member::where('status','incomplete');
-      return view('dashboard.members',compact('members'));
+      $miscs = Misc::where('status',$this->status()['in'])->get();
+      $members = collect([]);
+      foreach($miscs as $misc)
+        $members = $members->concat([$misc->member]);
+      $processedBy = Admin::select('id','name','surname')->get()->keyBy('id')->toArray();
+      $listName = 'Approved';
+      $listNum = 3;
+      return view('dashboard.members',compact('members','processedBy','listName','listNum'));
+    }
+
+    public function approved()
+    {
+      $miscs = Misc::where('status',$this->status()['ap'])->get();
+      $members = collect([]);
+      foreach($miscs as $misc)
+        $members = $members->concat([$misc->member]);
+      $processedBy = Admin::select('id','name','surname')->get()->keyBy('id')->toArray();
+      $listName = 'Approved';
+      $listNum = 4;
+      return view('dashboard.members',compact('members','processedBy','listName','listNum'));
     }
     public static function status()
     {
