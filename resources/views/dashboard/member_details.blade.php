@@ -217,7 +217,7 @@
     </div>
 
     {{-- Area of choice***************************************************************************************** --}}
-    <div class="form-divide">
+    {{-- <div class="form-divide">
       <h1>Areas of Choice</h1>
 
       <div class="grid11 w100">
@@ -254,7 +254,7 @@
               </button>
             </div>
           </div>
-      </div>
+      </div> --}}
 
       <button class="btn bg-primary" type="submit">Update Member</button>
   </form>

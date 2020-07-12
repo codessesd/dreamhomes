@@ -4,8 +4,10 @@
 <div class="office-card" id="member-details{{$member->id}}">
   <div class="mem-top-nav bg-primary">
     <p class="pop-topBar">Office Use</p>
-    <i class="fas fa-times" onclick="toggleOfficePopup({{$member->id}})"></i>
-    <i class="fas fa-save" onclick="saveMember({{$member->id}})"></i>
+    <img src="/images/close.svg" alt="close" onclick="toggleOfficePopup({{$member->id}})"></img>
+    <img src="/images/save.svg" alt="save" onclick="saveMember({{$member->id}})"></img>
+    {{-- <i class="fas fa-times" onclick="toggleOfficePopup({{$member->id}})"></i> --}}
+    {{-- <i class="fas fa-save" onclick="saveMember({{$member->id}})"></i> --}}
     {{-- <i class="fas fa-print" id="ajax-tester"></i> --}}
     <span class="msg-line" id="msg-line{{$member->id}}"></span>
   </div>
@@ -29,8 +31,6 @@
       <select name="miscs[status]">
         @php
           $mStatus = $member->misc->status;
-          use App\Http\Controllers\MemberController;
-          $allStatus = MemberController::status();
         @endphp
         @foreach ($allStatus as $status)
           <option value="{{$status}}" @if($status == $mStatus) selected @endif>{{$status}}</option>
@@ -135,7 +135,7 @@
       <input class="borderless" type="text" name="miscs[amount]" value="{{$member->misc->amount}}">
     </div>
 
-    <button type="submit">tester</button>
+    {{-- <button type="submit">tester</button> --}}   
   </form>
 </div>
 <div></div>

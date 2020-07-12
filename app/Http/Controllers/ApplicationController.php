@@ -33,8 +33,6 @@ class ApplicationController extends Controller
       case 'step4':
         $member = Member::find(auth()->user()->id);
         dd("This view is not allowed");
-        //$areas = $member->areas;
-        //return view('app_step4',compact('areas'));
         break;
       case 'step4_2':
         $member = Member::find(auth()->user()->id);
@@ -112,8 +110,6 @@ class ApplicationController extends Controller
   public function removeArea($id)
   {
     $member = Member::find(auth()->user()->id);
-    //dd($id);
-    //dd($member->areas()->where('id',$id)->first());
     $member->areas()->where('id',$id)->first()->delete();
     return redirect('/apply/step4');
   }
@@ -237,9 +233,9 @@ class ApplicationController extends Controller
     $referrer = Misc::where('membership_no',$request->referrer)->get();
     if($referrer->isNotEmpty()){
       $member = Member::find(auth()->user()->id);
-      if($request->referrer == $member->misc->membership_no)
+      if(strcasecmp($request->referrer,$member->misc->membership_no) == 0)
         return redirect('profile')->withErrors(['Action not allowed.','You cannot refer yourself.']);
-      $member->misc->referred_by = $request->referrer;
+      $member->misc->referred_by = $referrer->first()->membership_no;
       $member->misc->save();
       return redirect('profile')->withErrors(['success','Done']);
     }else{

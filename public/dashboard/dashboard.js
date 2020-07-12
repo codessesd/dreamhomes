@@ -26,6 +26,91 @@ function mblMenuToggle(){
 		mnDropdown.style.paddingTop = '0px';
 	}
 }
+
+function setShow(){
+	var xhttp = new XMLHttpRequest;
+	showValue = document.getElementById('show').value;
+	var token = document.getElementsByName('_token')[0].value;
+	let dataString = '_token='+token+'&max='+showValue;
+	xhttp.open('POST','/setShow',true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.send(dataString);
+
+	xhttp.onreadystatechange = function()
+	{
+		if (this.readyState == 4 && this.status == 200)
+		{
+			location.reload();
+		}
+	}
+}
+
+function deleteMemberToggle(id){
+	var xhttp = new XMLHttpRequest();
+	var token = document.getElementsByName('_token')[0].value;
+	var deleteBtn = document.getElementById('tdDelButton'+id);
+	var deleteBtnState = deleteBtn.dataset.deleted;
+	var deleteBtnImage = document.getElementById('memDeleteImg'+id);
+	var loadingImage = document.getElementById('memLoadingImg'+id);
+
+	deleteBtnImage.style.display = 'none';
+	loadingImage.style.display = 'block';
+
+	deleteBtn.disabled = true;
+	let dataString = '_token=' + token + '&' + 'memberId=' + id;
+	xhttp.onreadystatechange = function()
+	{
+		if (this.readyState == 4 && this.status == 200){
+			response = JSON.parse(this.responseText);	
+			if(response.type == 'error')
+				alert(response.message);
+			if(deleteBtnState == 0){
+				markDeleted(id);
+				deleteBtn.dataset.deleted = 1;
+				deleteBtn.disabled = false;
+			}
+			else{
+				unmarkDeleted(id);
+				deleteBtn.dataset.deleted = 0;
+				deleteBtn.disabled = false;
+			}
+			loadingImage.style.display = 'none';
+			deleteBtnImage.style.display = 'block';
+		}
+	};
+
+	if(deleteBtnState == 0){
+		xhttp.open('POST','/deleteRow',true);
+	}
+	else{
+		xhttp.open('POST','/restoreRow',true);
+	}
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.send(dataString);
+}
+function markDeleted(id){
+	document.getElementById('tdNum'+id).style.textDecoration = 'line-through';
+	document.getElementById('tdName'+id).style.textDecoration = 'line-through';
+	document.getElementById('tdMembershipNo'+id).style.textDecoration = 'line-through';
+	document.getElementById('tdId'+id).style.textDecoration = 'line-through';
+	document.getElementById('tdReferredBy'+id).style.textDecoration = 'line-through';
+	document.getElementById('tdContact'+id).style.textDecoration = 'line-through';
+	document.getElementById('tdInvest'+id).style.textDecoration = 'line-through';
+	document.getElementById('memDeleteImg'+id).src = '/images/restore.svg';
+	document.getElementById('tdDelButton'+id).title = 'Restore';
+}
+function unmarkDeleted(id){
+	document.getElementById('tdNum'+id).style.textDecoration = 'none';		
+	document.getElementById('tdName'+id).style.textDecoration = 'none';
+	document.getElementById('tdMembershipNo'+id).style.textDecoration = 'none';
+	document.getElementById('tdId'+id).style.textDecoration = 'none';
+	document.getElementById('tdReferredBy'+id).style.textDecoration = 'none';
+	document.getElementById('tdContact'+id).style.textDecoration = 'none';
+	document.getElementById('tdInvest'+id).style.textDecoration = 'none';
+	document.getElementById('memDeleteImg'+id).src = '/images/delete.svg';
+	document.getElementById('tdDelButton'+id).title = 'Delete';
+}
+
 function toggleDocPopup(id){
 	"use strict";
 	const docPopup = document.getElementById('popup'+id);
@@ -49,6 +134,28 @@ function toggleOfficePopup(id)
 	if(popDisplay.zIndex == '-1'){
 		memDetails.style.transform = "scale(1,1)";
 		officeFilter.style.zIndex = '2';
+		officeFilter.style.backgroundColor = '#fff9';
+		officeFilter.style.transition = 'background-color 0.4s linear'
+	}
+	else{
+		officeFilter.style.backgroundColor = '#fff0';
+		officeFilter.style.zIndex = '-1';
+		memDetails.style.transform = "scale(0,0)";
+		officeFilter.style.transition = 'background-color 0.4s linear, z-index 0.1s linear 0.4s'
+	}
+}
+
+function toggleSearchPopup(id)
+{
+	//"use strict";
+	const officeFilter = document.getElementById('search-filter');
+	const memDetails = document.getElementById('search-card');
+	const popDisplay = getComputedStyle(officeFilter);
+	//const transform = new WebKitCSSMatrix(style.webkitTransform);
+
+	if(popDisplay.zIndex == '-1'){
+		memDetails.style.transform = "scale(1,1)";
+		officeFilter.style.zIndex = '3';
 		officeFilter.style.backgroundColor = '#fff9';
 		officeFilter.style.transition = 'background-color 0.4s linear'
 	}

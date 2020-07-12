@@ -72,6 +72,24 @@ function submitBeneficiary()
 		window.open('/apply/step4_2','_self');
 	}
 }
+function deleteBenef(id){
+	var xhttp = new XMLHttpRequest;
+
+	let token = document.getElementsByName('_token')[0].value;
+	let dataString = '_token='+token+'&'+'benefId='+id;
+
+	xhttp.open('POST','/userDeleteBenef',true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.send(dataString);
+
+	xhttp.onreadystatechange = function()
+	{
+		if (this.readyState == 4 && this.status == 200)
+		{
+			document.getElementById('benefDiv'+id).style.display = 'none';
+		}
+	};
+}
 
 function submitArea()
 {

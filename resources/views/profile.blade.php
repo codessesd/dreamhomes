@@ -20,7 +20,8 @@
 
   @php
     #NB! I must create a controller for this page and handle all the code in the controller!
-    // get all member documents and store their ID and "readable" type in an array to list them later
+    
+    //get all member documents and store their ID and "readable" type in an array to list them later
     $member = auth()->user()->member;
     $misc = $member->misc;
     $docIDandType = [];
@@ -46,8 +47,6 @@
       }
     }
   @endphp
-
-
 
   <h1 class="center-h"><span class="deBold">Your </span>Profile</h1>
   <div class="profile-div">
@@ -101,6 +100,7 @@
           <p class="p-par"><span class="p-label">Status:</span> <span class="txt-red">Not Defined</span></p>
       @endswitch
 
+      <p class="p-par"><span class="p-label">ROI: </span>{{$misc->amount}}</p>
       <p class="p-par"><span class="p-label">Referred By:</span>
         @if($misc->referred_by == null)
           <button class="btn5 mar-bt8 " onclick="showInputBox()">Select</button>
@@ -142,15 +142,12 @@
     </div>
 
     <div>
-      {{-- <div class="messages">
-        <p>
-          <ul>
-            <li>You have outstanding documents. Please ensure that all documents are sent through to dream homes</li>
-          </ul>
-        </p>
-      </div> --}}
       <div class="profile-btns-desktop"> 
-        @if($misc->status == 'incomplete') @include('partials.profile_btns')@endif
+        @if($misc->status == 'incomplete')
+          @include('partials.profile_btns')
+        @else
+          @include('partials.editprof_btns')
+        @endif
       </div>
     </div>
   </div>

@@ -40,7 +40,7 @@ class MemberController extends Controller
           $member->misc->update(['processed_by'=>$admin->id]);
           switch($entity){
             case 'miscs':
-              $arrayToSave['processed_by'] = $admin->id;//This seems redundant but the statement below has the potential to change this value so I must ensure that it remains $admin->id
+              $arrayToSave['processed_by'] = $admin->id;//This seems redundant but the statement below has the potential to change this value so we should ensure that it remains $admin->id
               $member->misc->update($arrayToSave);
               $message = 'Save Successful!';
               break;
@@ -73,18 +73,24 @@ class MemberController extends Controller
       return response()->json(["message"=>$message]);
     }
 
-    public function delete()
+    public function displayRecords($miscs,$listNum,$listName,$view)
     {
-
+      $show = session('show',25);
+      $pages = $miscs;
+      $members = collect([]);
+      foreach($miscs as $misc)
+        $members = $members->concat([$misc->member]);
+      $processedBy = Admin::select('id','name','surname')->get()->keyBy('id')->toArray();
+      $allStatus = $this->status();
+      array_pop($allStatus);//removes the last item which is called "deleted"
+      return view($view,compact('members','processedBy','listName','listNum','allStatus','show','pages'));
     }
 
     public function all()
     {
-      $members = Member::all();
-      $processedBy = Admin::select('id','name','surname')->get()->keyBy('id')->toArray();
-      $listName = "All Members";
-      $listNum = 1;
-      return view('dashboard.members',compact('members','processedBy','listName','listNum'));
+      $show = session('show',25);
+      $miscs = Misc::where('status','NOT LIKE','deleted|%')->paginate($show);
+      return $this->displayRecords($miscs,1,'All Members','dashboard.members');
     }
 
     public function showOne($id)
@@ -95,39 +101,31 @@ class MemberController extends Controller
 
     public function completed()
     {
-      $miscs = Misc::where('status',$this->status()['re'])->get();
-      $members = collect([]);
-      foreach($miscs as $misc)
-        $members = $members->concat([$misc->member]);
-      $processedBy = Admin::select('id','name','surname')->get()->keyBy('id')->toArray();
-      $listName = 'Approved';
-      $listNum = 2;
-      return view('dashboard.members',compact('members','processedBy','listName','listNum'));
+      $show = session('show',25);
+      $miscs = Misc::where('status',$this->status()['re'])->paginate($show);
+      return $this->displayRecords($miscs,2,'Approved','dashboard.members');
     }
 
     public function pending()
     {
-      $miscs = Misc::where('status',$this->status()['in'])->get();
-      $members = collect([]);
-      foreach($miscs as $misc)
-        $members = $members->concat([$misc->member]);
-      $processedBy = Admin::select('id','name','surname')->get()->keyBy('id')->toArray();
-      $listName = 'Approved';
-      $listNum = 3;
-      return view('dashboard.members',compact('members','processedBy','listName','listNum'));
+      $show = session('show',25);
+      $miscs = Misc::where('status',$this->status()['in'])->paginate($show);
+      return $this->displayRecords($miscs,3,'Pending','dashboard.members');
     }
 
     public function approved()
     {
-      $miscs = Misc::where('status',$this->status()['ap'])->get();
-      $members = collect([]);
-      foreach($miscs as $misc)
-        $members = $members->concat([$misc->member]);
-      $processedBy = Admin::select('id','name','surname')->get()->keyBy('id')->toArray();
-      $listName = 'Approved';
-      $listNum = 4;
-      return view('dashboard.members',compact('members','processedBy','listName','listNum'));
+      $show = session('show',25);
+      $miscs = Misc::where('status',$this->status()['ap'])->paginate($show);
+      return $this->displayRecords($miscs,4,'Approved','dashboard.members');
     }
+    public function deleted()
+    {
+      $show = session('show',25);
+      $miscs = Misc::where('status','LIKE','deleted|%')->paginate($show);
+      return $this->displayRecords($miscs,6,'Deleted','dashboard.deleted ');
+    }
+
     public static function status()
     {
       return [
@@ -136,6 +134,7 @@ class MemberController extends Controller
         'ap'=>'approved',
         'at'=>'attention',
         'bl'=>'blocked',
+        'de'=>'deleted'//This item 'deleted' should always be last
       ];
     }
 
@@ -146,8 +145,6 @@ class MemberController extends Controller
       $delPermission = $admin->permissions->where('type','delete')->where('entity','beneficiaries');
       if($delPermission->isNotEmpty())
         $member->beneficiaries()->where('id',$benefId)->first()->delete();
-      //else
-        //return response()->json(['']);
     }
 
     public function removeArea($memId,$areaId)
@@ -159,4 +156,40 @@ class MemberController extends Controller
         $member->areas()->where('id',$areaId)->first()->delete();
     }
 
+    public function deleteRow(Request $request)
+    {
+      $memberMisc = Misc::where('member_id',$request->memberId)->get();
+      if($memberMisc->isNotEmpty())
+      {
+        $memberMisc = $memberMisc->first();
+        $previousStatus = $memberMisc->status;
+        if(in_array($previousStatus,$this->status()))
+          $memberMisc->status = $this->status()['de'].'|'.$previousStatus;
+        else
+          return response()->JSON(['type'=>'error','message'=>'Problem ecountered while deleting. Please try again.']);
+        $memberMisc->save();
+        return response()->JSON(['type'=>'success','message'=>'Deleted']);
+      }
+    }
+
+    public function restoreRow(Request $request)
+    {
+      $memberMisc = Misc::where('member_id',$request->memberId)->get();
+      if($memberMisc->isNotEmpty())
+      {
+        $memberMisc = $memberMisc->first();
+        $previousStatus = explode('|',$memberMisc->status)[1];
+        if(in_array($previousStatus,$this->status()))
+          $memberMisc->status = $previousStatus;
+        else
+          return response()->JSON(['type'=>'error','message'=>'Problem ecountered while restoring. Please try again.']);
+        $memberMisc->save();
+        return response()->JSON(['type'=>'success','message'=>'Restored']);
+      }
+    }
+
+    public function setShow(Request $request)
+    {
+      session(['show'=>$request->max]);
+    }
 }

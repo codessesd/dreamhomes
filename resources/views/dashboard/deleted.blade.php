@@ -94,8 +94,8 @@
                         </div>
                       @endif
                     </button>
-                    <button type="button" class="options-icon" onclick="deleteMemberToggle({{$member['id']}})" id="tdDelButton{{$member->id}}" data-deleted="0"  data-toggle="tooltip" data-placement="top" title="Delete">
-                      <img class="" id="memDeleteImg{{$member->id}}" src="/images/delete.svg">
+                    <button type="button" class="options-icon" onclick="deleteMemberToggle({{$member['id']}})" id="tdDelButton{{$member->id}}" data-deleted="1"  data-toggle="tooltip" data-placement="top" title="Delete">
+                      <img class="" id="memDeleteImg{{$member->id}}" src="/images/restore.svg">
                       <img class="memLoadingImg" id="memLoadingImg{{$member->id}}" src="/images/hourglass.svg">
                     </button>
 

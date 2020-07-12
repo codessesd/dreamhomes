@@ -48,12 +48,16 @@ Route::get('apply/step3/remove/{id}','ApplicationController@removeBeneficiary')-
 Route::get('apply/step4/remove/{id}','ApplicationController@removeArea')->middleware('member','applicationStatus');
 Route::POST('validation','ApplicationController@validateInfo')->middleware('member','applicationStatus');
 Route::POST('saveReferredBy','ApplicationController@saveReferredBy')->middleware('member');
+Route::get('edit_profile','ProfileController@show')->middleware('member');
+Route::POST('save_profile','ProfileController@save')->middleware('member');
+Route::POST('userDeleteBenef','ProfileController@userDeleteBenef');
 
 //admin routes
 Route::get('completed','MemberController@completed')->middleware('admin1');
 Route::get('pending','MemberController@pending')->middleware('admin1');
 Route::get('approved','MemberController@approved')->middleware('admin1');
 Route::get('members','MemberController@all')->middleware('admin1');
+Route::get('deleted','MemberController@deleted')->middleware('admin1');
 Route::get('member/{id}','MemberController@showOne')->middleware('admin1');
 Route::POST('updateMember','MemberController@update')->middleware('admin1');
 Route::get('removeBeneficiary/{memId}/{benefId}','MemberController@removeBeneficiary')->middleware('admin1');
@@ -65,3 +69,8 @@ Route::get('admins','AdminController@show')->middleware('admin4')->name('admins'
 Route::POST('addAdmin','AdminController@addAdmin')->middleware('admin4');
 Route::POST('updateAdmin','AdminController@updateAdmin')->middleware('admin4');
 Route::get('deleteAdmin/{id}','AdminController@deleteAdmin')->middleware('admin4');
+
+Route::POST('/search','SearchController@search')->middleware('admin1');
+Route::POST('/deleteRow','MemberController@deleteRow')->middleware('admin1');
+Route::POST('/restoreRow','MemberController@restoreRow')->middleware('admin1');
+Route::POST('/setShow','MemberController@setShow')->middleware('admin1');
