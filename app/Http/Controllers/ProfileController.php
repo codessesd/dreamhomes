@@ -84,4 +84,8 @@ class ProfileController extends Controller
     $member->beneficiaries()->where('id',$request->benefId)->first()->delete();
   }
 
+  public function payhistory(Request $request, $id){
+    return view('payhistory');
+  }
+
 }

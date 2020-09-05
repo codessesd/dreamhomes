@@ -67,7 +67,7 @@
                   {{$member->misc->referred_by}}
                 </td>
                 <td class="cell-td" id="tdContact{{$member->id}}">
-                  {{$member->cell_number}}/073 123 1211
+                  {{$member->cell_number}}
                 </td>
                 <td class="invest-td" id="tdInvest{{$member->id}}">
                   {{$member->misc->investment}}

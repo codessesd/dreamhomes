@@ -26,7 +26,7 @@ class AdminController extends Controller
       $listNum = 5;
       return view('dashboard.admins',compact('admins','permissions','writePermissions','tables','readableNames','listNum'));
     }
-    
+
     public function addAdmin(Request $request)
     {
       request()['admin_level'] = 1; //Set default admin_level. Current implementation only requires admin level 1;
@@ -77,13 +77,14 @@ class AdminController extends Controller
 
       $adminData =
       [
-          'id' => $newUser->id,
-          'user_id' => $newUser->id,
-          'name' => request()->name,
-          'surname' => request()->surname,
-          'contact' => request()->contact,
-          'level' => request()->admin_level,
-          'status' => 'Active'
+        'id' => $newUser->id,
+        'user_id' => $newUser->id,
+        'name' => request()->name,
+        'surname' => request()->surname,
+        'id_number'=> request()->id_number,
+        'contact' => request()->contact,
+        'level' => request()->admin_level,
+        'status' => 'Active'
       ];
       $admin = Admin::create($adminData);
       $admin->permissions()->sync(request()->writePermissions);//Oh, how I love this piece of code here

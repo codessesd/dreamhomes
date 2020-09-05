@@ -38,6 +38,7 @@ Route::get('download-form',function(){
 
 //user routes
 Route::get('logout','SessionsController@logoutUser')->middleware('auth');
+Route::get('payhistory/{id}','ProfileController@payhistory')->middleware('member');
 Route::get('profile',function(){return view('profile');})->name('profile')->middleware('member');
 Route::POST('storeFile','DocumentsController@storeFile')->middleware('member','applicationStatus');
 Route::get('files/{action}/{id}','DocumentsController@downloadOrDelete')->middleware('member');
@@ -50,7 +51,7 @@ Route::POST('validation','ApplicationController@validateInfo')->middleware('memb
 Route::POST('saveReferredBy','ApplicationController@saveReferredBy')->middleware('member');
 Route::get('edit_profile','ProfileController@show')->middleware('member');
 Route::POST('save_profile','ProfileController@save')->middleware('member');
-Route::POST('userDeleteBenef','ProfileController@userDeleteBenef');
+Route::POST('userDeleteBenef','ProfileController@userDeleteBenef')->middleware('member');
 
 //admin routes
 Route::get('completed','MemberController@completed')->middleware('admin1');
@@ -74,3 +75,5 @@ Route::POST('/search','SearchController@search')->middleware('admin1');
 Route::POST('/deleteRow','MemberController@deleteRow')->middleware('admin1');
 Route::POST('/restoreRow','MemberController@restoreRow')->middleware('admin1');
 Route::POST('/setShow','MemberController@setShow')->middleware('admin1');
+
+Route::get('/api/referrals','MemberController@referrals')->middleware('admin1');

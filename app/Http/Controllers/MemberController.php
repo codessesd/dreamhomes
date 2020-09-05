@@ -31,7 +31,7 @@ class MemberController extends Controller
 
       foreach($entities as $entity){
         $arrayToSave = [];
-        $writePermissions = $admin->permissions->where('type','write')->where('entity',$entity)->pluck('attribute')->all(); 
+        $writePermissions = $admin->permissions->where('type','write')->where('entity',$entity)->pluck('attribute')->all();
         $requestArray = ($request[$entity] == null) ? [] : $request[$entity];
         $arrayToSave = array_intersect_key($requestArray, array_flip($writePermissions));
 
@@ -191,5 +191,36 @@ class MemberController extends Controller
     public function setShow(Request $request)
     {
       session(['show'=>$request->max]);
+    }
+
+    public function referrals(){
+      $requiredMiscs = Misc::select('member_id','membership_no','referred_by')->get();
+      $referrals = $requiredMiscs->pluck('referred_by');
+      $referralsCount = $referrals->countBy()->toArray();
+      arsort($referralsCount);
+      $top10 = array_splice($referralsCount,0,11);
+      //dd(array_keys($top10));
+
+      // $members = Member::select('id','title','f_name','surname','id_passport_no','cell_number')->get();
+      // foreach($top10 as $key => $val){
+      //   $id = $requiredMiscs->where('membership_no',$key)->pluck('member_id')[0];
+      //   $member = $members->where('id',$id);
+      // }
+
+      //dd($members);
+
+      return view('dashboard.referrals',compact('top10'));
+      // $i = 0;
+      // foreach($referralsCount as $key=>$val){
+      //   dump($key.' referred '.$val);
+      //   $i++;
+      //   if($i > 2)
+      //     break;
+      // }
+      // dd("---");
+    }
+
+    public function getDetails(){
+
     }
 }

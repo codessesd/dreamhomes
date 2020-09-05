@@ -72,6 +72,19 @@ function submitBeneficiary()
 		window.open('/apply/step4_2','_self');
 	}
 }
+function submitBeneficiary2()
+{
+	const name = document.getElementById('name').value.length;
+	const surname = document.getElementById('surname').value.length;
+	const idNumber = document.getElementById('id_number').value.length;
+
+	if ((name>0)&&(surname>0)&&(idNumber>0))
+	{
+		document.getElementById('edit-profile-form').submit();
+	}else{
+		alert('Beneficiary details are not complete. Please complete.');
+	}
+}
 function deleteBenef(id){
 	var xhttp = new XMLHttpRequest;
 

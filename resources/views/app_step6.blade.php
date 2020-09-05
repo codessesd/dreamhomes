@@ -17,11 +17,13 @@
           <br><br>
           I declare that the statements and responses provided by me and all documentation that I have signed or will sign in relation to each application/s are true and complete.
           <br><br>
-          I agree that this application and declaration, together with all relevant documents that have been or will be signed by me or any additional parties in terms of this application, shall form part of the contract between Dream Homes Stokvel and myself. If any information is withheld or incorrect, I understand that the beneﬁts will be cancelled from the inception date of the membership and all monthly contributions that have been paid to Dream Homes Stokvel will be forfeited. Where I am married in community of property, I declare that I have the written consent of my spouse to make this application. 
+          I agree that this application and declaration, together with all relevant documents that have been or will be signed by me or any additional parties in terms of this application, shall form part of the contract between Dream Homes Stokvel and myself. If any information is withheld or incorrect, I understand that the beneﬁts will be cancelled from the inception date of the membership and all monthly contributions that have been paid to Dream Homes Stokvel will be forfeited. Where I am married in community of property, I declare that I have the written consent of my spouse to make this application.
           <br><br>
           I agree that should Dream Homes Stokvel accept this application; the acceptance will be conditional upon there having been no change to the facts on which the acceptance was based. I agree that any changes to the finance or risk status of my life will be communicated to Dream Homes Stokvel in writing before it accepts this application, and failure to do so may result in the rejection of any future benefits.
           <br><br>
           I understand that if the ﬁrst contribution is not paid on or before the ﬁrst agreed date, no membership will be provided, and no claims will be payable under the membership for that period until the ﬁrst contribution is received in full by Dream Homes Stokvel and its administrators Su Casa Property Investment Group PTY LTD.
+          <br><br>
+          Registration fee is non refundable. Should the member requests to cancel the investment before 12 months of joining they will only receive 70% of what they have paid.
           <br><br>
         </p>
         <p class="agreement aggr-bold">

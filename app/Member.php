@@ -51,4 +51,8 @@ class Member extends Model
   {
     return $this->belongsToMany(Subscription::class);
   }
+
+  public function payments(){
+    return $this->hasMany(Payment::class);
+  }
 }

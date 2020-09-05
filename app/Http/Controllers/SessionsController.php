@@ -9,9 +9,9 @@ class SessionsController extends Controller
     public function userLogin(Request $request){
       if(auth()->attempt(["email"=>request()->email,"password"=>request()->password])){
         if(auth()->user()->admin_level == 4)
-          return redirect('/members');
+          return redirect()->intended('/members');
         else
-          return redirect('/profile');
+          return redirect()->intended('/profile');
       }else{
         return redirect()->back()->withErrors(["Incorrect password or email"])->withInput();
       }

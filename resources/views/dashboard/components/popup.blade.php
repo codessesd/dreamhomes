@@ -2,7 +2,8 @@
 <div class="popup">
   <div class="mem-top-nav bg-primary">
     <p class="pop-topBar">Add New Admin</p>
-    <i class="fas fa-times" onclick="closePopup()"></i>
+    {{-- <i class="fas fa-times" onclick="closePopup()"></i> --}}
+    <img src="/images/close.svg" alt="close" onclick="closePopup()"/>
     {{-- <i class="fas fa-pen"></i> --}}
   </div>
 

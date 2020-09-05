@@ -10,7 +10,7 @@
   <div class="application">
     <h1>My Profile</h1>
 
-    <form class="applicant-details" action="/save_profile" method="POST">
+    <form class="edit-profile-form" id="edit-profile-form" action="/save_profile" method="POST">
       {{csrf_field()}}
       <div class="form-group title">
         <label for="title">Title*</label>
@@ -196,7 +196,7 @@
             <input id="id_number" type="text" name="beneficiary[id_number]">
           </div>
           <div class="form-group btn-add">
-            <button type="submit" onclick=""><img class="img-btn" src="/images/plus_green.svg"></button>
+            <button type="button" onclick="submitBeneficiary2()"><img class="img-btn" src="/images/plus_green.svg"></button>
           </div>
         </div>
       <div class="clr"></div>

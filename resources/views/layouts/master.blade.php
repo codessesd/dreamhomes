@@ -6,7 +6,7 @@
   <meta name="description" content="Dream Homes Stokvel. A a unique housing stokvel enabling people to buy houses without the burden of interest rates">
   <meta name="keywords" content="dream homes, dreamhomes, dream homes stokvel, dreahomesstokvel, dream, homes, stokvel, home">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="/css/styles2.css">
+  <link rel="stylesheet" type="text/css" href="/css/styles3.css">
   <link rel="stylesheet" type="text/css" href="/css/applicationform.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway&display=swap" rel="stylesheet">
 </head>
@@ -131,7 +131,7 @@
 
 {{-- scripts **************************************************** --}}
   <script type="text/javascript" src="/js/jquery.min.js"></script> 
-  <script type="text/javascript" src="/js/script2.js"></script>
+  <script type="text/javascript" src="/js/script3.js"></script>
   <script type="text/javascript" src="/js/mobile-menu.js"></script>
   <script src="https://kit.fontawesome.com/a5eb13ec56.js" crossorigin="anonymous"></script>
   @yield('javascript')

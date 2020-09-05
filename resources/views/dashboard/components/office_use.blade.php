@@ -20,12 +20,12 @@
       <label for="created_at">Date of Registration: </label>
       <input class="borderless" type="text" name="miscs[created_at]" value="{{$member->created_at}}" readonly>
     </div>
- 
+
     <div class="dash-form-group">
       <label for="membership_no">Membership Number: </label>
       <input class="borderless" type="text" name="miscs[membership_no]" value="{{$member->misc->membership_no}}">
     </div>
-    
+
     <div class="dash-form-group">
       <label for="member_certified_id">Status</label>
       <select name="miscs[status]">
@@ -125,7 +125,10 @@
       <label for="processed_by">Updated By: </label>
       @php
         $pById = $member->misc->processed_by;
-        $pByName = ($pById == null) ? '': $processedBy[$pById]['name'].' '.$processedBy[$pById]['surname'];
+        if(array_key_exists($pById,$processedBy))
+            $pByName = ($pById == null) ? '': $processedBy[$pById]['name'].' '.$processedBy[$pById]['surname'];
+        else
+            $pByName = 'Admin Not Found'
       @endphp
       <input class="borderless" type="text" name="miscs[processed_by]" value="{{$pByName}}" readonly>
     </div>
@@ -135,7 +138,7 @@
       <input class="borderless" type="text" name="miscs[amount]" value="{{$member->misc->amount}}">
     </div>
 
-    {{-- <button type="submit">tester</button> --}}   
+    {{-- <button type="submit">tester</button> --}}
   </form>
 </div>
 <div></div>

@@ -3,7 +3,7 @@
 *	By Rendani Shane Netshikweta
 *	At Obscode Freelace
 *	12/2019
-*  
+*
 *	Logo Colours	|	What I used for the website
 -----------------------------------------------
 *	Green 	#8ab242 |	#99cc66
@@ -27,7 +27,9 @@
 p{
 	line-height: 27px;
 }
-
+.c-link{
+  color: #555;
+}
 body{
 	max-width: 2200px;
 	margin: auto;
@@ -43,7 +45,7 @@ select{
 }
 select:focus{
 	box-shadow: 0px 0px 4px #99cc66;
-	border: 1px solid #99cc66;	
+	border: 1px solid #99cc66;
 	outline-color: #99cc66;
 }
 input, textarea{
@@ -107,7 +109,7 @@ button{
 	background-color: #AADD77;
 }
 .btn:active{
-	box-shadow: 1px 1px 2px #FFF;	
+	box-shadow: 1px 1px 2px #FFF;
 }
 .btn a{
 	color: #FFFFFF !important;
@@ -465,7 +467,7 @@ button{
 	margin: 10px;
 }
 .btn3{
-	padding: 0px;		
+	padding: 0px;
 }
 .btn3 a{
 	padding: 10px;
@@ -558,6 +560,34 @@ button{
 }
 .li-card .fas{
 	width: 30px;
+}
+.pay-table-container{
+  display: flex;
+  justify-content: center;
+}
+.pay-table{
+  border-collapse: collapse;
+  width: 80%;
+  min-width: 300px;
+}
+.pay-table thead{
+  background-color: #333;
+  /* display: inline-block; */
+}
+.pay-table th{
+  width: 50%;
+  color: #fff;
+  padding: 10px 0px;
+  /* display: inline-block; */
+}
+.pay-table td{
+  padding: 8px;
+  border-bottom: 1px solid #999;
+  /* border-right: 1px solid #ccc; */
+}
+.pay-table .amount{
+  text-align: center;
+  border-left: 1px solid #ddd;
 }
 /*End profile*/
 /*Contact page***********************************************/

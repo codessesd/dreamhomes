@@ -20,7 +20,7 @@ class DocumentsController extends Controller
       $docTypes = DocumentsController::docTypes();
 
       if(count($member->document) <= 15){
-        //member only allowed to store maximum 15 files, else do not store
+        //member only allowed to upload maximum 15 files
         if(request()->hasFile(request()->file)){
           if(request()->file('document')->isvalid()){
             $fileExtension = request()->document->getClientOriginalExtension();
@@ -33,8 +33,6 @@ class DocumentsController extends Controller
                 if(in_array($docTypes['ap'],$uploadedDocs))
                   return redirect()->back()->withErrors(['Application form already uploaded!']);
                 $documentType = $docTypes['ap'];
-                //$member->miscs->status = "verifyingApplication";
-                //$member->save();
                 break;
               case $docTypes['id']:
                 $documentType = $docTypes['id'];

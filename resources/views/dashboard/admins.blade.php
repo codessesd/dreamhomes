@@ -63,11 +63,11 @@
                 <td class="options-td">
                   <div class="options d-flex justify-content-center">
                     <div class="options-icon" onclick="openAdminDetail({{$admin['id']}})" data-toggle="tooltip" data-placement="top" title="Edit Admin">
-                      <i class="fas fa-pen"></i>
+                        <img src="/images/pen.svg">
                     </div>
 
                     <div class="options-icon" onclick="location.href='/deleteAdmin/{{$admin->id}}'" data-toggle="tooltip" data-placement="top" title="Delete Admin">
-                      <i class="fas fa-user-minus"></i>
+                        <img src="/images/delete.svg">
                     </div>
 
                     {{-- <div class="options-icon" onclick="toggleDocPopup({{$admin['id']}})" data-toggle="tooltip" data-placement="top" title="Documents">

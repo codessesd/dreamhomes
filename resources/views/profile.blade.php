@@ -20,7 +20,7 @@
 
   @php
     #NB! I must create a controller for this page and handle all the code in the controller!
-    
+
     //get all member documents and store their ID and "readable" type in an array to list them later
     $member = auth()->user()->member;
     $misc = $member->misc;
@@ -105,8 +105,11 @@
         @if($misc->referred_by == null)
           <button class="btn5 mar-bt8 " onclick="showInputBox()">Select</button>
         @else
-          {{$misc->referred_by}}</p>
+          {{$misc->referred_by}}
         @endif
+      </p>
+
+    <p class="p-par"><span class="p-label">Payments:</span> <span><a class="c-link" href="/payhistory/{{$member->id}}">View payment history</a></span></p>
 
       <br>
       {{-- List Documents --}}
@@ -142,7 +145,7 @@
     </div>
 
     <div>
-      <div class="profile-btns-desktop"> 
+      <div class="profile-btns-desktop">
         @if($misc->status == 'incomplete')
           @include('partials.profile_btns')
         @else

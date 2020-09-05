@@ -178,7 +178,7 @@
           <span>{{$beneficiary->surname}}</span>
           <span>{{$beneficiary->relationship}}</span>
           <span>{{$beneficiary->id_number}}</span>
-          <span class="remove" onclick="removeBeneficiary({{$member->id}},{{$beneficiary->id}})"><i class="fas fa-trash-alt"></i></span>
+          <span class="remove" onclick="removeBeneficiary({{$member->id}},{{$beneficiary->id}})"><img class="img-btn2" src="/images/cross.png"></img></span>
         </div>
       @endforeach
         <div class="grid1111 w100 grid-list">
@@ -208,7 +208,7 @@
           <div class="form-group btn-add">
             <button id="benefBtn" type="button" onclick="submitBeneficiary()" >
               <span class="elPad" id="benefEllipsis"><img src="/images/ellipsist.gif" height="26"></span>
-              <i id="benefAdd" class="fas fa-plus-square"></i>
+              <img id="benefAdd" class="img-btn" src="/images/plus_black.svg" alt="button">
             </button>
           </div>
         </div>

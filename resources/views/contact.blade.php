@@ -11,7 +11,7 @@
     <div class="contact-text">
       <div class="contact-group">
         <p class="contact-label"><b>Address</b></p>
-        <p class="contact-info">: 8968 Sonnyboy Street <br>Moleleki Ext2 <br>Katlehong</p>
+        <p class="contact-info">: 20 De Korte Street<br>Samro Place 5th Floor<br>Braamfontein<br>2001</p>
         <div class="clr"></div>
       </div>
       <div class="contact-group">

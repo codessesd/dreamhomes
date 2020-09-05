@@ -22,7 +22,7 @@
             <span><i onclick="location.href='/files/delete/{{$idOrPassport->id}}'" class="icn fas fa-backspace"></i></span>
           </div>
         @else <p><i>Upload a certified copy of your ID or Passport</i></p> @endif
-        <button type="button" class="btn4 w100" onclick="openDialog('ID OR Passport','{{$docTypes['id']}}')">Upload ID/Passport</button>
+        <button type="button" class="btn4 w100" onclick="openDialog('ID OR Passport','{{$docTypes['id']}}')">Upload ID/Passport*</button>
         <div class="clr"></div>
         <div class="line spacer-tb"></div>
 
@@ -31,8 +31,8 @@
             <p class="smCaps">{{$proofop->original_name}}</p>
             <span><i onclick="location.href='/files/delete/{{$proofop->id}}'" class="icn fas fa-backspace"></i></span>
           </div>
-        @else <p><i>Upload proof of payment. {{-- <a href="#">How to pay?</a> --}}</i></p> @endif
-        <button type="button" class="btn4 w100" onclick="openDialog('Proof Of Payment','{{$docTypes['pr']}}')">Upload Proof of payment</button>
+        @else <p><i>Upload proof of payment.</i></p> @endif
+        <button type="button" class="btn4 w100" onclick="openDialog('Proof Of Payment','{{$docTypes['pr']}}')">Upload Proof of payment*</button>
         <div class="clr"></div>
         <div class="line spacer-tb"></div>
 

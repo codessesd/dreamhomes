@@ -3,7 +3,7 @@
 <head>
   <title>Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="/dashboard/dashboard2.css">
+  <link rel="stylesheet" type="text/css" href="/dashboard/dashboard4_2.css">
   <link rel="stylesheet" type="text/css" href="/css/applicationform.css">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300&display=swap" rel="stylesheet">
 </head>
@@ -17,7 +17,7 @@
     <span class="dash-title">Dashboard
       {{-- <span class="search-glass" onclick="toggleSearchPopup()"><img src="/images/search.svg" width="30"></span> --}}
     </span>
-    <ul class="side-nav-links">  
+    <ul class="side-nav-links">
       <li><a href="/members"><span class="side-icon @if($listNum==1) s-active @endif">MB</span>Members</a></li>
       <li><a href="/completed"><span class="side-icon @if($listNum==2) s-active @endif">CO</span>Completed</a></li>
       <li><a href="/pending"><span class="side-icon @if($listNum==3) s-active @endif">PN</span>Pending</a></li>
@@ -55,14 +55,14 @@
       </div>
       <div class="user-menu">
         <div class="user-btn dd-btn bg-primary .bg-prm-hover">
-          <img class="top-nav-icon icon-lg" src="/images/user.svg"></img> 
+          <img class="top-nav-icon icon-lg" src="/images/user.svg"></img>
           <ul class="dropdown-links user-links">
             <li>Change Password</li>
             <li><a href="/logout">Logout</a></li>
           </ul>
         </div>
         {{-- <span class="user">
-  
+
         </span> --}}
       </div>
     </div>
@@ -72,7 +72,7 @@
   </div>
 </div>
 <script type="text/javascript" src="/js/jquery.min.js"></script>
-<script type="text/javascript" src="/dashboard/dashboard.js"></script>
+<script type="text/javascript" src="/dashboard/dashboard4.js"></script>
 {{-- <script src="https://kit.fontawesome.com/a5eb13ec56.js" crossorigin="anonymous"></script> --}}
 </body>
 </html>

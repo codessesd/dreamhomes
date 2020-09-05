@@ -2,7 +2,8 @@
 <div class="popup">
   <div class="mem-top-nav bg-primary">
     <p class="pop-topBar">Edit Admin</p>
-    <i class="fas fa-times" onclick="closeAdminDetail({{$admin->id}})"></i>
+    <img src="/images/close.svg" alt="close" onclick="closeAdminDetail({{$admin->id}})"/>
+    {{-- <i class="fas fa-times" onclick="closeAdminDetail({{$admin->id}})"></i> --}}
     {{-- <i class="fas fa-pen"></i> --}}
   </div>
 
