@@ -26,7 +26,7 @@
       </div>
       <div class="contact-group">
         <p class="contact-label"><b>Tel</b></p>
-        <p class="contact-info">: 010 023 0800</p>
+        <p class="contact-info">: 010 023 0080</p>
         <div class="clr"></div>
       </div>
     </div>

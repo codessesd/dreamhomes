@@ -17,18 +17,12 @@
         <th>Amount</th>
       </thead>
       <tbody>
-        <tr>
-          <td>20 Jun 2020</td>
-          <td class="amount">R300</td>
-        </tr>
-        <tr>
-          <td>20 Jul 2020</td>
-          <td class="amount">R300</td>
-        </tr>
-        <tr>
-          <td>20 Aug 2020</td>
-          <td class="amount">R300</td>
-        </tr>
+        @foreach($member->payments as $payment)
+          <tr>
+            <td>{{$payment->pay_date}}</td>
+            <td>R{{$payment->amount}}</td>
+          </tr>
+        @endforeach
       </tbody>
     </table>
   </div>

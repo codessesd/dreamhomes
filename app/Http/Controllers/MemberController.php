@@ -6,7 +6,8 @@ use App\Member;
 use Illuminate\Http\Request;
 use App\Admin;
 use App\Misc;
-use Illuminate\Support\Facades\Schema;
+use App\Payment;
+use Illuminate\Support\Facades\Validator;
 
 class MemberController extends Controller
 {
@@ -75,11 +76,15 @@ class MemberController extends Controller
 
     public function displayRecords($miscs,$listNum,$listName,$view)
     {
+      /*
+        $listNum: determines which menu item to highlight. Menu items have an if statement that respsonds to this
+        $listName: determines what name to be displayed as the name of the view
+      */
       $show = session('show',25);
       $pages = $miscs;
       $members = collect([]);
       foreach($miscs as $misc)
-        $members = $members->concat([$misc->member]);
+      $members = $members->concat([$misc->member]);
       $processedBy = Admin::select('id','name','surname')->get()->keyBy('id')->toArray();
       $allStatus = $this->status();
       array_pop($allStatus);//removes the last item which is called "deleted"
@@ -199,28 +204,47 @@ class MemberController extends Controller
       $referralsCount = $referrals->countBy()->toArray();
       arsort($referralsCount);
       $top10 = array_splice($referralsCount,0,11);
-      //dd(array_keys($top10));
-
-      // $members = Member::select('id','title','f_name','surname','id_passport_no','cell_number')->get();
-      // foreach($top10 as $key => $val){
-      //   $id = $requiredMiscs->where('membership_no',$key)->pluck('member_id')[0];
-      //   $member = $members->where('id',$id);
-      // }
-
-      //dd($members);
 
       return view('dashboard.referrals',compact('top10'));
-      // $i = 0;
-      // foreach($referralsCount as $key=>$val){
-      //   dump($key.' referred '.$val);
-      //   $i++;
-      //   if($i > 2)
-      //     break;
-      // }
-      // dd("---");
     }
 
-    public function getDetails(){
+    public function payments(){
+      $show = session('show',25);
+      $miscs = Misc::where('status',$this->status()['ap'])->paginate($show);
+      return $this->displayRecords($miscs,7,'Approved','dashboard.payments');
+    }
 
+    public function savePay(Request $request){
+      $validator = Validator::make($request->all(),[
+        'id' => 'required',
+        'pay_date' => 'required',
+        'amount' => 'required'
+      ]);
+
+      if ($validator->fails()){
+        return response()->json(['message'=>'Error. Some required fileds are not filled']);
+      }
+      $member = Member::find($request->id);
+      $member->payments()->create([
+        'pay_date'=>$request->pay_date,
+        'amount'=>$request->amount,
+        'notes'=>$request->notes,
+      ]);
+
+      return response()->json(["message"=>"Payment accepted"]);
+    }
+
+    public function deletePay(Request $request){
+      $member = Member::find($request->memberId);
+      $payment = Payment::find($request->payId);
+      //dd($payment);
+      $payment['member_id'] = -1*$request->memberId;
+      $payment->save();
+    }
+
+    public function restorePay(Request $request){
+      $payment = Payment::find($request->payId);
+      $payment['member_id'] = $request->memberId;
+      $payment->save();
     }
 }

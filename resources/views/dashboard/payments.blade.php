@@ -30,15 +30,6 @@
             <th>
               Membership
             </th>
-            <th>
-              ID/Passport
-            </th>
-            <th>
-              Referred by
-            </th>
-            <th>
-              Contact
-            </th>
             <th class="invest-th">
               Option
             </th>
@@ -51,7 +42,6 @@
             @foreach($members as $member)
             <tr>
                 <td class="text-primary" id="tdNum{{$member->id}}">
-                  @include('dashboard.components.office_use')
                   @include('dashboard.components.pay_popup')
                   {{++$i}}.
                 </td>
@@ -61,21 +51,9 @@
                 <td id="tdMembershipNo{{$member->id}}">
                   {{$member->misc->membership_no}}
                 </td>
-                <td id="tdId{{$member->id}}">
-                  {{$member->id_passport_no}}
-                </td>
-                <td id="tdReferredBy{{$member->id}}">
-                  {{$member->misc->referred_by}}
-                </td>
-                <td class="cell-td" id="tdContact{{$member->id}}">
-                  {{$member->cell_number}}
-                </td>
-                <td class="invest-td" id="tdInvest{{$member->id}}">
-                  {{$member->misc->investment}}
-                </td>
                 <td class="options-td">
                   <div class="options d-flex justify-content-center">
-                    <button type="button" class="options-icon" onclick="toggleOfficePopup({{$member['id']}})" data-toggle="tooltip" data-placement="top" title="Office Use">
+                    <button type="button" class="options-icon" onclick="togglePayPopup({{$member['id']}})" data-toggle="tooltip" data-placement="top" title="Office Use">
                       <img src="/images/pen.svg">
                     </button>
                     <a class="options-icon" href="/member/{{$member->id}}" data-toggle="tooltip" data-placement="top" title="Open Member">
@@ -99,10 +77,7 @@
                       <img class="" id="memDeleteImg{{$member->id}}" src="/images/delete.svg">
                       <img class="memLoadingImg" id="memLoadingImg{{$member->id}}" src="/images/hourglass.svg">
                     </button>
-                    <button type="button" class="options-icon" onclick="togglePayPopup({{$member['id']}})" id="tdDelButton{{$member->id}}" data-deleted="0"  data-toggle="tooltip" data-placement="top" title="Delete">
-                      <img class="" id="memDeleteImg{{$member->id}}" src="/images/money.svg">
-                      <img class="memLoadingImg" id="memLoadingImg{{$member->id}}" src="/images/hourglass.svg">
-                    </button>
+
                   </div>
                 </td>
               </tr>

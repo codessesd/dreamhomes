@@ -85,7 +85,8 @@ class ProfileController extends Controller
   }
 
   public function payhistory(Request $request, $id){
-    return view('payhistory');
+    $member = Member::find(auth()->user()->id);
+    return view('payhistory',compact('member'));
   }
 
 }

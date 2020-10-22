@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,6 +53,8 @@ Route::POST('save_profile','ProfileController@save')->middleware('member');
 Route::POST('userDeleteBenef','ProfileController@userDeleteBenef')->middleware('member');
 
 //admin routes
+// Route::get('payments','MemberController@payments');
+Route::post('save_pay','MemberController@savePay')->middleware('admin1');
 Route::get('completed','MemberController@completed')->middleware('admin1');
 Route::get('pending','MemberController@pending')->middleware('admin1');
 Route::get('approved','MemberController@approved')->middleware('admin1');
@@ -74,6 +75,8 @@ Route::get('deleteAdmin/{id}','AdminController@deleteAdmin')->middleware('admin4
 Route::POST('/search','SearchController@search')->middleware('admin1');
 Route::POST('/deleteRow','MemberController@deleteRow')->middleware('admin1');
 Route::POST('/restoreRow','MemberController@restoreRow')->middleware('admin1');
+Route::POST('/deletePay','MemberController@deletePay')->middleware('admin1');
+Route::POST('/restorePay','MemberController@restorePay')->middleware('admin1');
 Route::POST('/setShow','MemberController@setShow')->middleware('admin1');
 
 Route::get('/api/referrals','MemberController@referrals')->middleware('admin1');

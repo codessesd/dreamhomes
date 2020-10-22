@@ -61,7 +61,7 @@ function deleteMemberToggle(id){
 	xhttp.onreadystatechange = function()
 	{
 		if (this.readyState == 4 && this.status == 200){
-			response = JSON.parse(this.responseText);	
+			response = JSON.parse(this.responseText);
 			if(response.type == 'error')
 				alert(response.message);
 			if(deleteBtnState == 0){
@@ -100,7 +100,7 @@ function markDeleted(id){
 	document.getElementById('tdDelButton'+id).title = 'Restore';
 }
 function unmarkDeleted(id){
-	document.getElementById('tdNum'+id).style.textDecoration = 'none';		
+	document.getElementById('tdNum'+id).style.textDecoration = 'none';
 	document.getElementById('tdName'+id).style.textDecoration = 'none';
 	document.getElementById('tdMembershipNo'+id).style.textDecoration = 'none';
 	document.getElementById('tdId'+id).style.textDecoration = 'none';
@@ -109,6 +109,65 @@ function unmarkDeleted(id){
 	document.getElementById('tdInvest'+id).style.textDecoration = 'none';
 	document.getElementById('memDeleteImg'+id).src = '/images/delete.svg';
 	document.getElementById('tdDelButton'+id).title = 'Delete';
+}
+function deletePayToggle(id){/***********************************************/
+	var xhttp = new XMLHttpRequest();
+	var token = document.getElementsByName('_token')[0].value;
+	var deleteBtn = document.getElementById('tdDelPayBtn'+id);
+  var deleteBtnState = deleteBtn.dataset.deleted;
+  var memberId = deleteBtn.dataset.memberid;
+	var deleteBtnImage = document.getElementById('payDeleteImg'+id);
+	var loadingImage = document.getElementById('payLoadingImg'+id);
+
+	deleteBtnImage.style.display = 'none';
+	loadingImage.style.display = 'block';
+
+	deleteBtn.disabled = true;
+  let dataString = '_token=' + token + '&memberId=' + memberId + '&payId='+id;
+
+  console.log(dataString);
+	xhttp.onreadystatechange = function()
+	{
+		if (this.readyState == 4 && this.status == 200){
+			//response = JSON.parse(this.responseText);
+			//if(response.type == 'error')
+				//alert(response.message);
+			if(deleteBtnState == 0){
+				markPayDeleted(id);
+				deleteBtn.dataset.deleted = 1;
+				deleteBtn.disabled = false;
+			}
+			else{
+				unmarkPayDeleted(id);
+				deleteBtn.dataset.deleted = 0;
+				deleteBtn.disabled = false;
+			}
+			loadingImage.style.display = 'none';
+			deleteBtnImage.style.display = 'block';
+		}
+	};
+
+	if(deleteBtnState == 0){
+		xhttp.open('POST','/deletePay',true);
+	}
+	else{
+		xhttp.open('POST','/restorePay',true);
+	}
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.send(dataString);
+}
+
+function markPayDeleted(id){
+  document.getElementById('payDate'+id).style.textDecoration = 'line-through';
+  document.getElementById('payAmount'+id).style.textDecoration = 'line-through';
+  document.getElementById('payNotes'+id).style.textDecoration = 'line-through';
+  document.getElementById('payDeleteImg'+id).src = '/images/restore.svg';
+}
+function unmarkPayDeleted(id){
+  document.getElementById('payDate'+id).style.textDecoration = 'none';
+  document.getElementById('payAmount'+id).style.textDecoration = 'none';
+  document.getElementById('payNotes'+id).style.textDecoration = 'none';
+  document.getElementById('payDeleteImg'+id).src = '/images/delete.svg';
 }
 
 function toggleDocPopup(id){
@@ -145,6 +204,28 @@ function toggleOfficePopup(id)
 	}
 }
 
+function togglePayPopup(id)
+{
+	//"use strict";
+	const payFilter = document.getElementById('pay_popup'+id);
+	const memDetails = document.getElementById('pay-details'+id);
+	const popDisplay = getComputedStyle(payFilter);
+	//const transform = new WebKitCSSMatrix(style.webkitTransform);
+
+	if(popDisplay.zIndex == '-1'){
+		memDetails.style.transform = "scale(1,1)";
+		payFilter.style.zIndex = '2';
+		payFilter.style.backgroundColor = '#fff9';
+		payFilter.style.transition = 'background-color 0.4s linear'
+	}
+	else{
+		payFilter.style.backgroundColor = '#fff0';
+		payFilter.style.zIndex = '-1';
+		memDetails.style.transform = "scale(0,0)";
+		payFilter.style.transition = 'background-color 0.4s linear, z-index 0.1s linear 0.4s'
+	}
+}
+
 function toggleSearchPopup(id)
 {
 	//"use strict";
@@ -167,7 +248,7 @@ function toggleSearchPopup(id)
 	}
 }
 
-function saveMember(id) 
+function saveMember(id)
 {
   //"use strict"
   var xhttp = new XMLHttpRequest();
@@ -185,7 +266,7 @@ function saveMember(id)
    	let = inputValue = memberForm.elements[i].value;
    	if (input != null)
     	dataString += "&" + input + "=" + inputValue;
-  }									
+  }
   xhttp.onreadystatechange = function()
   {
     if (this.readyState == 4 && this.status == 200) {
@@ -197,6 +278,43 @@ function saveMember(id)
     }
   };
   xhttp.open("POST", "updateMember", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(dataString);
+}
+
+function acceptPayment(id)
+{
+  //"use strict"
+  var xhttp = new XMLHttpRequest();
+  const msgLine = document.getElementById('pay-msg'+id);
+  const payForm = document.getElementById('pay-form'+id);
+  const payBtn = document.getElementById('pay-btn'+id);
+  payBtn.disabled = true;
+  msgLine.innerHTML = 'saving...';
+  msgLine.style.transition = 'opacity 0s';
+  msgLine.style.opacity = '1';
+
+  let dataString = payForm.elements[0].getAttribute('name') + "=" + payForm.elements[0].value;
+
+  for (i = 1; i < payForm.length;i++)
+  {
+   	let input = payForm.elements[i].getAttribute('name');
+   	let = inputValue = payForm.elements[i].value;
+   	if (input != null)
+    	dataString += "&" + input + "=" + inputValue;
+  }
+  xhttp.onreadystatechange = function()
+  {
+    if (this.readyState == 4 && this.status == 200) {
+      msgLine.innerHTML = JSON.parse(this.responseText)['message'];
+    	msgLine.style.transition = 'opacity 5s';
+    	msgLine.style.transitionDelay = "5s"
+      msgLine.style.opacity = '0';
+      payBtn.disabled = false;
+    	//location.reload(true);
+    }
+  };
+  xhttp.open("POST", "/save_pay", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send(dataString);
 }
@@ -469,7 +587,7 @@ function submitBeneficiary()
 		xhttp.open('POST','/updateMember',true);
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xhttp.send(dataString);
-		
+
 	}
 }
 
@@ -525,12 +643,12 @@ function submitArea()
 			if (this.readyState == 4 && this.status == 200)
 			{
 				location.reload();
-				
+
 			}
 		}
 		xhttp.open('POST','/updateMember',true);
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xhttp.send(dataString);
-		
+
 	}
 }

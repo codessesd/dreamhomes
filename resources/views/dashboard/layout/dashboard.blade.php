@@ -3,7 +3,7 @@
 <head>
   <title>Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="/dashboard/dashboard4_2.css">
+  <link rel="stylesheet" type="text/css" href="/dashboard/dashboard4_3.css">
   <link rel="stylesheet" type="text/css" href="/css/applicationform.css">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300&display=swap" rel="stylesheet">
 </head>
@@ -19,6 +19,7 @@
     </span>
     <ul class="side-nav-links">
       <li><a href="/members"><span class="side-icon @if($listNum==1) s-active @endif">MB</span>Members</a></li>
+      {{-- <li><a href="/payments"><span class="side-icon @if($listNum==7) s-active @endif">PA</span>Payments</a></li> --}}
       <li><a href="/completed"><span class="side-icon @if($listNum==2) s-active @endif">CO</span>Completed</a></li>
       <li><a href="/pending"><span class="side-icon @if($listNum==3) s-active @endif">PN</span>Pending</a></li>
       <li><a href="/approved"><span class="side-icon @if($listNum==4) s-active @endif">AP</span>Approved</a></li>
@@ -32,6 +33,7 @@
   <div class="mbl-ddown bg-primary" id="mnDropdown">
     <ul class="side-nav-links">
       <li><a href="/members"><span class="side-icon @if($listNum==1) s-active @endif">MB</span>Members</a></li>
+      {{-- <li><a href="/payments"><span class="side-icon @if($listNum==7) s-active @endif">PA</span>Payments</a></li> --}}
       <li><a href="/completed"><span class="side-icon @if($listNum==2) s-active @endif">CO</span>Completed</a></li>
       <li><a href="/pending"><span class="side-icon @if($listNum==3) s-active @endif">PN</span>Pending</a></li>
       <li><a href="/approved"><span class="side-icon @if($listNum==4) s-active @endif">AP</span>Approved</a></li>
@@ -72,7 +74,7 @@
   </div>
 </div>
 <script type="text/javascript" src="/js/jquery.min.js"></script>
-<script type="text/javascript" src="/dashboard/dashboard4.js"></script>
+<script type="text/javascript" src="/dashboard/dashboard4_3_1.js"></script>
 {{-- <script src="https://kit.fontawesome.com/a5eb13ec56.js" crossorigin="anonymous"></script> --}}
 </body>
 </html>

@@ -6,7 +6,7 @@
   <meta name="description" content="Dream Homes Stokvel. A a unique housing stokvel enabling people to buy houses without the burden of interest rates">
   <meta name="keywords" content="dream homes, dreamhomes, dream homes stokvel, dreahomesstokvel, dream, homes, stokvel, home">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="/css/styles3.css">
+  <link rel="stylesheet" type="text/css" href="/css/styles4_3.css">
   <link rel="stylesheet" type="text/css" href="/css/applicationform.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway&display=swap" rel="stylesheet">
 </head>
@@ -44,7 +44,7 @@
     <div class="info-bar"></div>
 
     <div class="mobile-menu" id="menu-nav">
-      
+
       <div class="filter-mob-menu"></div>
       <div class="mobile-logo">
         {{-- <img src="/images/logo.jpg" alt="logo dream homes"> --}}
@@ -58,7 +58,7 @@
               <li class="@yield('profile')"><a href="/profile"><img src="/images/m-profile.svg"><br>Profile</a></li>
               <li><a href="/logout"><img src="/images/m-logout.svg"><br>Logout</a></li>
             @else
-              <li class="@yield('register')"><a href="/register"><img src="/images/m-register.svg"><br>Register</a></li> 
+              <li class="@yield('register')"><a href="/register"><img src="/images/m-register.svg"><br>Register</a></li>
               <li><a href="/login"><img src="/images/m-login.svg"><br>Login</a></li>
             @endif
           </ul>
@@ -95,7 +95,7 @@
             @if (auth()->check())
               <li class="@yield('profile')"><a href="/profile">Profile</a></li>
             @else
-              <li class="@yield('register')"><a href="/register">Register</a></li> 
+              <li class="@yield('register')"><a href="/register">Register</a></li>
             @endif
           </ul>
         @if(auth()->check())
@@ -130,8 +130,8 @@
   </div>
 
 {{-- scripts **************************************************** --}}
-  <script type="text/javascript" src="/js/jquery.min.js"></script> 
-  <script type="text/javascript" src="/js/script3.js"></script>
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/script4_3.js"></script>
   <script type="text/javascript" src="/js/mobile-menu.js"></script>
   <script src="https://kit.fontawesome.com/a5eb13ec56.js" crossorigin="anonymous"></script>
   @yield('javascript')
