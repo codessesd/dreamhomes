@@ -87,7 +87,7 @@ class ApplicationController extends Controller
       case 'step4_2':
         $id = auth()->user()->id;
         $member = Member::find($id);
-        //dd($request->investment);
+        // dd($request->investment);
         $member->misc->investment = $request->investment;
         $member->misc->save();
         return redirect('/apply/step5');

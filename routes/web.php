@@ -45,7 +45,7 @@ Route::get('files/{action}/{id}','DocumentsController@downloadOrDelete')->middle
 Route::get('apply/{step}','ApplicationController@show')->middleware('member','applicationStatus');
 Route::POST('apply/{step}','ApplicationController@save')->middleware('member','applicationStatus');
 Route::get('apply/step3/remove/{id}','ApplicationController@removeBeneficiary')->middleware('member','applicationStatus');
-Route::get('apply/step4/remove/{id}','ApplicationController@removeArea')->middleware('member','applicationStatus');
+// Route::get('apply/step4/remove/{id}','ApplicationController@removeArea')->middleware('member','applicationStatus');
 Route::POST('validation','ApplicationController@validateInfo')->middleware('member','applicationStatus');
 Route::POST('saveReferredBy','ApplicationController@saveReferredBy')->middleware('member');
 Route::get('edit_profile','ProfileController@show')->middleware('member');

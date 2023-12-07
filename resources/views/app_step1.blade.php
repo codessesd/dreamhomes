@@ -81,19 +81,20 @@
       <div class="physical-address address">
         <label>Physical Address*</label>
         <div class="grid-3">
-          <input id="addr_line1" type="text" value="{{$home_address['addr_line1']}}" name="home_address[addr_line1]" placeholder="Address Line 1*">
-          <input id="addr_line2" type="text" value="{{$home_address['addr_line2']}}" name="home_address[addr_line2]" placeholder="Address Line 2">
-          <input id="suburb" type="text" value="{{$home_address['suburb']}}" name="home_address[suburb]" placeholder="Suburb*">
-          <input id="city" type="text" value="{{$home_address['city']}}" name="home_address[city]" placeholder="City*">
-          <input id="area_code" type="text" value="{{$home_address['area_code']}}" name="home_address[area_code]" placeholder="Area Code*">
+        <input id="addr_line1" type="text" value="{{ $home_address['addr_line1'] ?? '' }}" name="home_address[addr_line1]" placeholder="Address Line 1*">
+        <input id="addr_line2" type="text" value="{{ $home_address['addr_line2'] ?? '' }}" name="home_address[addr_line2]" placeholder="Address Line 2">
+        <input id="suburb" type="text" value="{{ $home_address['suburb'] ?? '' }}" name="home_address[suburb]" placeholder="Suburb*">
+        <input id="city" type="text" value="{{ $home_address['city'] ?? '' }}" name="home_address[city]" placeholder="City*">
+        <input id="area_code" type="text" value="{{ $home_address['area_code'] ?? '' }}" name="home_address[area_code]" placeholder="Area Code*">
+
         </div>
       </div>
       <div class="postal-address address">
-        <label for="post_address[post_line1]">Postal Address*</label>
+        <label for="post_address[post_line1] ?? '' ">Postal Address*</label>
         <input type="checkbox" id="postCheckbox" onchange="populatePostAddress()"> <label for="postCheckbox" class="lbl-minor">Same of Physical</label>
         <div class="clr"></div>
-        <textarea class="w33 post-address" rows="5" id="post-line1" name="post_address[post_line1]">{{$post_address['post_line1']}}</textarea><br>
-        <input class="w33" type="text" id="post-code" value="{{$post_address['post_code']}}" name="post_address[post_code]" placeholder="Postal Code*">
+        <textarea class="w33 post-address" rows="5" id="post-line1" name="post_address[post_line1] ?? '' ">{{$post_address['post_line1'] ?? '' }}</textarea><br>
+        <input class="w33" type="text" id="post-code" value="{{$post_address['post_code'] ?? '' }}" name="post_address[post_code]" placeholder="Postal Code*">
       </div>
       <div class="clr"></div>
       <button type="submit" class="btn spacer">Next</button>
