@@ -18,17 +18,17 @@
 
 There are five admin levels in the app, Level 0 to level 4. Level 0 is reserved for normal users that are members. This level is set automatically when the user registers. Level 4 is for a super admin and, at this stage, it can only be set manually on the database. All other admins are given level 1 to 3. When a Super admin adds an admin they are automatically set to level 1. At this point of app development, we use only level 0, 1 and 4. Levels 2 and 3 are reserved for possible future need.
 
-<b>Adding the 1st Admin</b>
+<b>Adding the Super Admin Admin</b>
 The 1st admin should be a super admin so he can add other admins. A super admin can only be added by manually manipulating the users table in the database. Follow these procedures to add the very 1st admin.
 
 1.	The admin-to-be must first register as a member on https://www.dhs.org.za/register. And set a password.
-2.	Log into the host’s control panel to access the app database.
-3.	On the users table change the admin_level field of the new admin to 4.
-4.	Adding the super admin’s details on the admins table:
-a.	id :Auto incremented primary key
-b.	user_id : should have the same value as the id field of the users table of this new admin.
-c.	level: should have a value of 4.
-d.	status: field should have a string value of “active”
+2.	Access the app's database to perfom manual changes.
+3.	On the <b>users</b> table change the admin_level field of the new admin to 4 (Highest admin level).
+4.	Add the super admin’s details on the admins table manually as follows:
+      a.	id :Auto incremented primary key
+      b.	user_id : should have the same value as the id field of the users table of this new admin.
+      c.	level: should have a value of 4.
+      d.	status: field should have a string value of “active”
 # e. Done
 5.	Delete the super admin from the members table and mics table.
 
