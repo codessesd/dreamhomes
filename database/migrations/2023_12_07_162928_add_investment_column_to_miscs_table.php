@@ -14,7 +14,7 @@ class AddInvestmentColumnToMiscsTable extends Migration
     public function up()
     {
         Schema::table('miscs', function (Blueprint $table) {
-            $table->integer('investment')->after('pop');
+            $table->integer('investment')->nullable()->after('pop');
         });
     }
 
