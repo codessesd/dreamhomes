@@ -11,6 +11,7 @@ class Misc extends Model
   public function member()
   {
     return $this->belongsTo(Member::class);
+    
     /*withDefault([
       'member_certified_id'=>'No',
       'pop'=>'',
