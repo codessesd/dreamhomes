@@ -18,7 +18,7 @@ class CreateAdminsTable extends Migration
             $table->integer('user_id');
             $table->string('name');
             $table->string('surname');
-            $table->string('id_number',15);
+            $table->string('id_number',15)->nullable();
             $table->string('contact');
             $table->string('level');
             $table->string('status');

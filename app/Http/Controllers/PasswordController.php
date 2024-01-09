@@ -76,8 +76,9 @@ class PasswordController extends Controller
       else
         $name = "there";
       $emailMessage = "You have requested a new password for your account. Click on the link below to reset you password. This link will expire in 24 hours";
-      //$link = "localhost:8000/resetPassword/".request()->email."/".$resetToken;//comment out on live web
-      $link = "https://dreamhomes.obscode.joburg/resetPassword/".request()->email."/".$resetToken;//Uncomment on live website
+      $link = "https://dreamhomes.obscode.joburg/resetPassword/".request()->email."/".$resetToken;
+      if(config('app.env') == 'local')
+        $link = "localhost:8000/resetPassword/".request()->email."/".$resetToken;//For local environment only
 
       Mail::to(request('email'))->queue(new accounts($name, $link,$emailMessage));
 

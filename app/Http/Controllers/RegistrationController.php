@@ -66,8 +66,9 @@ class RegistrationController extends Controller
           //send the first ever verification email to the user
           $emailMessage = "Welcome to Dream Homes. Click on the link below to verify your email address. Alternatively, you can copy the link into your browser. This link will expire in 24 Hours.";
           $name = request('f_name').' '.request('surname');
-          #$link = "localhost:8000/verify/".request()->email_token."/".request()->verify_token;//for testing only. comment out on live website
           $link = "https://dreamhomes.obscode.joburg/verify/".request()->email_token."/".request()->verify_token;
+          if(config('app.env') == 'local')
+            $link = "localhost:8000/verify/".request()->email_token."/".request()->verify_token;//for testing only
           Mail::to(request('email'))->queue(new accounts($name, $link, $emailMessage));
           $msg = "Thank you for registering. A verification email was sent to your email address. Please check your email and click on the link provided";
           return redirect()->back()->withErrors(['success',$msg]);
@@ -78,8 +79,9 @@ class RegistrationController extends Controller
             $userInPending = $userInPending->first();
             $emailMessage = "You have requested to be resent the verification link. Click on the link below to verify your email address. Alternatively, you can copy the link into your browser. Note that resent links may expire in less than 24 Hours.";
             $name = request('f_name').' '.request('surname');
-            //$link = "localhost:8000/verify/".$userInPending->email_token."/".$userInPending->verify_token;//for testing only comment out on live website
             $link = "https://dreamhomes.obscode.joburg/verify/".$userInPending->email_token."/".$userInPending->verify_token;
+            if(config('app.env') == 'local')
+              $link = "localhost:8000/verify/".$userInPending->email_token."/".$userInPending->verify_token;//for testing only
             Mail::to(request('email'))->queue(new accounts($name, $link, $emailMessage)); 
             $msg = "A verification email was resent to your email address. Please check your email and click on the link provided";
             return redirect()->back()->withErrors(['success',$msg]);
