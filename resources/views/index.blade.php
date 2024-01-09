@@ -11,20 +11,22 @@
       <div class="about1">
         <img class="icon" src="/images/house3.svg"></img>
         <h2>Who are we</h2>
-        <p>Dream Homes Stokvel was formed after meeting several clients who are either blacklisted or are earning less than what the banks require. With all that we failed to source property for our clients. We then came up with the idea of a Housing Stokvel</p>
+        <p>
+          Welcome to our wacky world of wonderous building! We're not your run-of-the-mill builders; we're the folks who turn dreams into homes with a sprinkle of magic and a dash of absurdity. Our team boasts unicorn architects and dragon engineers, ensuring your home is as unique as a two-headed platypus.
+        </p>
       </div>
       <div class="about2">
         <img class="icon" src="/images/house4.svg"></img>
         <h2>What we offer</h2>
         <p>
-          We are a 100% black owned Property Investment company. Established in 2016 and a Housing Stokvel established in 2016. We help our clients to acquire property lesser than the market.
+          At our house-building circus, we don't just offer four walls and a roof; we provide a front-row seat to the greatest show on earth! Imagine a menu of options that range from secret trapdoor closets for your ninja gear to bathtubs with built-in rubber duck orchestras. We specialize in turning "ordinary" into "extraordinary," and our customization options are more diverse than a chameleon at a color festival.
         </p>
       </div>
       <div class="about3">
         <img class="icon" src="/images/vision1.svg"></img>
         <h2>Our vision</h2>
         <p>
-          We want to build 1000 houses every year without a single loan from the bank. The idea is to show black people that together we can pull miracles.
+          In our crystal ball of whimsy and imagination, we see a future where every home is a masterpiece of laughter and innovation. We envision houses that break free from the shackles of the mundane, soaring to new heights of quirkiness and charm. Picture a world where your residence is a reflection of your wildest dreams, and every room tells a story as captivating as a bedtime tale told by a caffeinated storyteller.
         </p>
       </div>
     </div>
@@ -45,8 +47,8 @@
             <div class="inf-num fl-r">1</div>
           </div>
           <div class="inf-content fl-r">
-            <h3 class="inf-heading txt-al-r">Register</h3>
-            <p class="inf-txt txt-al-r">Register on this website <br> and get an account to login</p>
+            <h3 class="inf-heading txt-al-r">Step 1</h3>
+            <p class="inf-txt txt-al-r">Summon Your Imagination</p>
           </div>
           <div class="clr"></div>
         </div>
@@ -56,8 +58,8 @@
             <div class="inf-num">2</div>
           </div>
           <div class="inf-content fl-l">
-            <h3 class="inf-heading txt-al-l">Apply</h3>
-            <p class="inf-txt">Complete the application form</p>
+            <h3 class="inf-heading txt-al-l">Step 2</h3>
+            <p class="inf-txt">Design Shenanigans </p>
           </div>
           <div class="clr"></div>
         </div>
@@ -67,8 +69,8 @@
             <div class="inf-num fl-r">3</div>
           </div>
           <div class="inf-content fl-r">
-            <h3 class="inf-heading txt-al-r">Joining fee</h3>
-            <p class="inf-txt txt-al-r">Deposit R500 joining fee</p>
+            <h3 class="inf-heading txt-al-r">Step 3</h3>
+            <p class="inf-txt txt-al-r">Customize, Customize, Customize</p>
           </div>
           <div class="clr"></div>
         </div>
@@ -78,8 +80,8 @@
             <div class="inf-num">4</div>
           </div>
           <div class="inf-content fl-l">
-            <h3 class="inf-heading txt-al-l">Plan</h3>
-            <p class="inf-txt">Choose your investment plan</p>
+            <h3 class="inf-heading txt-al-l">Step 4</h3>
+            <p class="inf-txt">Wizards at Work </p>
           </div>
           <div class="clr"></div>
         </div>
@@ -89,8 +91,8 @@
             <div class="inf-num fl-r">5</div>
           </div>
           <div class="inf-content fl-r">
-            <h3 class="inf-heading txt-al-r">Withdrawal</h3>
-            <p class="inf-txt txt-al-r">After 3 months you can start withdrawing from your accounts. All withdrawals should be property related.</p>
+            <h3 class="inf-heading txt-al-r">Step 5</h3>
+            <p class="inf-txt txt-al-r">Voila! </p>
           </div>
           <div class="clr"></div>
         </div>
@@ -104,7 +106,7 @@
       <h1 class="center-h">Why <span class="deBold">does it Work?</span></h1>
       <span class="center-img"><img src="/images/howworks.svg"></span>
       <p class="txt-justify">
-        If you take a home a loan of say R500 000 over 20 years at an interest rate of 10%, your monthly repaymets amount to about R4 825.00. Interest rates varies all the time but for the sake of this calculation let's use 10%. Calculate this monthly repayment over a period of 20 years and it sums up to around R1 158 000.00. This is more than twice the bond amount given by the bank. This is because the bank charges you interests. At <b>Dream Homes</b> we use a stokvel system and thus there is no need to pay interests. Through each members contributions the stokvel is able to afford land and housing costs cash and thus saving members on interests.
+        Our model is the Michelangelo of house-building because we've traded the traditional toolkit for a chest of magical wonders. Instead of measuring success in square feet, we measure it in laughter per room and smiles per square inch. Our secret sauce lies in the perfect blend of whimsy, creativity, and a pinch of pixie dust. With a team that includes unicorn architects and dragon engineers, each project becomes a canvas for fantastical feats. Our commitment to turning the mundane into the extraordinary ensures that your home isn't just a structure but a living, breathing testament to the power of imagination. In short, we've cracked the code to house-building bliss, and it involves a generous sprinkling of enchantment and a dash of delightful absurdity. Welcome to the land where every brick tells a tale and every window whispers a whimsical secret!
         </p>
         <div class="clr"></div>
     </div>

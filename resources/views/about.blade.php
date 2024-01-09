@@ -9,7 +9,7 @@
     <h1 class="center-h"><span class="deBold">Our </span>Story</h1>
     <span class="center-img"><img src="/images/story.svg"></span>
     <p class="wide-par">
-      <b>Dream Homes</b> Stokvel is a unique stokvel that is formed to help those with little income or cannot qualify for a bond. The idea is to help such individuals to be able to buy their dream homes without any hassle. Members help one another to buy houses and members have the power to amend the constitution and to elect those that they feel can run the stokvel to success. Members meet every first week of every month to discuss the progress of the stokvel and any matters arising.
+      Once upon a time, in a dimension where blueprints danced and hammer swings were orchestrated by musical gnomes, our story began. It was a magical day, or perhaps night – we can't be certain because our founding moment was as timeless as a wizard's beard. Somewhere between a cloud-shaped brainstorm and a brainstorm-shaped cloud, a team of dream-weavers gathered in the whimsical city of ImagiNation. With unicorns as architects and dragons as engineers, the year was marked by confetti rains and the constant hum of creative chaos. And so, in a place where logic took a vacation and imagination clocked in overtime, our company emerged to redefine the very essence of home-building. Welcome to our tale of eccentricity, where every chapter unfolds with the turn of a wizard's wand and a sprinkle of cosmic glitter.
     </p>
     <br><br><br>
 

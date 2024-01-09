@@ -11,22 +11,24 @@
     <div class="contact-text">
       <div class="contact-group">
         <p class="contact-label"><b>Address</b></p>
-        <p class="contact-info">: 20 De Korte Street<br>Samro Place 5th Floor<br>Braamfontein<br>2001</p>
+        <p class="contact-info">:
+        101 Enchanted Lane <br> Whimsyville <br> ImagiNation Realm <br> 2001
+        </p>
         <div class="clr"></div>
       </div>
       <div class="contact-group">
         <p class="contact-label"><b>Email</b></p>
-        <p class="contact-info">: <a href="mailto:heita@dhs.org.za">heita@dhs.org.za</a></p>
+        <p class="contact-info">: <a href="mailto:heita@dhs.org.za">DreamWizard@DreamHomes.com</a></p>
         <div class="clr"></div>
       </div>
       <div class="contact-group">
         <p class="contact-label"><b>Fax</b></p>
-        <p class="contact-info">: 086 600 2848</p>
+        <p class="contact-info">: 086 100 1000</p>
         <div class="clr"></div>
       </div>
       <div class="contact-group">
         <p class="contact-label"><b>Tel</b></p>
-        <p class="contact-info">: 010 023 0080</p>
+        <p class="contact-info">: 010 200 2000</p>
         <div class="clr"></div>
       </div>
     </div>
