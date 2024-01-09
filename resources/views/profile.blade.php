@@ -135,13 +135,13 @@
       <h3>Our Banking Details</h3>
       <hr>
       <p>
-        Bank Name: FNB <br>
-        Account Holder: Su Casa Property Investment Group PTY LTD <br>
-        Account Number: 62843838189 <br>
-        Branch Name: Bank City <br>
-        Branch Code: 250805 <br>
-        Reference: Please put your name and surname
-      </p>
+        Bank Name: Mystical National Bank (MNB) <br>
+        Account Holder: Whimsical Estates Enchantment Corp. LLC <br>
+        Account Number: 789654321098 <br>
+        Branch Name: Enchanted Grove <br>
+        Branch Code: 987654 <br>
+        Reference: Please include your name and the secret code word "Abracadabra"
+    </p>
     </div>
 
     <div>
